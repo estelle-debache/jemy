@@ -12,17 +12,16 @@ class EntrepriseType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-                ->add(
-                    // nom du champs qui doit correspondre au nom de l'attribut name de la classe Category
-                    'nom',
-                    //type de champs
-                    TextType::class,// equivalent a un <input type="text">
-                    //tableau d'options
-                    [
-                        //contenu de la balise label  
-                        'label'=> 'nom'
-                    ]
-                    )
+               
+                ->add('nom', TextType::class,['label'=> 'nom'])
+                ->add('siren', IntegerType::class,['label'=> 'siren'])
+                ->add('siret', IntegerType::class,['label'=> 'siret'])
+                ->add('forme_juridique', TextType::class,['label'=> 'form_juridique'])
+                ->add('adresse', TextType::class,['label'=> 'adresse'])
+                ->add('code_postal', IntegerType::class,['label'=> 'code_postal'])
+                ->add('ville', TextType::class,['label'=> 'ville'])
+                ->add('telephone', TelType::class,['label'=> 'telephone'])
+                
         ;
         
     }
