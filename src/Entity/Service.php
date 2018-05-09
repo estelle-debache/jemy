@@ -15,7 +15,14 @@ class Service
      * @ORM\Column(type="integer")
      */
     private $id;
+    
+    /**
+     *
+     * @ORM\Column(type="string", length=255)
+     */
     private $nom;
+    
+    
     private $entreprise_id;
 
     public function getId()
