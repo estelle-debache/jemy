@@ -16,14 +16,32 @@ class Actualite
      */
     private $id;
     
+    
+    /**
+     *
+     * @ORM\Column(type="string", length=255)
+     */
     private $titre;
     
-    private $auteur_id;
-    
-    private $contenu;
-    
-    private $date;
 
+    
+    /**
+     *
+     * @ORM\Column(type="text")
+     */
+    private $contenu;
+    /**
+     *
+     * @ORM\Column(type="date")
+     */
+    private $date;
+    
+    
+    /**
+     *
+     * @ORM\JoinColumn(nullable=false)
+     * @ORM\ManyToOne(targetEntity="Salarie", inversedBy="actualite") 
+     */
     private $salarie;
 
     public function getId()

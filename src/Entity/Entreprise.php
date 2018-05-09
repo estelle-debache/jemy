@@ -76,6 +76,15 @@ class Entreprise
      */
     private $service;
     
+    
+    
+    /**
+     *
+     * @ORM\OneToMany(targetEntity="OffreEmploi", mappedBy="entreprise")
+     */
+    private $OffreEmploi;
+    
+    
     public function getNom() {
         return $this->nom;
     }

@@ -15,23 +15,49 @@ class OffreEmploi
      * @ORM\Column(type="integer")
      */
     private $id;
-    
-    private $entreprise_id;
-    
+
+    /**
+     *
+     * @ORM\Column(type="string", length=255)
+     */
     private $poste;
     
+    /**
+     *@ORM\Column(type="string", columnDefinition="enum('cdd', 'cdi')", nullable=false)
+    */
     private $contrat;
     
-    private $description;
+    /**
+     *
+     * @ORM\Column(type="text")
+     */
+        private $description;
     
+    /**
+     *
+     * @ORM\Column(type="date")
+     */
     private $date_publication;
-    
-    private $service_id;
-    
+        /**
+     *
+     * @ORM\Column(type="float")
+     */
     private $salaire;
     
+      /**
+     *
+     * @ORM\JoinColumn(nullable=false)
+     * @ORM\ManyToOne(targetEntity="Service", inversedBy="OffreEmploi") 
+     */
+    private $service;
     
     
+    /**
+     *
+     * @ORM\JoinColumn(nullable=false)
+     * @ORM\ManyToOne(targetEntity="Entreprise", inversedBy="OffreEmploi") 
+     */
+    private $entreprise;
 
     public function getId()
     {

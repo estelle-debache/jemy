@@ -142,6 +142,19 @@ class Salarie
      */
     private $FicheDePaie;
     
+    
+    
+    /**
+     *
+     * @ORM\OneToMany(targetEntity="Actualite", mappedBy="salarie") 
+     */
+    private $actualite;
+    /**
+     *
+     * @ORM\OneToMany(targetEntity="Conge", mappedBy="salarie")
+     */
+    private $conge;
+    
     public function getId()
     {
         return $this->id;
