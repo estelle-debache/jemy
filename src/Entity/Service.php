@@ -23,7 +23,23 @@ class Service
     private $nom;
     
     
-    private $entreprise_id;
+    /**
+     *
+     * @ORM\JoinColumn(nullable=false)
+     * @ORM\ManyToOne(targetEntity="Entreprise", inversedBy="service") 
+     */
+    private $entreprise;
+    
+    /**
+     *
+     * @ORM\OneToMany(targetEntity="Salarie", mappedBy="service")
+     */
+    private $salarie;
+    
+    
+    
+    
+    
 
     public function getId()
     {

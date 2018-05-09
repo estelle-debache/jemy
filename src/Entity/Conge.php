@@ -28,6 +28,7 @@ class Conge
     private $date_fin;
     
     private $nb_de_jour;
+    private $salarie;
     
     
     

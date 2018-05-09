@@ -24,6 +24,8 @@ class Actualite
     
     private $date;
 
+    private $salarie;
+
     public function getId()
     {
         return $this->id;

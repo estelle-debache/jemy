@@ -13,6 +13,7 @@ class Entreprise
      * @ORM\Id()
      * @ORM\GeneratedValue()
      * @ORM\Column(type="integer")
+     * 
      */
     private $id;
     
@@ -58,7 +59,23 @@ class Entreprise
      */
     private $ville;
 
-
+    /**
+     *
+     * @ORM\Column(type="string", length=10)
+     */
+    private $telephone;
+    
+    /**
+     * @ORM\OneToMany(targetEntity="Salarie", mappedBy="entreprise", cascade={"persist"})
+     */
+    private $salarie;
+    
+    /**
+     *
+     *@ORM\OneToMany(targetEntity="Service", mappedBy="entreprise", cascade={"persist"})
+     */
+    private $service;
+    
     public function getNom() {
         return $this->nom;
     }
@@ -125,5 +142,5 @@ class Entreprise
         public function getId()
     {
         return $this->id;
-    }
+    } 
 }

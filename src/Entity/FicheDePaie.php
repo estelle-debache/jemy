@@ -15,8 +15,7 @@ class FicheDePaie
      * @ORM\Column(type="integer")
      */
     private $id;
-    
-    private $salarie_id;
+   
     /*
      * @ORM\Column(type="date")
      */
@@ -29,9 +28,19 @@ class FicheDePaie
     
     /**
      *
-     * @ORM\Column(type="string", length=255
+     * @ORM\Column(type="string", length=255)
      */
     private $fiche_de_paie;
+    
+    /**
+     *
+     *  @ORM\JoinColumn(nullable=false)
+     * @ORM\ManyToOne(targetEntity="Salarie", inversedBy="FicheDePaie") 
+     */
+    private $salarie;
+    
+    
+    
 
     public function getId()
     {
