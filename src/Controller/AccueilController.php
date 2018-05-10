@@ -17,7 +17,7 @@ class AccueilController extends Controller
      */
     public function index()
     {
-        return $this->render('accueill/index.html.twig');
+        return $this->render('accueil/index.html.twig');
     }
     
     /**
@@ -26,7 +26,7 @@ class AccueilController extends Controller
      */
     public function inscription()
     {
-        return $this->render('accueill/inscription.html.twig');
+        return $this->render('accueil/inscription.html.twig');
     }
     
     /**
