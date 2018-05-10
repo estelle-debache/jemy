@@ -8,16 +8,16 @@ use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 
 
 /**
- * @Route("/acceuil")
+ * @Route("/accueil")
  */
-class AcceuilController extends Controller
+class AccueilController extends Controller
 {
     /**
      * @Route("/")
      */
     public function index()
     {
-        return $this->render('acceuil/index.html.twig');
+        return $this->render('accueill/index.html.twig');
     }
     
     /**
@@ -26,7 +26,7 @@ class AcceuilController extends Controller
      */
     public function inscription()
     {
-        return $this->render('acceuil/inscription.html.twig');
+        return $this->render('accueill/inscription.html.twig');
     }
     
     /**
