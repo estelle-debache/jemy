@@ -80,8 +80,14 @@ section{
 /** inscription **************************************************************************************************************************/
 .inscription h1{
     color: #083b66;
-    margin-bottom: 2rem;
+    margin-top: 6rem;
+
 }
+.inscription{
+    margin-top: 4rem;
+    margin-bottom: 4rem; 
+}
+
 
 .inscription .btn-primary{
     background-color: #74d14c;

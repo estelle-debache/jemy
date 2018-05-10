@@ -130,9 +130,11 @@ class Salarie
      * @ORM\ManyToOne(targetEntity="Entreprise", inversedBy="salarie") 
      */
     private $entreprise;
+    
+    
     /**
      * @ORM\JoinColumn(nullable=false)
-     * @ORM\ManyToOne(targetEntity="Service", inversedBy="salarie") 
+     * @ORM\ManyToOne(targetEntity="Service", inversedBy="salarie")
      */
     private $service;
 

@@ -4,6 +4,8 @@ namespace App\Form;
 
 use App\Entity\Entreprise;
 use Symfony\Component\Form\AbstractType;
+use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
+use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
@@ -13,14 +15,24 @@ class EntrepriseType extends AbstractType
     {
         $builder
                
-                ->add('nom', TextType::class,['label'=> 'nom'])
-                ->add('siren', IntegerType::class,['label'=> 'siren'])
-                ->add('siret', IntegerType::class,['label'=> 'siret'])
-                ->add('forme_juridique', TextType::class,['label'=> 'form_juridique'])
-                ->add('adresse', TextType::class,['label'=> 'adresse'])
-                ->add('code_postal', IntegerType::class,['label'=> 'code_postal'])
-                ->add('ville', TextType::class,['label'=> 'ville'])
-                ->add('telephone', TelType::class,['label'=> 'telephone'])
+                ->add('nom', TextType::class,['label'=> 'Nom'])
+                ->add('siren', TextType::class,['label'=> 'Siren'])
+                ->add('siret', TextType::class,['label'=> 'Siret'])
+                
+                ->add('adresse', TextType::class,['label'=> 'Adresse'])
+                ->add('code_postal', TextType::class,['label'=> 'Code Postal'])
+                ->add('ville', TextType::class,['label'=> 'Ville'])
+                ->add('telephone', TextType::class,['label'=> 'Téléphone'])
+                
+                ->add('forme_juridique', ChoiceType::class,array(
+                    'expanded'=>false,
+                    'multiple'=>false,
+                    'choices' => array(
+                        ''=>'',
+                        'SARL' => 'SARL',
+                        'SAS' => 'SAS',
+                        'SA'=>'SA',
+                           )))
                 
         ;
         

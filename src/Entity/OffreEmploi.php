@@ -40,7 +40,7 @@ class OffreEmploi
     private $date_publication;
         /**
      *
-     * @ORM\Column(type="float")
+     * @ORM\Column(type="integer")
      */
     private $salaire;
     

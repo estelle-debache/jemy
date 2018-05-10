@@ -3,9 +3,13 @@
 namespace App\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;
+//use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity ;
 
 /**
+ * 
  * @ORM\Entity(repositoryClass="App\Repository\EntrepriseRepository")
+ * 
  */
 class Entreprise
 {
@@ -18,30 +22,38 @@ class Entreprise
     private $id;
     
     /**
-     *
+     *@Assert\NotBlank(message = "LE NOM EST OBLIGATOIRE")
      *@ORM\Column(type="string", length=30)
      */
     private $nom;
     
     /**
      *
-     * @ORM\Column(type="integer", length=9, unique=true)
+     * @ORM\Column(type="string", length=9)
      */
     private $siren;
     
     /**
      *
-     *@ORM\Column(type="integer", length=20, unique=true)
+     *@ORM\Column(type="string", length=14)
      */
     private $siret;
     
     /**
      *
-     *@ORM\Column(type="string", length=50)
+     *@ORM\Column(type="string", columnDefinition="enum('SARL', 'SAS', 'SA' )", nullable=false)
      */
-    private $forme_juridique;
-    
-    /**
+    private $formeJuridique;
+    public function getFormeJuridique() {
+        return $this->formeJuridique;
+    }
+
+    public function setFormeJuridique($formeJuridique) {
+        $this->formeJuridique = $formeJuridique;
+        return $this;
+    }
+
+        /**
      *
      *@ORM\Column(type="string", length=250)
      */
@@ -49,9 +61,9 @@ class Entreprise
     
     /**
      *
-     *@ORM\Column(type="integer", length=5)
+     *@ORM\Column(type="string", length=5)
      */
-    private $code_postal;
+    private $codePostal;
     
     /**
      *
@@ -75,8 +87,10 @@ class Entreprise
      *@ORM\OneToMany(targetEntity="Service", mappedBy="entreprise", cascade={"persist"})
      */
     private $service;
-    
-    
+
+
+
+        
     
     /**
      *
@@ -84,7 +98,10 @@ class Entreprise
      */
     private $OffreEmploi;
     
-    
+    public function getId() {
+        return $this->id;
+    }
+
     public function getNom() {
         return $this->nom;
     }
@@ -97,21 +114,35 @@ class Entreprise
         return $this->siret;
     }
 
-    public function getForme_juridique() {
-        return $this->forme_juridique;
-    }
-
     public function getAdresse() {
         return $this->adresse;
     }
 
-    public function getCode_postal() {
-        return $this->code_postal;
+    public function getCodePostal() {
+        return $this->codePostal;
     }
 
     public function getVille() {
         return $this->ville;
     }
+
+    public function getTelephone() {
+        return $this->telephone;
+    }
+
+    public function getSalarie() {
+        return $this->salarie;
+    }
+
+    public function getService() {
+        return $this->service;
+    }
+
+    public function getOffreEmploi() {
+        return $this->OffreEmploi;
+    }
+
+
 
     public function setNom($nom) {
         $this->nom = $nom;
@@ -128,18 +159,13 @@ class Entreprise
         return $this;
     }
 
-    public function setForme_juridique($forme_juridique) {
-        $this->forme_juridique = $forme_juridique;
-        return $this;
-    }
-
     public function setAdresse($adresse) {
         $this->adresse = $adresse;
         return $this;
     }
 
-    public function setCode_postal($code_postal) {
-        $this->code_postal = $code_postal;
+    public function setCodePostal($codePostal) {
+        $this->codePostal = $codePostal;
         return $this;
     }
 
@@ -148,8 +174,27 @@ class Entreprise
         return $this;
     }
 
-        public function getId()
-    {
-        return $this->id;
-    } 
+    public function setTelephone($telephone) {
+        $this->telephone = $telephone;
+        return $this;
+    }
+
+    public function setSalarie($salarie) {
+        $this->salarie = $salarie;
+        return $this;
+    }
+
+    public function setService($service) {
+        $this->service = $service;
+        return $this;
+    }
+
+    public function setOffreEmploi($OffreEmploi) {
+        $this->OffreEmploi = $OffreEmploi;
+        return $this;
+    }
+
+
+    
+
 }

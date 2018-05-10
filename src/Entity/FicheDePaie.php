@@ -31,6 +31,11 @@ class FicheDePaie
      * @ORM\Column(type="string", length=255)
      */
     private $fiche_de_paie;
+    /**
+     *
+     * @ORM\Column(type="date")
+     */
+    private $dateEmission;
     
     /**
      *

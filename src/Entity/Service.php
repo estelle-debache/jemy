@@ -31,8 +31,7 @@ class Service
     private $entreprise;
     
     /**
-     *
-     * @ORM\OneToMany(targetEntity="Salarie", mappedBy="service")
+     * @ORM\OneToMany(targetEntity="Salarie", mappedBy="service") 
      */
     private $salarie;
     
