@@ -1,18 +1,49 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}JEYM{% endblock %}
+{% block title %}JEMY{% endblock %}
 
 {% block stylesheets %}
 
-        <!-- Bootstrap CSS -->
+    <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css" integrity="sha384-9gVQ4dYFwwWSjIDZnLEWnxCjeSWFphJiwGPXr1jddIhOegiu1FwO5qRGvFXOdJZ4" crossorigin="anonymous">
-
+    
+    <!--  CSS -->
+    <link href="{{path ('assets_css_style.css')}}" rel="stylesheet" type="text/css">
+    
+    <!-- FAVICON -->
+    <link rel="shortcut icon" href="img/favicon.ico" type="image/x-icon">
+    <link rel="icon" href="img/favicon.ico" type="image/x-icon">
+    
+    <!-- FONT AWESOME -->
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.12/css/all.css" integrity="sha384-G0fIWCsCzJIMAVNQPfjH08cyYaUtMwjJwqiRKxxE/rx96Uroj1BtIQ6MLJuheaO9" crossorigin="anonymous">
 
 {% endblock %}
 
 {% block body %}
      
-    
+        {% block header %}
+            <nav class="navbar navbar-expand-lg navbar-light bg-light fixed-top">
+                <a class="navbar-brand js-scroll-trigger" href="index.html"><img class="img-fluid" src="img/logo.png"></a>
+
+                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarNav">
+                    <ul class="navbar-nav ">
+                        <li class="nav-item ">
+                            <a class="nav-link" href="connexion.html">Connexion <span class="sr-only">(current)</span></a>
+                        </li>
+                        <li class="nav-item ">
+                            <a class="nav-link" href="inscription.html">Inscription <span class="sr-only">(current)</span></a>
+                        </li>
+                        <li class="nav-item ">
+                            <a class="nav-link" href="#footer">Contact</a>
+                        </li>
+                    </ul>
+                </div>
+            </nav>
+        
+        {% endblock  %}
     
         
         {# affichage des message flash #}
@@ -35,7 +66,32 @@
             
         {% endfor %}
         
+        
+        
         {% block content %}{% endblock  %}
+        {% block footer %}
+            <div class="container" id="footer">
+                <div class="row text-center">
+                    <div class="col-12 col-md-4 footer-gauche">
+                        <hr>
+                        <h2> Contact</h2>
+                        <hr>
+                        <a href="tel:+33500000000"><span>Tel :</span> 01.43.56.99.07</a><br>
+                        <a href="mailto:contact@jemy.fr?subject=Le sujet&cc=cc@example.com&bcc=bcc@example.com&body=Corps du mail"><span>Mail :</span> contact@jemy.fr</a>
+                    </div>
+                    <div class="col-12 col-md-8">
+                        <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2626.1139992038707!2d2.332293815945417!3d48.836964179285474!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x47e671c7785c4fd3%3A0xb0c04bf49ef6cfb4!2sWebforce3!5e0!3m2!1sfr!2sfr!4v1525784360162"
+                            width="100%" height="400" frameborder="0" style="border:0" allowfullscreen></iframe>
+                    </div>
+                </div>
+                <div class="row text-center footer-bas">
+                    <div class="col-12 col-md-12  tex-center">
+                        <p>© Jemy - 2018 - Tous droits réservés</p>
+
+                    </div>
+                </div>
+            </div>
+        {% endblock  %}
 
 
 
@@ -46,9 +102,8 @@
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.0/umd/popper.min.js" integrity="sha384-cs/chFZiN24E4KMATLdqdvsezGxaGsi4hLGOzlXwp5UZB1LY//20VyM2taTB4QvJ" crossorigin="anonymous"></script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/js/bootstrap.min.js" integrity="sha384-uefMccjFJAIv6A+rW+L4AHf99KvxDjWSu1z9VI8SKNVmz4sk7buKt/6v9KI65qnm" crossorigin="anonymous">
-        
-    </script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/js/bootstrap.min.js" integrity="sha384-uefMccjFJAIv6A+rW+L4AHf99KvxDjWSu1z9VI8SKNVmz4sk7buKt/6v9KI65qnm" crossorigin="anonymous"></script>
+
 {% endblock %}
 
 
