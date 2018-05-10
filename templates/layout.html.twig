@@ -3,25 +3,17 @@
 {% block title %}JEMY{% endblock %}
 
 {% block stylesheets %}
-
+    <link rel="stylesheet" href="/assets/css/style.css" >
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css" integrity="sha384-9gVQ4dYFwwWSjIDZnLEWnxCjeSWFphJiwGPXr1jddIhOegiu1FwO5qRGvFXOdJZ4" crossorigin="anonymous">
-    
-    <!--  CSS -->
-    <link href="{{path ('assets_css_style.css')}}" rel="stylesheet" type="text/css">
-    
-    <!-- FAVICON -->
-    <link rel="shortcut icon" href="img/favicon.ico" type="image/x-icon">
-    <link rel="icon" href="img/favicon.ico" type="image/x-icon">
-    
-    <!-- FONT AWESOME -->
-    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.12/css/all.css" integrity="sha384-G0fIWCsCzJIMAVNQPfjH08cyYaUtMwjJwqiRKxxE/rx96Uroj1BtIQ6MLJuheaO9" crossorigin="anonymous">
+
 
 {% endblock %}
 
 {% block body %}
      
         {% block header %}
+            <header>
             <nav class="navbar navbar-expand-lg navbar-light bg-light fixed-top">
                 <a class="navbar-brand js-scroll-trigger" href="index.html"><img class="img-fluid" src="img/logo.png"></a>
 
@@ -42,6 +34,7 @@
                     </ul>
                 </div>
             </nav>
+            </header>
         
         {% endblock  %}
     
@@ -70,6 +63,7 @@
         
         {% block content %}{% endblock  %}
         {% block footer %}
+            <footer>
             <div class="container" id="footer">
                 <div class="row text-center">
                     <div class="col-12 col-md-4 footer-gauche">
@@ -91,6 +85,7 @@
                     </div>
                 </div>
             </div>
+            </footer>
         {% endblock  %}
 
 
