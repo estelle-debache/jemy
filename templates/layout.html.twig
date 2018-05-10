@@ -24,7 +24,7 @@
         {% block header %}
             <header>
             <nav class="navbar navbar-expand-lg navbar-light bg-light fixed-top">
-                <a class="navbar-brand js-scroll-trigger" href="index.html"><img class="img-fluid" src="img/logo.png"></a>
+                <a class="navbar-brand js-scroll-trigger" href="{{path('app_accueil_index')}}"><img class="img-fluid" src="/assets/img/logo.png"></a>
 
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
@@ -32,10 +32,10 @@
                 <div class="collapse navbar-collapse" id="navbarNav">
                     <ul class="navbar-nav ">
                         <li class="nav-item ">
-                            <a class="nav-link" href="connexion.html">Connexion <span class="sr-only">(current)</span></a>
+                            <a class="nav-link" href="{{path('app_accueil_connexion')}}">Connexion <span class="sr-only">(current)</span></a>
                         </li>
                         <li class="nav-item ">
-                            <a class="nav-link" href="inscription.html">Inscription <span class="sr-only">(current)</span></a>
+                            <a class="nav-link" href="{{path('app_accueil_inscription')}}">Inscription <span class="sr-only">(current)</span></a>
                         </li>
                         <li class="nav-item ">
                             <a class="nav-link" href="#footer">Contact</a>
