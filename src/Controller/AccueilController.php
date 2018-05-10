@@ -35,7 +35,7 @@ class AccueilController extends Controller
      */
     public function connexion ()
     {
-        return $this->render("acceuil/connexion.html.twig");
+        return $this->render("accueil/connexion.html.twig");
     }
     
     
