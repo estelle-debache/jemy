@@ -5,10 +5,13 @@ namespace App\Controller;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 
+/**
+ * @Route("/admin")
+ */
 class AdminController extends Controller
 {
     /**
-     * @Route("/admin", name="admin")
+     * @Route("/", name="admin-tdb")
      */
     public function index()
     {
@@ -19,10 +22,19 @@ class AdminController extends Controller
     
     /**
      * 
-     * @Route("/listeSalaries" , name="admin-liste-salaries")
+     * @Route("/liste-salaries" , name="admin-liste-salaries")
      */
     public function listeSalaries()
     {
         return $this->render('admin/liste-salaries.html.twig');
+    }
+    
+    /**
+     * 
+     * @Route("/ajout-salaries" , name="admin-ajout-salaries")
+     */
+    public function ajoutSalaries()
+    {
+        return $this->render('admin/ajout-salaries.html.twig');
     }
 }
