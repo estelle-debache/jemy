@@ -67,6 +67,18 @@ class AccueilController extends Controller
                  ]);
         
     }
+    
+    /**
+     * 
+     * @Route("/inscription-admin" , name="inscription-admin")
+     */
+    public function inscriptionAdmin(Request $request)
+    {
+        
+        
+        return $this->render('accueil/inscription-admin.html.twig');
+        
+    }
 
     /**
      * 
