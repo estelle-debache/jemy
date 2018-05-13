@@ -62,4 +62,13 @@ class SalarieController extends Controller
     {
         return $this->render('salarie/trombinoscope.html.twig');
     }
+    
+    /**
+     * 
+     * @Route("/news" , name="salarie-news")
+     */
+    public function news()
+    {
+        return $this->render('salarie/news.html.twig');
+    }
 }
