@@ -2,12 +2,16 @@
 
 namespace App\Entity;
 
+use App\Repository\SalarieRepository;
 use Doctrine\ORM\Mapping as ORM;
+use Serializable;
+use Symfony\Component\Security\Core\User\UserInterface;
+use Symfony\Component\Validator\Constraints as Assert;
 
 /**
- * @ORM\Entity(repositoryClass="App\Repository\SalarieRepository")
+ * @ORM\Entity(repositoryClass="SalarieRepository")
  */
-class Salarie
+class Salarie implements UserInterface, Serializable
 {
     /**
      * @ORM\Id()
@@ -17,18 +21,12 @@ class Salarie
     private $id;
     
     /**
-     *
-     * @ORM\Column(type="string", length=255, unique=true) 
+     * cle etrangere vers entreprise
+     * inversedby doit etre ajoute quand on a ajoute un onetomany dans la classe user sur l'attribut publications
+     * @ORM\JoinColumn(nullable=false)
+     * @ORM\ManyToOne(targetEntity="Entreprise", inversedBy="salarie") 
      */
-    private $mail;
-    
-    /**
-     *
-     * @ORM\Column(type="string", columnDefinition="enum('Mr', 'Mme')", nullable=false)
-     */
-    private $civilite;
-    
-
+    private $entreprise;
     
     /**
      *
@@ -41,11 +39,33 @@ class Salarie
      * @ORM\Column(type="string", length=20)
      */
     private $prenom;
+    
+    /**
+     *
+     * @ORM\Column(type="string", length=255, unique=true) 
+     */
+    private $email;
+    
+    /**
+     *
+     * @ORM\Column(type="string", columnDefinition="enum('Mr', 'Mme')", nullable=false)
+     */
+    private $civilite;
+    
+    /**
+     *
+     * @ORM\Column(type="string", length=255)
+     */
+    private $password;
+
+ 
+
+
     /**
      *
      * @ORM\Column(type="date")
      */
-    private $date_de_naissance;
+    private $dateDeNaissance;
     
     /**
      *
@@ -56,7 +76,7 @@ class Salarie
      *
      * @ORM\Column(type="integer", length=5)
      */
-    private $code_postale;
+    private $codePostal;
     /**
      *
      * @ORM\Column(type="string", length=255)
@@ -67,18 +87,18 @@ class Salarie
      *
      * @ORM\Column(type="date")
      */
-    private $date_embauche;
+    private $dateEmbauche;
     
     
     /**
      *
      * @ORM\Column(type="string", length=15)
      */
-    private $num_ss;
+    private $numSs;
     
     /**
      *
-     * @ORM\Column(type="string", columnDefinition="enum('fdp', 'admin')", nullable=false)
+     * @ORM\Column(type="string", columnDefinition="enum('ROLE_USER', 'ROLE_ADMIN')", nullable=false)
      */
     private $role;
     
@@ -92,13 +112,13 @@ class Salarie
      *@ORM\Column(type="string", length=255)
      * 
      */
-    private $carte_identite;
+    private $carteIdentite;
     
     /**
      *
      * @ORM\Column(type="string", length=255)
      */
-    private $contrat_travail;
+    private $contratTravail;
     /**
      *
      * @ORM\Column(type="string", length=255)
@@ -107,29 +127,23 @@ class Salarie
     
     /**
      *
-     * @ORM\Column(type="integer", length=2) 
+     * @ORM\Column(type="integer", length=2, nullable=true) 
      */
-    private $solde_conge;
+    private $soldeConge;
     
     /**
      *
-     * @ORM\Column(type="string", columnDefinition="enum('en activite', 'fin de contrat')", nullable=false)
+     * @ORM\Column(type="string", columnDefinition="enum('en activite', 'fin de contrat')", nullable=true)
      */
     private $statut;
     /**
      *
-     * @ORM\Column(type="date")
+     * @ORM\Column(type="date", nullable=true)
      */
-    private $date_fin_contrat; 
+    private $dateFinContrat; 
     
        
-    /**
-     * cle etrangere vers entreprise
-     * inversedby doit etre ajoute quand on a ajoute un onetomany dans la classe user sur l'attribut publications
-     * @ORM\JoinColumn(nullable=false)
-     * @ORM\ManyToOne(targetEntity="Entreprise", inversedBy="salarie") 
-     */
-    private $entreprise;
+
     
     
     /**
@@ -157,20 +171,18 @@ class Salarie
      */
     private $conge;
     
-    public function getId()
-    {
+    /**
+     *Mot de passe en clair pourinteragir avec le formulaire 
+     * va recuperer le mot de passe en clair dans l'interaction avec le formulaire
+     * @Assert\NotBlank(message="vous devez imperativement remplir le champs mot de passe")
+    */
+    private $plainPassword;
+    public function getId() {
         return $this->id;
     }
-    public function getMail() {
-        return $this->mail;
-    }
 
-    public function getCivilite() {
-        return $this->civilite;
-    }
-
-    public function getEntreprise_id() {
-        return $this->entreprise_id;
+    public function getEntreprise() {
+        return $this->entreprise;
     }
 
     public function getNom() {
@@ -181,32 +193,40 @@ class Salarie
         return $this->prenom;
     }
 
-    public function getService_id() {
-        return $this->service_id;
+    public function getEmail() {
+        return $this->email;
     }
 
-    public function getDate_de_naissance() {
-        return $this->date_de_naissance;
+    public function getCivilite() {
+        return $this->civilite;
+    }
+
+    public function getPassword() {
+        return $this->password;
+    }
+
+    public function getDateDeNaissance() {
+        return $this->dateDeNaissance;
     }
 
     public function getAdresse() {
         return $this->adresse;
     }
 
-    public function getCode_postale() {
-        return $this->code_postale;
+    public function getCodePostal() {
+        return $this->codePostal;
     }
 
     public function getVille() {
         return $this->ville;
     }
 
-    public function getDate_embauche() {
-        return $this->date_embauche;
+    public function getDateEmbauche() {
+        return $this->dateEmbauche;
     }
 
-    public function getNum_ss() {
-        return $this->num_ss;
+    public function getNumSs() {
+        return $this->numSs;
     }
 
     public function getRole() {
@@ -217,42 +237,57 @@ class Salarie
         return $this->iban;
     }
 
-    public function getCarte_identite() {
-        return $this->carte_identite;
+    public function getCarteIdentite() {
+        return $this->carteIdentite;
     }
 
-    public function getContrat_travail() {
-        return $this->contrat_travail;
+    public function getContratTravail() {
+        return $this->contratTravail;
     }
 
     public function getPhoto() {
         return $this->photo;
     }
 
-    public function getSolde_conge() {
-        return $this->solde_conge;
+    public function getSoldeConge() {
+        return $this->soldeConge;
     }
 
     public function getStatut() {
         return $this->statut;
     }
 
-    public function getDate_fin_contrat() {
-        return $this->date_fin_contrat;
+    public function getDateFinContrat() {
+        return $this->dateFinContrat;
     }
 
-    public function setMail($mail) {
-        $this->mail = $mail;
+    public function getService() {
+        return $this->service;
+    }
+
+    public function getFicheDePaie() {
+        return $this->FicheDePaie;
+    }
+
+    public function getActualite() {
+        return $this->actualite;
+    }
+
+    public function getConge() {
+        return $this->conge;
+    }
+
+    public function getPlainPassword() {
+        return $this->plainPassword;
+    }
+
+    public function setId($id) {
+        $this->id = $id;
         return $this;
     }
 
-    public function setCivilite($civilite) {
-        $this->civilite = $civilite;
-        return $this;
-    }
-
-    public function setEntreprise_id($entreprise_id) {
-        $this->entreprise_id = $entreprise_id;
+    public function setEntreprise($entreprise) {
+        $this->entreprise = $entreprise;
         return $this;
     }
 
@@ -266,13 +301,23 @@ class Salarie
         return $this;
     }
 
-    public function setService_id($service_id) {
-        $this->service_id = $service_id;
+    public function setEmail($email) {
+        $this->email = $email;
         return $this;
     }
 
-    public function setDate_de_naissance($date_de_naissance) {
-        $this->date_de_naissance = $date_de_naissance;
+    public function setCivilite($civilite) {
+        $this->civilite = $civilite;
+        return $this;
+    }
+
+    public function setPassword($password) {
+        $this->password = $password;
+        return $this;
+    }
+
+    public function setDateDeNaissance($dateDeNaissance) {
+        $this->dateDeNaissance = $dateDeNaissance;
         return $this;
     }
 
@@ -281,8 +326,8 @@ class Salarie
         return $this;
     }
 
-    public function setCode_postale($code_postale) {
-        $this->code_postale = $code_postale;
+    public function setCodePostal($codePostal) {
+        $this->codePostal = $codePostal;
         return $this;
     }
 
@@ -291,13 +336,13 @@ class Salarie
         return $this;
     }
 
-    public function setDate_embauche($date_embauche) {
-        $this->date_embauche = $date_embauche;
+    public function setDateEmbauche($dateEmbauche) {
+        $this->dateEmbauche = $dateEmbauche;
         return $this;
     }
 
-    public function setNum_ss($num_ss) {
-        $this->num_ss = $num_ss;
+    public function setNumSs($numSs) {
+        $this->numSs = $numSs;
         return $this;
     }
 
@@ -311,13 +356,13 @@ class Salarie
         return $this;
     }
 
-    public function setCarte_identite($carte_identite) {
-        $this->carte_identite = $carte_identite;
+    public function setCarteIdentite($carteIdentite) {
+        $this->carteIdentite = $carteIdentite;
         return $this;
     }
 
-    public function setContrat_travail($contrat_travail) {
-        $this->contrat_travail = $contrat_travail;
+    public function setContratTravail($contratTravail) {
+        $this->contratTravail = $contratTravail;
         return $this;
     }
 
@@ -326,8 +371,8 @@ class Salarie
         return $this;
     }
 
-    public function setSolde_conge($solde_conge) {
-        $this->solde_conge = $solde_conge;
+    public function setSoldeConge($soldeConge) {
+        $this->soldeConge = $soldeConge;
         return $this;
     }
 
@@ -336,10 +381,85 @@ class Salarie
         return $this;
     }
 
-    public function setDate_fin_contrat($date_fin_contrat) {
-        $this->date_fin_contrat = $date_fin_contrat;
+    public function setDateFinContrat($dateFinContrat) {
+        $this->dateFinContrat = $dateFinContrat;
         return $this;
     }
+
+    public function setService($service) {
+        $this->service = $service;
+        return $this;
+    }
+
+    public function setFicheDePaie($FicheDePaie) {
+        $this->FicheDePaie = $FicheDePaie;
+        return $this;
+    }
+
+    public function setActualite($actualite) {
+        $this->actualite = $actualite;
+        return $this;
+    }
+
+    public function setConge($conge) {
+        $this->conge = $conge;
+        return $this;
+    }
+
+    public function setPlainPassword($plainPassword) {
+        $this->plainPassword = $plainPassword;
+        return $this;
+    }
+    public function serialize() {
+           return serialise(             [
+                    $this->id,
+                    $this->nom,
+                    $this->prenom,
+                    $this->email,
+                    $this->password
+                  ]
+                );
+        
+    }
+
+      public function unserialize( $serialized) {
+        list(
+                    $this->id,
+                    $this->nom,
+                    $this->prenom,
+                    $this->email,
+                    $this->password
+                ) = unserialize($serialized)
+                ;
+    }
+
+    public function eraseCredentials() {
+        
+    }
+
+    public function getRoles() {
+         return [$this->role];
+    }
+
+    public function getSalt() {
+        return null;
+        
+    }
+
+    public function getUsername() {
+        return $this->email;
+    }
+    public function getFullName()
+    {
+        return trim($this->prenom.' ' . $this->nom);
+    }
+    public function __toString() {
+        return $this->getFullName();
+        
+    }
+
+
+
 
 
 }

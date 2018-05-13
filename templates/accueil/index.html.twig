@@ -3,23 +3,19 @@
 
 {% block content %}
      <section>
-        <div class="container">
+        <div class="container home-page">
             <div class="row">
-                <div class="col-12 col-md-6 home-gauche ">
+                <div class="col-12 col-lg-6 home-gauche ">
                     <h1> " Simplifiez vous la tâche ! Uttilisezzz Jemy pour la gestion de vos salariés blablab et blablaaaaaaaaaa !</h1>
                     <div class="text-center">
-                        <a href="{{ path('app_accueil_inscription')}}"><button type="button" class="btn btn-outline-success ">Inscription entreprise</button></a>
+                        <a href="{{url('inscription')}}"><button type="button" class="btn btn-outline-success ">Inscription entreprise</button></a>
                     </div>
                 </div>
-                <div class="col-12 col-md-6 home-droite">
+                <div class="col-12 col-lg-6 home-droite text-center">
                     <img class="img-fluid" src="/assets/img/image1.png">
                 </div>
             </div>
-            <div class="row text-center home-bas">
-                <div class="col-12 col-md-12">
-                    <img class="img-fluid" src="/assets/img/image2.png">
-                </div>
-            </div>
+            
         </div>
     </section>
         

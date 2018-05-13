@@ -1,0 +1,48 @@
+{% extends 'layout.html.twig' %}
+
+
+{% block content %}
+    
+  
+    
+    <section>
+        <div class="container inscription-admin ">
+            <h1 class="text-center">Informations Admin principal</h1>
+            
+              {{form_start(form)}}{# ouvre la balise form #}
+
+        {{ form_row(form.civilite) }} {# bloc de formulaire pour le champs name #}
+        {{ form_row(form.nom) }}
+        {{ form_row(form.prenom) }}
+        {{ form_row(form.dateDeNaissance) }}
+
+        {{form_row(form.email) }}
+
+        {{form_row(form.plainPassword) }}
+
+        {{ form_row(form.adresse) }}
+        {{ form_row(form.codePostal) }}
+        {{ form_row(form.ville) }}
+        {{ form_row(form.dateEmbauche) }}
+        {{ form_row(form.numSs) }}
+        {{ form_row(form.iban) }}
+        {{ form_row(form.carteIdentite) }}
+        {{ form_row(form.contratTravail) }}
+        {{ form_row(form.photo) }}
+        
+ 
+            
+            
+
+                <div class="form-btn-group">
+                <button type="submit" class="btn btn-primary">Valider</button>
+                </div>
+         {{ form_end(form) }}{# ferme la balise form #}
+        </div>
+    </section>
+    
+  
+    
+    
+
+{% endblock %}

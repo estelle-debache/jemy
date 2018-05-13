@@ -5,6 +5,7 @@ namespace App\Repository;
 use App\Entity\Salarie;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Symfony\Bridge\Doctrine\RegistryInterface;
+use Symfony\Bridge\Doctrine\Security\User\UserLoaderInterface;
 
 /**
  * @method Salarie|null find($id, $lockMode = null, $lockVersion = null)
@@ -12,11 +13,21 @@ use Symfony\Bridge\Doctrine\RegistryInterface;
  * @method Salarie[]    findAll()
  * @method Salarie[]    findBy(array $criteria, array $orderBy = null, $limit = null, $offset = null)
  */
-class SalarieRepository extends ServiceEntityRepository
+class SalarieRepository extends ServiceEntityRepository implements UserLoaderInterface
 {
     public function __construct(RegistryInterface $registry)
     {
         parent::__construct($registry, Salarie::class);
+    }
+        public function loadUserByUsername($username) {
+        //constructeur de requete (u est l'alias de user 
+        $qb= $this->createQueryBuilder('s');
+        // select * from user u where u.email = :username
+        $qb 
+                ->where('s.email = :username')
+                ->setParameter('username', $username)
+                ;
+        return $qb->getQuery()->getOneOrNullResult();
     }
 
 //    /**

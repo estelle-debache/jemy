@@ -3,10 +3,13 @@
 namespace App\Controller;
 
 use App\Entity\Entreprise;
+use App\Entity\Salarie;
 use App\Form\EntrepriseType;
+use App\Form\SalarieType;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Component\Security\Core\Encoder\UserPasswordEncoderInterface;
 use function dump;
 
 /**
@@ -15,7 +18,7 @@ use function dump;
 class AccueilController extends Controller
 {
     /**
-     * @Route("/")
+     * @Route("/" , name="accueil")
      */
     public function index()
     {
@@ -24,7 +27,7 @@ class AccueilController extends Controller
     
     /**
      * 
-     * @Route("/inscription")
+     * @Route("/inscription" , name="inscription")
      */
     public function inscription(Request $request)
     {
@@ -48,7 +51,7 @@ class AccueilController extends Controller
             
             // RESTE PLKUS QUA LES METTRE EN BASE DE DONNéES 
             $em->persist($entreprise);
-            $pouet=$em->flush();
+            $em->flush();
         
             dump($entreprise->getId());
             
@@ -60,7 +63,7 @@ class AccueilController extends Controller
             dump($session->get('id'));
             
             $this->addFlash('success', " felicitation Votre Entreprise a ete créé");
-            return $this->redirectToRoute('app_salarie_inscription');
+            return $this->redirectToRoute('inscription-admin');
          
         }
                 
@@ -72,10 +75,48 @@ class AccueilController extends Controller
                  ]);
         
     }
+    
+    /**
+     * 
+     * @Route("/inscription-admin" , name="inscription-admin")
+     */
+    public function inscriptionAdmin(Request $request, UserPasswordEncoderInterface $passwordEncoder)
+    {
+        
+        $em = $this->getDoctrine()->getManager();
+        
+        $session = $request->getSession();
+        $idEntreprise = $session->get('id');
+        
+        $salarie = new Salarie();
+        
+        $form = $this->createForm(SalarieType::class, $salarie);
+        // le formulaire analyse la requete HTTP
+        $form->handleRequest($request);
+        
+        if( $form->isSubmitted())
+        {
+            $password = $passwordEncoder->encodePassword($salarie, $salarie->getplainPassword());
+            $salarie
+                ->setPassword($password)
+                ->setEntreprise_id($idEntreprise)
+                ->setRole('ROLE_ADMIN')
+                ->setService('RH');
+        $em->persist($salarie);
+        $em->flush();
+        return $this->redirectToRoute('app_salarie_monProfil');
+        }
+        return $this->render('accueil/inscription-admin.html.twig',
+                 [
+                     //passage du formulaire a la vue
+                     'form'=>$form->createView()
+                 ]);
+        
+    }
 
     /**
      * 
-     * @Route("/connexion")
+     * @Route("/connexion" , name="connexion")
      */
     public function connexion ()
     {
