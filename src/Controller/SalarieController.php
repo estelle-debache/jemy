@@ -44,4 +44,13 @@ class SalarieController extends Controller
     {
         return $this->render('salarie/mes-conges.html.twig');
     }
+    
+    /**
+     * 
+     * @Route("/mes-fiches-de-paie" , name="salarie-fichesdepaie")
+     */
+    public function mesFichesDePaie()
+    {
+        return $this->render('salarie/mes-fiches-de-paie.html.twig');
+    }
 }
