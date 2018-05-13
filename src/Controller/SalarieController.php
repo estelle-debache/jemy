@@ -26,4 +26,13 @@ class SalarieController extends Controller
     {
         return $this->render('salarie/mon-profil.html.twig');
     }
+    
+    /**
+     * 
+     * @Route("/mon-profil-edit" , name="salarie-monprofil-edit")
+     */
+    public function monProfilEdit()
+    {
+        return $this->render('salarie/mon-profil-edit.html.twig');
+    }
 }
