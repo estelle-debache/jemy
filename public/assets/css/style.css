@@ -1,3 +1,8 @@
+/********************************* HTML/ BODY *************************************************/
+html{
+    font-size:3vw;
+}
+
 /** NAVBAR *****************************************************************************************************************************/
 
 
@@ -17,23 +22,22 @@ header .navbar-brand img{
 
 /** HOME PAGE **************************************************************************************************************************/
 section{
-    height:55rem;
-    padding-top: 10rem;
-}
-.home-droite{
-    margin-top: 10rem;
-}
-.home-droite img{
-    width: 20rem;
-    float:right;
+  margin-top: 5rem;
+    padding-top: 5rem;
 }
 
-.home-gauche{
-    margin-top: 10rem;
+.home-droite img{
+   margin:3rem auto;
+   
 }
+
+
+
+
 .home-gauche h1{
     font-size: 2rem;
     margin-bottom: 5rem;
+    text-align: center;
 }
 
 .home-gauche button{
@@ -59,12 +63,11 @@ section{
 
 
 /** CONNEXION **************************************************************************************************************************/
-.connexion{
-    padding-top: 8rem;
-}
+
 .connexion h1{
     color: #083b66;
     margin-bottom: 2rem;
+    text-align: center;
 }
 
 .connexion .btn-primary{
@@ -283,30 +286,52 @@ h2{
 /** FOOTER **************************************************************************************************************************/
 
 footer{
-    height:35rem;
+    height:5rem;
     background-color:#f2af58;
     color:white;
 }
 footer .container{
-    padding-top: 5rem;
+    padding-top: 2rem;
 }
 
-footer a{
-    color:white;
-}
-footer a:hover{
-    text-decoration: none;
-    color:#083b66;
+
+
+
+
+
+/* Small devices (landscape phones, 576px and up)*/
+@media (min-width: 576px) {
+    html{
+        font-size:27px;
+    }
 }
 
-footer hr{
-height: 2px; color: #839D2D; background-color: #839D2D; width: 70%; border: none;
+/* Medium devices (tablets, 768px and up)*/
+@media (min-width: 768px) { 
+html{
+        font-size:36px;
+    }
 }
 
-.footer-gauche{
-    margin-top: 6rem;
+/* Large devices (desktops, 992px and up)*/
+@media (min-width: 992px) { 
+    html{
+        font-size:16px;
+    }
+    /** HOME PAGE **************************************************************************************************************************/
+    .container{
+        margin-top: 6rem;
+    }
+    /**************************FOOTER*********************************/
+    footer{
+        margin-top:10rem;
+}
 }
 
-.footer-bas{
-    margin-top:3rem;
+/* Extra large devices (large desktops, 1200px and up)*/
+@media (min-width: 1200px) {
+    html{
+        font-size:19px;
+    }
+    
 }

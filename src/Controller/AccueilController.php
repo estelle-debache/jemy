@@ -15,7 +15,7 @@ use function dump;
 class AccueilController extends Controller
 {
     /**
-     * @Route("/")
+     * @Route("/" , name="accueil")
      */
     public function index()
     {
@@ -24,7 +24,7 @@ class AccueilController extends Controller
     
     /**
      * 
-     * @Route("/inscription")
+     * @Route("/inscription" , name="inscription")
      */
     public function inscription(Request $request)
     {
@@ -70,7 +70,7 @@ class AccueilController extends Controller
 
     /**
      * 
-     * @Route("/connexion")
+     * @Route("/connexion" , name="connexion")
      */
     public function connexion ()
     {
