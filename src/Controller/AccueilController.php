@@ -39,8 +39,7 @@ class AccueilController extends Controller
         //SI LE FORMULAIRE A ETE ENVOYE 
         if( $form->isSubmitted())
         {
-            if($form->isValid())
-            {
+
                 
                             // LES ATTRIBUT DE L'OBJETS CATEGORY ONT ETE SETTE A PARTIR DES CHAMPS DE FORMULAIRE 
             
@@ -49,14 +48,20 @@ class AccueilController extends Controller
             
             // RESTE PLKUS QUA LES METTRE EN BASE DE DONNéES 
             $em->persist($entreprise);
-            $em->flush();
+            $pouet=$em->flush();
+        
+            dump($entreprise->getId());
             
-            $this->addFlash('succes', " felicitation Votre Entreprise a ete créé");
+            $idEntreprise = $entreprise->getId();
+            
+            $session = $request->getSession();
+        
+            $session->set('id', $idEntreprise);
+            dump($session->get('id'));
+            
+            $this->addFlash('success', " felicitation Votre Entreprise a ete créé");
             return $this->redirectToRoute('app_salarie_inscription');
          
-            }else{
-                $this->addFlash('error', "t'es qu'un gros conard incapable de remplir  un formulaire correctement fils de pute de ta mere la chienne");
-            }
         }
                 
         

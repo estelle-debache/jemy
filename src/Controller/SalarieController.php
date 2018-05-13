@@ -17,4 +17,13 @@ class SalarieController extends Controller
     {
         return $this->render('salarie/inscription.html.twig');
     }
+    public function inscription()
+    {
+        
+        
+        return $this->render('salarie/inscription.html.twig');
+    }
+    
+    
+    
 }
