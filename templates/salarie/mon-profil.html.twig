@@ -1,0 +1,52 @@
+{% extends 'layout.html.twig' %}
+
+
+{% block content %}
+    
+  <section>
+        <div class="container mon-profil  ">
+            <h1 class="text-center">Mon profil</h1>
+            <div class="text-center">
+                <a href="profil-edit.html"><button type="button" class="btn btn-outline-success ">Modifier mon profil</button></a>
+            </div>
+            <div class="row infos ">
+                <div class="col-12 col-md-6 text-center ">
+                    <h2>Serge Benhamou</h2>
+                    <div class="photo-profil" style="background-image:url('img/meir.jpg')">
+
+                    </div>
+
+
+                </div>
+                <div class="col-12 col-md-6 information">
+                    <p><span>Civilité : </span>Homme</p>
+                    <p><span>Date de naissance : </span>02/02/1995</p>
+                    <p><span>Adresse : </span>1 rue du paradis 94380 Nuage-sur-Marne</p>
+                    <p><span>Mail : </span>serge.benhamou@gmail.com</p>
+                    <p><span>Mot de passe : </span>123345678910</p>
+                    <p><span>Service : </span> RH</p>
+                    <p><span>Date embauche : </span>XX/XX/XXXX</p>
+                    <p><span>N° sécurité social : </span>019748651348959625584</p>
+                    <p><span>IBAN : </span>019748651348959625584</p>
+
+
+
+                </div>
+                <div class="row">
+                    <div class="col-6 col-lg-6">
+                        <button type="button" id="btn-download" class="btn btn-outline-dark" onclick="window.open('img/cv-1.pdf')"><i class="fas fa-download"></i> Carte d'identité</button>
+                    </div>
+                    <div class="col-6 col-lg-6">
+                    <button type="button" id="btn-download" class="btn btn-outline-dark" onclick="window.open('img/cv-1.pdf')"><i class="fas fa-download"></i> Contrat de travail</button>
+                </div>
+                </div>
+
+
+
+            </div>
+
+        </div>
+    </section>
+   
+    
+{% endblock %}

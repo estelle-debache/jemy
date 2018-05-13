@@ -10,6 +10,7 @@ use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\Security\Core\Encoder\UserPasswordEncoderInterface;
+use Symfony\Component\Security\Http\Authentication\AuthenticationUtils;
 use function dump;
 
 /**
@@ -18,7 +19,7 @@ use function dump;
 class AccueilController extends Controller
 {
     /**
-     * @Route("/" , name="accueil")
+     * @Route("/" )
      */
     public function index()
     {
@@ -99,12 +100,13 @@ class AccueilController extends Controller
             $password = $passwordEncoder->encodePassword($salarie, $salarie->getplainPassword());
             $salarie
                 ->setPassword($password)
-                ->setEntreprise_id($idEntreprise)
+                ->setEntreprise($idEntreprise)
                 ->setRole('ROLE_ADMIN')
-                ->setService('RH');
+                
+                    ;
         $em->persist($salarie);
         $em->flush();
-        return $this->redirectToRoute('app_salarie_monProfil');
+        return $this->redirectToRoute('app_salarie_monprofil');
         }
         return $this->render('accueil/inscription-admin.html.twig',
                  [
@@ -116,11 +118,25 @@ class AccueilController extends Controller
 
     /**
      * 
-     * @Route("/connexion" , name="connexion")
+     * @Route("/connexion" )
      */
-    public function connexion ()
+    public function login(AuthenticationUtils $auth)
     {
-        return $this->render("accueil/connexion.html.twig");
-    }
-       
+        $error = $auth->getLastAuthenticationError();
+        $lastUsername = $auth->getLastUsername();
+        
+        if(!empty($error))
+        {
+            $this->addFlash('error', 'Identifiants incorrects');
+            
+        }else{
+            $this->addFlash('success', 'connexion reussi');
+        }
+       // on  est redirige automatiquement vers app_index_index grace au fichier security.yaml
+        return $this->render('accueil/connexion.html.twig',
+                [
+                    'last_username'=> $lastUsername
+                ]
+                );
+    } 
 }

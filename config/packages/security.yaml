@@ -1,14 +1,34 @@
 security:
+    # encodage du mot de passe utilisateur
+    encoders:
+        App\Entity\Salarie:
+            algorithm: bcrypt
     # https://symfony.com/doc/current/security.html#where-do-users-come-from-user-providers
     providers:
-        in_memory: { memory: ~ }
+        db:
+            entity:
+                class: App\Entity\Salarie
     firewalls:
         dev:
             pattern: ^/(_(profiler|wdt)|css|images|js)/
             security: false
         main:
             anonymous: true
-
+            # Le db qui se trouve au dessus dans la rubrique providers
+            provider: db
+            # sur tout le site 
+            pattern: ^/
+            form_login:
+                # route du formulaire de login
+                login_path: app_accueil_login
+                check_path: app_accueil_login
+                # route vers laquelle on est redirigee si on sest correcteùment connecte 
+                default_target_path: app_salarie_monprofil
+            logout:
+                # route definie dans route.yaml
+                path: app_accueil_logout
+                # route vers laquelle on est redirige apres la deconnexion
+                target: app_accueil_index
             # activate different ways to authenticate
 
             # http_basic: true
@@ -20,5 +40,5 @@ security:
     # Easy way to control access for large sections of your site
     # Note: Only the *first* access control that matches will be used
     access_control:
-        # - { path: ^/admin, roles: ROLE_ADMIN }
+        - { path: ^/admin, roles: ROLE_ADMIN }
         # - { path: ^/profile, roles: ROLE_USER }

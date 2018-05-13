@@ -1,0 +1,28 @@
+{# empty Twig template #}
+{% extends 'layout.html.twig' %}
+
+
+{% block content %}
+    
+  <section>
+        <div class="container trombinoscope  ">
+            <h1 class="text-center">Trombinoscope</h1>
+            <div class="row">
+                 {% for salarie in salaries %}
+                <div class="col-12 col-md-3">
+                    <div class="card">
+                        <div class="card-img-top" style="background-image:url('{{ salarie.photo }}')"> </div>
+                        <div class="card-body">
+                            <h5 class="card-title">{{ salarie.nom }} {{ salarie.prenom }}</h5>
+                            <p class="card-text"><span>{{ salarie.statut }}</span></p>
+                            <!--<p class="card-text">01.43.59.76.78</p>-->
+                            <p class="card-text">{{ salarie.mail }}</p>
+                        </div>
+                    </div>
+                </div>
+                {% endfor %}
+            </div>
+        </div>
+    </section>
+
+{% endblock %}

@@ -28,7 +28,7 @@ section{
 
 .home-droite img{
    margin:3rem auto;
-   
+
 }
 
 
@@ -88,7 +88,7 @@ section{
 }
 .inscription{
     margin-top: 4rem;
-    margin-bottom: 4rem; 
+    margin-bottom: 4rem;
 }
 
 
@@ -180,6 +180,7 @@ section{
     padding-left : 3rem;
     padding-right:3rem;
     color:white;
+    margin:auto;
 
 }
 
@@ -194,8 +195,7 @@ section{
     margin-top: 2rem;
    background-color:white;
     color:#74d14c;
-    padding-left : 3rem;
-    padding-right:3rem;
+    width:13rem;
 
 
 }
@@ -206,6 +206,26 @@ section{
     color:white;
 
 }
+
+
+.mon-profil .information{
+    margin-top: 4rem;
+}
+/***********************PROFIL EDIT***************************************************************/
+.mon-profil .btn-primary{
+    background-color: #74d14c;
+    border-color:#74d14c;
+    padding-left : 3rem;
+    padding-right:3rem;
+    text-align: center;
+    float: right;
+    margin-bottom: 5rem;
+}
+.mon-profil .btn-primary:hover{
+    background-color:white;
+    color:#74d14c;
+}
+
 /** USER **************************************************************************************************************************/
 .tableauDeBord{
     margin-top: 6rem;
@@ -236,9 +256,7 @@ section{
    text-align: center;
    color: #74d14c;
 }
-.tableauDeBord .bas{
-    padding-top: 2rem;
-}
+
 
 /** CONGE PAYE **************************************************************************************************************************/
 
@@ -257,6 +275,8 @@ section{
     padding-left : 3rem;
     padding-right:3rem;
     text-align: center;
+    margin:auto;
+    margin-bottom: 5rem;
 }
 .mesconges .btn-primary:hover{
     background-color:white;
@@ -272,16 +292,114 @@ section{
     display: none;
 }
 
-button{
+.demandeConge button{
     margin-right: 2rem;
 }
 
-h2{
+.demandeConge h2{
    color: #083b66;
    text-decoration: underline;
    padding-top: 2rem;
 }
 
+/** MES FICHES DE PAIE **************************************************************************************************************************/
+.mesfichesdepaie h1{
+   color: #083b66;
+}
+
+.mesfichesdepaie h2{
+    text-align: center;
+    color: #f2af58 ;
+    margin-top: 4rem;
+    font-size: 1.5rem;
+}
+
+.mesfichesdepaie .icone-telechargement{
+    color:#74d14c;
+    font-size: 10rem;
+    text-align: center;
+}
+
+.mesfichesdepaie .archives{
+    border:5px solid #083b66;
+    padding: 2rem;
+    color:#083b66 ;
+    margin-top: 5rem;
+    margin-bottom: 5rem;
+}
+
+.mesfichesdepaie .btn-outline-dark{
+    border-color:  #083b66 ;
+    color: #083b66;
+}
+
+.mesfichesdepaie .btn-outline-dark:hover{
+    border-color:  #74d14c ;
+    background-color: #74d14c;
+    color: white;
+    transform: scale(1.05 , 1.1);
+}
+
+.mesfichesdepaie .btn{
+    width:6rem;
+}
+
+.mesfichesdepaie h3{
+    margin-bottom: 2rem;
+}
+
+.mesfichesdepaie li{
+    list-style: none;
+    margin-top: 1rem;
+
+}
+
+.icone-telechargement:hover{
+    transform: scale(1.05 , 1.1);
+}
+
+/** TROMBINOSCOPE **************************************************************************************************************************/
+
+.trombinoscope h1{
+   color: #083b66;
+   margin-bottom: 4rem;
+}
+
+.trombinoscope img{
+    width:100%;
+}
+
+.card-img-top{
+    height: 10rem;
+    overflow: hidden;
+
+}
+
+.trombinoscope .card-img-top{
+
+    height:15rem;
+    background-size: 100% auto;
+    background-position:middle center;
+
+}
+
+.trombinoscope .card{
+     margin-bottom: 1rem;
+     margin-right: 1rem;
+}
+
+.trombinoscope .card-text span{
+    font-style: italic;
+
+}
+
+.trombinoscope .card-title{
+    margin-bottom: 0rem;
+}
+
+.trombinoscope p{
+    margin-bottom: 0rem;
+}
 
 /** FOOTER **************************************************************************************************************************/
 
@@ -289,6 +407,7 @@ footer{
     height:5rem;
     background-color:#f2af58;
     color:white;
+    margin-top: 3rem;
 }
 footer .container{
     padding-top: 2rem;
@@ -307,25 +426,31 @@ footer .container{
 }
 
 /* Medium devices (tablets, 768px and up)*/
-@media (min-width: 768px) { 
+@media (min-width: 768px) {
 html{
         font-size:36px;
     }
 }
 
 /* Large devices (desktops, 992px and up)*/
-@media (min-width: 992px) { 
+@media (min-width: 992px) {
     html{
         font-size:16px;
     }
     /** HOME PAGE **************************************************************************************************************************/
-    .container{
+    .home-page{
         margin-top: 6rem;
     }
+
+    /********************************USER ******************************************/
+    .tableauDeBord .bas{
+        padding-top: 2rem;
+    }
+
     /**************************FOOTER*********************************/
     footer{
         margin-top:10rem;
-}
+    }
 }
 
 /* Extra large devices (large desktops, 1200px and up)*/
@@ -333,5 +458,5 @@ html{
     html{
         font-size:19px;
     }
-    
+
 }

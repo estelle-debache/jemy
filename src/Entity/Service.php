@@ -3,7 +3,8 @@
 namespace App\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
-
+use App\Entity\Entreprise;
+use App\Entity\Salarie;
 /**
  * @ORM\Entity(repositoryClass="App\Repository\ServiceRepository")
  */

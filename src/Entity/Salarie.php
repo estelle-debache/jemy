@@ -7,6 +7,8 @@ use Doctrine\ORM\Mapping as ORM;
 use Serializable;
 use Symfony\Component\Security\Core\User\UserInterface;
 use Symfony\Component\Validator\Constraints as Assert;
+use App\Entity\Entreprise;
+use App\Entity\Service;
 
 /**
  * @ORM\Entity(repositoryClass="SalarieRepository")
@@ -23,6 +25,7 @@ class Salarie implements UserInterface, Serializable
     /**
      * cle etrangere vers entreprise
      * inversedby doit etre ajoute quand on a ajoute un onetomany dans la classe user sur l'attribut publications
+     * @ORM\Column(type="integer")
      * @ORM\JoinColumn(nullable=false)
      * @ORM\ManyToOne(targetEntity="Entreprise", inversedBy="salarie") 
      */
@@ -147,6 +150,7 @@ class Salarie implements UserInterface, Serializable
     
     
     /**
+     * @ORM\Column(type="string")
      * @ORM\JoinColumn(nullable=false)
      * @ORM\ManyToOne(targetEntity="Service", inversedBy="salarie")
      */
