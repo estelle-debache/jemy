@@ -20,8 +20,8 @@ security:
             pattern: ^/
             form_login:
                 # route du formulaire de login
-                login_path: app_accueil_login
-                check_path: app_accueil_login
+                login_path: app_accueil_connexion
+                check_path: app_accueil_connexion
                 # route vers laquelle on est redirigee si on sest correcteùment connecte 
                 default_target_path: app_salarie_monprofil
             logout:

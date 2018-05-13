@@ -20,11 +20,11 @@ class SalarieController extends Controller
     
     /**
      * 
-     * @Route("/mon-profil" )
+     * @Route("/monprofil" )
      */
     public function monprofil()
     {
-        return $this->render('salarie/mon-profil.html.twig');
+        return $this->render('salarie/monprofil.html.twig');
     }
     
     /**
