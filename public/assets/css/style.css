@@ -319,14 +319,21 @@ html{
         font-size:16px;
     }
     /** HOME PAGE **************************************************************************************************************************/
-    .container{
+    .home-page{
         margin-top: 6rem;
     }
+
+    /********************************USER ******************************************/
+    .tableauDeBord .bas{
+        padding-top: 2rem;
+    }
+
     /**************************FOOTER*********************************/
     footer{
         margin-top:10rem;
+    }
 }
-}
+
 
 /* Extra large devices (large desktops, 1200px and up)*/
 @media (min-width: 1200px) {

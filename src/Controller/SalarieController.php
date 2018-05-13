@@ -11,10 +11,10 @@ class SalarieController extends Controller
 {
     /**
      * 
-     * @Route("/")
+     * @Route("/" , name="salarie-tdb")
      */
     public function index()
     {
-        return $this->render('salarie/inscription.html.twig');
+        return $this->render('salarie/index.html.twig');
     }
 }
