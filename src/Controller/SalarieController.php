@@ -53,4 +53,13 @@ class SalarieController extends Controller
     {
         return $this->render('salarie/mes-fiches-de-paie.html.twig');
     }
+    
+    /**
+     * 
+     * @Route("/trombinoscope" , name="salarie-trombinoscope")
+     */
+    public function trombinoscope()
+    {
+        return $this->render('salarie/trombinoscope.html.twig');
+    }
 }
