@@ -80,7 +80,7 @@ class Entreprise
     /**
      * @ORM\OneToMany(targetEntity="Salarie", mappedBy="entreprise", cascade={"persist"})
      */
-    private $salarie;
+    private $salaries;
     
     /**
      *

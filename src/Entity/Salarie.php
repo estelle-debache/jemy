@@ -11,7 +11,7 @@ use App\Entity\Entreprise;
 use App\Entity\Service;
 
 /**
- * @ORM\Entity(repositoryClass="SalarieRepository")
+ * @ORM\Entity(repositoryClass="App\Repository\SalarieRepository")
  */
 class Salarie implements UserInterface, Serializable
 {
@@ -25,9 +25,9 @@ class Salarie implements UserInterface, Serializable
     /**
      * cle etrangere vers entreprise
      * inversedby doit etre ajoute quand on a ajoute un onetomany dans la classe user sur l'attribut publications
-     * @ORM\Column(type="integer")
      * @ORM\JoinColumn(nullable=false)
-     * @ORM\ManyToOne(targetEntity="Entreprise", inversedBy="salarie") 
+     * @ORM\ManyToOne(targetEntity="Entreprise", inversedBy="salaries")
+     * @var Entreprise 
      */
     private $entreprise;
     
@@ -290,7 +290,7 @@ class Salarie implements UserInterface, Serializable
         return $this;
     }
 
-    public function setEntreprise($entreprise) {
+    public function setEntreprise(Entreprise $entreprise) {
         $this->entreprise = $entreprise;
         return $this;
     }
@@ -415,7 +415,7 @@ class Salarie implements UserInterface, Serializable
         return $this;
     }
     public function serialize() {
-           return serialise(             [
+           return serialize(             [
                     $this->id,
                     $this->nom,
                     $this->prenom,

@@ -94,13 +94,13 @@ class AccueilController extends Controller
         $form = $this->createForm(SalarieType::class, $salarie);
         // le formulaire analyse la requete HTTP
         $form->handleRequest($request);
-        
+        $entreprise = $em->find(Entreprise::class, $idEntreprise);
         if( $form->isSubmitted())
         {
             $password = $passwordEncoder->encodePassword($salarie, $salarie->getplainPassword());
             $salarie
                 ->setPassword($password)
-                ->setEntreprise($idEntreprise)
+                ->setEntreprise($entreprise)
                 ->setRole('ROLE_ADMIN')
                 
                     ;
@@ -118,16 +118,19 @@ class AccueilController extends Controller
 
     /**
      * 
-     * @Route("/connexion" )
+     * @Route("/login" )
      */
     public function login(AuthenticationUtils $auth)
     {
         $error = $auth->getLastAuthenticationError();
-        $lastUsername = $auth->getLastUsername();
         
+        $lastUsername = $auth->getLastUsername();
+    
+       
         if(!empty($error))
         {
             $this->addFlash('error', 'Identifiants incorrects');
+            dump($error);
             
         }else{
             $this->addFlash('success', 'connexion reussi');
