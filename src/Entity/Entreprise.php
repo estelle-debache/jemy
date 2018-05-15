@@ -98,6 +98,12 @@ class Entreprise
      */
     private $OffreEmploi;
     
+    public function __construct() {
+        $this->OffreEmploi = new \Doctrine\Common\Collections\ArrayCollection();
+        $this->service = new \Doctrine\Common\Collections\ArrayCollection();
+    }
+
+    
     public function getId() {
         return $this->id;
     }
@@ -187,6 +193,12 @@ class Entreprise
     public function setService($service) {
         $this->service = $service;
         return $this;
+    }
+    
+    public function addService(Service $service)
+    {
+        $this->service->add($service);
+        $service->setEntreprise($this);
     }
 
     public function setOffreEmploi($OffreEmploi) {

@@ -4,6 +4,7 @@ namespace App\Controller;
 
 use App\Entity\Entreprise;
 use App\Entity\Salarie;
+use App\Entity\Service;
 use App\Form\EntrepriseType;
 use App\Form\SalarieType;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
@@ -34,6 +35,10 @@ class AccueilController extends Controller
     {
         $em = $this->getDoctrine()->getManager();
         $entreprise = new Entreprise();
+        $service = new Service();
+        $service->setNom('RH');
+        $entreprise->addService($service);// ca cree l'id dans entreprise_id de la table service grace a la methode add service dans entreprise
+        dump($service);
 
         //creation d'un formulaire relié a la categorie
         $form = $this->createForm(EntrepriseType::class, $entreprise);
@@ -46,22 +51,23 @@ class AccueilController extends Controller
 
                 
                             // LES ATTRIBUT DE L'OBJETS CATEGORY ONT ETE SETTE A PARTIR DES CHAMPS DE FORMULAIRE 
-            
+           
             
  
             
             // RESTE PLKUS QUA LES METTRE EN BASE DE DONNéES 
             $em->persist($entreprise);
+            $em->persist($service);
             $em->flush();
         
             dump($entreprise->getId());
             
-            $idEntreprise = $entreprise->getId();
+           
             
             $session = $request->getSession();
         
-            $session->set('id', $idEntreprise);
-            dump($session->get('id'));
+            $session->set('identreprise', $entreprise->getId());
+            $session->set('idservice', $service->getId());
             
             $this->addFlash('success', " felicitation Votre Entreprise a ete créé");
             return $this->redirectToRoute('inscription-admin');
@@ -85,16 +91,17 @@ class AccueilController extends Controller
     {
         
         $em = $this->getDoctrine()->getManager();
-        
+       
         $session = $request->getSession();
-        $idEntreprise = $session->get('id');
+        $idEntreprise = $session->get('identreprise');
         
         $salarie = new Salarie();
-        
+         //$service = $em->find(Service::class, $idEntreprise);
         $form = $this->createForm(SalarieType::class, $salarie);
         // le formulaire analyse la requete HTTP
         $form->handleRequest($request);
         $entreprise = $em->find(Entreprise::class, $idEntreprise);
+        $service = $em->find(Service::class, $session->get('idservice'));
         if( $form->isSubmitted())
         {
             $password = $passwordEncoder->encodePassword($salarie, $salarie->getplainPassword());
@@ -102,11 +109,12 @@ class AccueilController extends Controller
                 ->setPassword($password)
                 ->setEntreprise($entreprise)
                 ->setRole('ROLE_ADMIN')
-                
+                ->setService($service)
                     ;
+                
         $em->persist($salarie);
         $em->flush();
-        return $this->redirectToRoute('app_salarie_monprofil');
+        return $this->redirectToRoute('app_accueil_login');
         }
         return $this->render('accueil/inscription-admin.html.twig',
                  [

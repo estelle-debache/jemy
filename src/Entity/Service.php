@@ -44,7 +44,11 @@ class Service
     private $OffreEmploi;
     
     
-    
+    public function __construct() {
+        $this->OffreEmploi = new \Doctrine\Common\Collections\ArrayCollection();
+        $this->salarie = new \Doctrine\Common\Collections\ArrayCollection();
+    }
+
     
     
 
@@ -52,4 +56,41 @@ class Service
     {
         return $this->id;
     }
+    public function getNom() {
+        return $this->nom;
+    }
+
+    public function getEntreprise() {
+        return $this->entreprise;
+    }
+
+    public function getSalarie() {
+        return $this->salarie;
+    }
+
+    public function getOffreEmploi() {
+        return $this->OffreEmploi;
+    }
+
+    public function setNom($nom) {
+        $this->nom = $nom;
+        return $this;
+    }
+
+    public function setEntreprise($entreprise) {
+        $this->entreprise = $entreprise;
+        return $this;
+    }
+
+    public function setSalarie($salarie) {
+        $this->salarie = $salarie;
+        return $this;
+    }
+
+    public function setOffreEmploi($OffreEmploi) {
+        $this->OffreEmploi = $OffreEmploi;
+        return $this;
+    }
+
+
 }

@@ -150,7 +150,7 @@ class Salarie implements UserInterface, Serializable
     
     
     /**
-     * @ORM\Column(type="string", nullable=true)
+     *
      * @ORM\JoinColumn(nullable=false)
      * @ORM\ManyToOne(targetEntity="Service", inversedBy="salarie")
      */
