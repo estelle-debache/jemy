@@ -230,6 +230,36 @@ section{
 .tableauDeBord{
     margin-top: 6rem;
 }
+
+
+.tableauDeBord .button{
+    margin-bottom: 3rem;
+   
+}
+
+.tableauDeBord .btn-primary{
+    background-color: #74d14c;
+    border-color:#74d14c;
+}
+
+.tableauDeBord .btn-primary:hover{
+    background-color:white;
+    color:#74d14c;
+}
+
+.tableauDeBord .button .btn-left{
+   margin-left: auto;
+   margin-right: 0.5rem;
+   width:5rem;
+
+   
+}
+.tableauDeBord .button .btn-right{
+    margin-right: auto;
+    margin-left: 0.5rem;
+    width:5rem;
+}
+
 .tableauDeBord a:hover{
     text-decoration: none;
 }
