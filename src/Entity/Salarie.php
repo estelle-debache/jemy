@@ -2,15 +2,17 @@
 
 namespace App\Entity;
 
-use App\Repository\SalarieRepository;
+
 use Doctrine\ORM\Mapping as ORM;
 use Serializable;
 use Symfony\Component\Security\Core\User\UserInterface;
 use Symfony\Component\Validator\Constraints as Assert;
 use App\Entity\Entreprise;
 use App\Entity\Service;
+use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 
 /**
+ * @UniqueEntity(fields="email", message="Il existe deja un compte salarié avec cet email")
  * @ORM\Entity(repositoryClass="App\Repository\SalarieRepository")
  */
 class Salarie implements UserInterface, Serializable
@@ -56,7 +58,7 @@ class Salarie implements UserInterface, Serializable
     private $civilite;
     
     /**
-     * @Assert\NotBlank(message = "LE MOT DE PASSE EST OBLIGATOIRE")
+     * 
      * @ORM\Column(type="string", length=255)
      */
     private $password;
@@ -100,7 +102,7 @@ class Salarie implements UserInterface, Serializable
     private $numSs;
     
     /**
-     *@Assert\NotBlank(message = "LE ROLE EST OBLIGATOIRE")
+     *
      * @ORM\Column(type="string", columnDefinition="enum('ROLE_USER', 'ROLE_ADMIN')", nullable=false)
      */
     private $role;
@@ -113,6 +115,7 @@ class Salarie implements UserInterface, Serializable
     
     /**
      * @Assert\NotBlank(message = "LA PIECE D'IDENTITE EST OBLIGATOIRE")
+     * @Assert\File(mimeTypes={"application/pdf", "image/*"})
      *@ORM\Column(type="string", length=255)
      * 
      */
@@ -120,28 +123,29 @@ class Salarie implements UserInterface, Serializable
     
     /**
      *@Assert\NotBlank(message = "LE CONTRAT DU TRAVAIL EST OBLIGATOIRE")
+     * @Assert\File(mimeTypes={"application/pdf"})
      * @ORM\Column(type="string", length=255)
      */
     private $contratTravail;
     /**
-     *
+     * @Assert\Image()
      * @ORM\Column(type="string", length=255)
      */
     private $photo;
     
     /**
-     *@Assert\NotBlank(message = "LE SOLDE DE CONGE  EST OBLIGATOIRE")
+     *
      * @ORM\Column(type="integer", length=2, nullable=true) 
      */
     private $soldeConge;
     
     /**
-     *@Assert\NotBlank(message = "LE STATUS  EST OBLIGATOIRE")
+     *
      * @ORM\Column(type="string", columnDefinition="enum('en activite', 'fin de contrat')", nullable=true)
      */
     private $statut;
     /**
-     *@Assert\NotBlank(message = "LA DATE DE FIN DU CONTRAT EST OBLIGATOIRE")
+     *
      * @ORM\Column(type="date", nullable=true)
      */
     private $dateFinContrat; 
