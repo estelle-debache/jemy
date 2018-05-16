@@ -1,9 +1,11 @@
 <?php
 
 namespace App\Controller;
-
+use App\Entity\Salarie;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
+
+
 
 /**
  * @Route("/admin")
@@ -26,7 +28,17 @@ class AdminController extends Controller
      */
     public function listeSalaries()
     {
-        return $this->render('admin/liste-salaries.html.twig');
+      
+        
+        $em = $this->getDoctrine()->getManager();
+        $repository = $em->getRepository(Salarie::class);
+        $salaries = $repository->findAll();
+        
+        
+        return $this->render('admin/liste-salaries.html.twig',
+                [
+                    'salaries' => $salaries
+                ]);
     }
     
     /**
