@@ -28,13 +28,13 @@ class Entreprise
     private $nom;
     
     /**
-     *
+     *@Assert\NotBlank(message = "LE SIREN EST OBLIGATOIRE")
      * @ORM\Column(type="string", length=9)
      */
     private $siren;
     
     /**
-     *
+     *@Assert\NotBlank(message = "LE SIRET EST OBLIGATOIRE")
      *@ORM\Column(type="string", length=14)
      */
     private $siret;
@@ -53,26 +53,26 @@ class Entreprise
         return $this;
     }
 
-        /**
-     *
+     /**
+     *@Assert\NotBlank(message = "L'ADRESSE EST OBLIGATOIRE")
      *@ORM\Column(type="string", length=250)
      */
     private $adresse;
     
     /**
-     *
+     *@Assert\NotBlank(message = "LE CODE POSTAL EST OBLIGATOIRE")
      *@ORM\Column(type="string", length=5)
      */
     private $codePostal;
     
     /**
-     *
+     *@Assert\NotBlank(message = "LA VILLE EST OBLIGATOIRE")
      *@ORM\Column(type="string", length=20)
      */
     private $ville;
 
     /**
-     *
+     *@Assert\NotBlank(message = "LE NUMERO TELEPHONE EST OBLIGATOIRE")
      * @ORM\Column(type="string", length=10)
      */
     private $telephone;

@@ -16,24 +16,25 @@ class Conge
      */
     private $id;
       /**
+     *@Assert\NotBlank(message = "LE STATUS EST OBLIGATOIRE") 
      *@ORM\Column(type="string", columnDefinition="enum('en cours', 'validé', 'refusé')", nullable=false)
      *
      */
     private $statut;
     
     /**
-     *
+     *@Assert\NotBlank(message = "LA DATE DE DEBUT EST OBLIGATOIRE")
      * @ORM\Column(type="date")
      */
     private $date_debut;
     
     /**
-     *
+     *@Assert\NotBlank(message = "LA DATE DE FIN EST OBLIGATOIRE")
      * @ORM\Column(type="date")
      */
     private $date_fin;
     /**
-     *
+     *@Assert\NotBlank(message = "LE NOMBRE DE JOUR EST OBLIGATOIRE")
      * @ORM\Column(type="integer", length=2)
      */
     private $nb_de_jour;

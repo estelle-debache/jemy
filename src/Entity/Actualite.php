@@ -18,7 +18,7 @@ class Actualite
     
     
     /**
-     *
+     * @Assert\NotBlank(message = "LE TITRE EST OBLIGATOIRE")
      * @ORM\Column(type="string", length=255)
      */
     private $titre;
@@ -26,12 +26,12 @@ class Actualite
 
     
     /**
-     *
+     *@Assert\NotBlank(message = "LE CONTENU EST OBLIGATOIRE")
      * @ORM\Column(type="text")
      */
     private $contenu;
     /**
-     *
+     *@Assert\NotBlank(message = "LA DATE DE PUBLICATION EST OBLIGATOIRE")
      * @ORM\Column(type="date")
      */
     private $date;

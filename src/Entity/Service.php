@@ -18,7 +18,7 @@ class Service
     private $id;
     
     /**
-     *
+     *@Assert\NotBlank(message = "LE NOM EST OBLIGATOIRE")
      * @ORM\Column(type="string", length=255, nullable=true)
      */
     private $nom;

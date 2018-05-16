@@ -32,19 +32,19 @@ class Salarie implements UserInterface, Serializable
     private $entreprise;
     
     /**
-     *
+     * @Assert\NotBlank(message = "LE NOM EST OBLIGATOIRE")
      * @ORM\Column(type="string", length=20)
      */
     private $nom;
     
     /**
-     *
+     * @Assert\NotBlank(message = "LE PRENOM EST OBLIGATOIRE")
      * @ORM\Column(type="string", length=20)
      */
     private $prenom;
     
     /**
-     *
+     * @Assert\NotBlank(message = "L'EMAIL EST OBLIGATOIRE")
      * @ORM\Column(type="string", length=255, unique=true) 
      */
     private $email;
@@ -56,7 +56,7 @@ class Salarie implements UserInterface, Serializable
     private $civilite;
     
     /**
-     *
+     * @Assert\NotBlank(message = "LE MOT DE PASSE EST OBLIGATOIRE")
      * @ORM\Column(type="string", length=255)
      */
     private $password;
@@ -65,60 +65,61 @@ class Salarie implements UserInterface, Serializable
 
 
     /**
-     *
+     * @Assert\NotBlank(message = "LA DATE DE NAISSANCE EST OBLIGATOIRE")
      * @ORM\Column(type="date")
      */
     private $dateDeNaissance;
     
     /**
-     *
+     *@Assert\NotBlank(message = "L'ADRESSE EST OBLIGATOIRE")
      * @ORM\Column(type="string", length=255)
      */
     private $adresse;
     /**
-     *
+     *@Assert\NotBlank(message = "LE CODE POSTAL EST OBLIGATOIRE")
      * @ORM\Column(type="integer", length=5)
      */
     private $codePostal;
     /**
-     *
+     *@Assert\NotBlank(message = "LA VILLE EST OBLIGATOIRE")
      * @ORM\Column(type="string", length=255)
      */
     private $ville;
     
     /**
-     *
+     *@Assert\NotBlank(message = "LA DATE d'EMBAUCHE EST OBLIGATOIRE")
      * @ORM\Column(type="date")
      */
     private $dateEmbauche;
     
     
     /**
-     *
+     *@Assert\NotBlank(message = "LE NUMERO DE SECURITE SOCIALE EST OBLIGATOIRE")
      * @ORM\Column(type="string", length=15)
      */
     private $numSs;
     
     /**
-     *
+     *@Assert\NotBlank(message = "LE ROLE EST OBLIGATOIRE")
      * @ORM\Column(type="string", columnDefinition="enum('ROLE_USER', 'ROLE_ADMIN')", nullable=false)
      */
     private $role;
     
     /**
-     *
+     *@Assert\NotBlank(message = "LE RIB EST OBLIGATOIRE")
      * @ORM\Column(type="string", length=27)
      */
     private $iban;
     
     /**
+     * @Assert\NotBlank(message = "LA PIECE D'IDENTITE EST OBLIGATOIRE")
      *@ORM\Column(type="string", length=255)
      * 
      */
     private $carteIdentite;
     
     /**
-     *
+     *@Assert\NotBlank(message = "LE CONTRAT DU TRAVAIL EST OBLIGATOIRE")
      * @ORM\Column(type="string", length=255)
      */
     private $contratTravail;
@@ -129,18 +130,18 @@ class Salarie implements UserInterface, Serializable
     private $photo;
     
     /**
-     *
+     *@Assert\NotBlank(message = "LE SOLDE DE CONGE  EST OBLIGATOIRE")
      * @ORM\Column(type="integer", length=2, nullable=true) 
      */
     private $soldeConge;
     
     /**
-     *
+     *@Assert\NotBlank(message = "LE STATUS  EST OBLIGATOIRE")
      * @ORM\Column(type="string", columnDefinition="enum('en activite', 'fin de contrat')", nullable=true)
      */
     private $statut;
     /**
-     *
+     *@Assert\NotBlank(message = "LA DATE DE FIN DU CONTRAT EST OBLIGATOIRE")
      * @ORM\Column(type="date", nullable=true)
      */
     private $dateFinContrat; 

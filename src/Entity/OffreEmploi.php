@@ -17,24 +17,25 @@ class OffreEmploi
     private $id;
 
     /**
-     *
+     * @Assert\NotBlank(message = "LE POSTE EST OBLIGATOIRE")
      * @ORM\Column(type="string", length=255)
      */
     private $poste;
     
     /**
+     * @Assert\NotBlank(message = "LE CONTRAT EST OBLIGATOIRE")
      *@ORM\Column(type="string", columnDefinition="enum('cdd', 'cdi')", nullable=false)
     */
     private $contrat;
     
     /**
-     *
+     * @Assert\NotBlank(message = "LA DESCRIPTION EST OBLIGATOIRE")
      * @ORM\Column(type="text")
      */
         private $description;
     
     /**
-     *
+     * @Assert\NotBlank(message = "LA DATE DE PUBLICATION EST OBLIGATOIRE")
      * @ORM\Column(type="date")
      */
     private $date_publication;
