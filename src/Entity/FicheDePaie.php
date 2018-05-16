@@ -3,6 +3,7 @@
 namespace App\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * @ORM\Entity(repositoryClass="App\Repository\FicheDePaieRepository")
@@ -21,13 +22,13 @@ class FicheDePaie
      */
     private $date_emission;
     /**
-     * @Assert\NotBlank(message = "LE MOIS EST OBLIGATOIRE")
+     * @Assert\NotBlank(message="LE MOIS EST OBLIGATOIRE")
      * @ORM\Column(type="string", length=20)
      */
     private $mois;
     
     /**
-     * @Assert\NotBlank(message = "LE FICHE DE PAIE EST OBLIGATOIRE")
+     * @Assert\NotBlank(message="LE FICHE DE PAIE EST OBLIGATOIRE")
      * @ORM\Column(type="string", length=255)
      */
     private $fiche_de_paie;

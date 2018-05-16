@@ -5,6 +5,7 @@ namespace App\Entity;
 use Doctrine\ORM\Mapping as ORM;
 use App\Entity\Entreprise;
 use App\Entity\Salarie;
+use Symfony\Component\Validator\Constraints as Assert;
 /**
  * @ORM\Entity(repositoryClass="App\Repository\ServiceRepository")
  */
@@ -18,7 +19,7 @@ class Service
     private $id;
     
     /**
-     *@Assert\NotBlank(message = "LE NOM EST OBLIGATOIRE")
+     *@Assert\NotBlank(message="LE NOM EST OBLIGATOIRE")
      * @ORM\Column(type="string", length=255, nullable=true)
      */
     private $nom;

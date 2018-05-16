@@ -48,7 +48,8 @@ class AccueilController extends Controller
         //SI LE FORMULAIRE A ETE ENVOYE 
         if( $form->isSubmitted())
         {
-
+            if($form->isValid())
+            {
                 
                             // LES ATTRIBUT DE L'OBJETS CATEGORY ONT ETE SETTE A PARTIR DES CHAMPS DE FORMULAIRE 
            
@@ -71,6 +72,7 @@ class AccueilController extends Controller
             
             $this->addFlash('success', " felicitation Votre Entreprise a ete créé");
             return $this->redirectToRoute('inscription-admin');
+            }
          
         }
                 

@@ -3,6 +3,7 @@
 namespace App\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * @ORM\Entity(repositoryClass="App\Repository\ActualiteRepository")
@@ -18,7 +19,7 @@ class Actualite
     
     
     /**
-     * @Assert\NotBlank(message = "LE TITRE EST OBLIGATOIRE")
+     * @Assert\NotBlank(message="LE TITRE EST OBLIGATOIRE")
      * @ORM\Column(type="string", length=255)
      */
     private $titre;
@@ -26,12 +27,12 @@ class Actualite
 
     
     /**
-     *@Assert\NotBlank(message = "LE CONTENU EST OBLIGATOIRE")
+     *@Assert\NotBlank(message="LE CONTENU EST OBLIGATOIRE")
      * @ORM\Column(type="text")
      */
     private $contenu;
     /**
-     *@Assert\NotBlank(message = "LA DATE DE PUBLICATION EST OBLIGATOIRE")
+     *@Assert\NotBlank(message="LA DATE DE PUBLICATION EST OBLIGATOIRE")
      * @ORM\Column(type="date")
      */
     private $date;
