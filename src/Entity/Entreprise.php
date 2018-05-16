@@ -4,11 +4,13 @@ namespace App\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Validator\Constraints as Assert;
-//use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity ;
+use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity ;
 
 /**
  * 
  * @ORM\Entity(repositoryClass="App\Repository\EntrepriseRepository")
+ * @UniqueEntity(fields="siret",
+ *   message="Il existe déja une entreprise avec cet siret ")
  * 
  */
 class Entreprise
