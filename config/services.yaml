@@ -1,8 +1,13 @@
 # Put parameters here that don't need to change on each machine where the app is deployed
 # https://symfony.com/doc/current/best_practices/configuration.html#application-related-configuration
 parameters:
-    locale: 'en'
-
+    locale: 'fr'
+    #repertoire de fichier de stockage de photo
+    photo_dir: '%kernel.project_dir%/public/images/photo'
+    #repertoire de fichier de stockage de contrat de travail
+    cdt_dir: '%kernel.project_dir%/public/images/cdt'
+    #repertoire de fichier de stockage de carte d'identite
+    cni_dir: '%kernel.project_dir%/public/images/cni'
 services:
     # default configuration for services in *this* file
     _defaults:
