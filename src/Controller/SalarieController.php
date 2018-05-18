@@ -11,13 +11,13 @@ class SalarieController extends Controller
 {
     /**
      * 
-     * @Route("/" , name="salarie-tdb")
+     * @Route("/")
      */
     public function index()
     {
         return $this->render('salarie/index.html.twig');
     }
-    
+       
     /**
      * 
      * @Route("/monprofil" )
@@ -38,7 +38,7 @@ class SalarieController extends Controller
     
     /**
      * 
-     * @Route("/mes-conges" , name="salarie-mesconges")
+     * @Route("/mes-conges")
      */
     public function mesConges()
     {
@@ -47,7 +47,7 @@ class SalarieController extends Controller
     
     /**
      * 
-     * @Route("/mes-fiches-de-paie" , name="salarie-fichesdepaie")
+     * @Route("/mes-fiches-de-paie")
      */
     public function mesFichesDePaie()
     {
@@ -56,7 +56,7 @@ class SalarieController extends Controller
     
     /**
      * 
-     * @Route("/trombinoscope" , name="salarie-trombinoscope")
+     * @Route("/trombinoscope")
      */
     public function trombinoscope()
     {
@@ -73,7 +73,7 @@ class SalarieController extends Controller
     
     /**
      * 
-     * @Route("/news" , name="salarie-news")
+     * @Route("/news")
      */
     public function news()
     {

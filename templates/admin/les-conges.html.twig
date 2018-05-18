@@ -1,0 +1,195 @@
+{% extends 'layout.html.twig' %}
+
+
+{% block content %}
+    <section class="validationConges">
+        <div class="container">
+            <div class="row">
+                <div class="col-12 col-md-12">
+                    <h1 class="text-center">Les congés </h1>
+                </div>
+            </div>    
+               
+                <div class="accordion" id="accordion">
+                    <div class="card">
+                        <div class="card-header" id="headingOne">
+                            <h5 class="mb-0">
+                                <button class="btn btn-link" type="button" data-toggle="collapse" data-target="#collapseOne"
+                                        aria-expanded="true" aria-controls="collapseOne">
+                                        Les congés en attente de validation <i class="fas fa-angle-down"></i>
+                                </button>
+                            </h5>
+                        </div>
+
+                        <div id="collapseOne" class="collapse show" aria-labelledby="headingOne" data-parent="#accordion">
+                            <div class="card-body">
+                                <table class="table">
+                                    <thead>
+                                      <tr>
+                                        <th scope="col">Nom</th>
+                                        <th scope="col">Prénom</th>
+                                        <th scope="col">Service</th>
+                                        <th scope="col"></th>
+                                      </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                          <td>test</td>
+                                          <td>test</td>
+                                          <td>info</td>
+                                          <td>
+                                            <button type="button" class="btn btn-primary" data-toggle="modal" 
+                                                    data-target=".bd-example-modal-lg">Voir
+                                            </button>
+
+                                                <div class="modal fade bd-example-modal-lg" tabindex="-1" role="dialog" 
+                                                     aria-labelledby="myLargeModalLabel" aria-hidden="true">
+                                                  <div class="modal-dialog modal-lg">
+                                                    <div class="modal-content">
+                                                     <div class="modal-header">
+                                                       <h5 class="modal-title" id="exampleModalLongTitle">Modal title</h5>
+                                                       <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                         <span aria-hidden="true">&times;</span>
+                                                       </button>
+                                                     </div>
+                                                     <div class="modal-body">
+                                                       ...
+                                                     </div>
+                                                     <div class="modal-footer">
+                                                       <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                                       <button type="button" class="btn btn-primary">Save changes</button>
+                                                     </div>
+                                                    </div>
+                                                  </div>
+                                                </div>
+                                          </td>
+                                        </tr>
+                                    </tbody>
+                                </table>  
+                            </div>
+                        </div>
+                    </div>
+                    <div class="card">
+                        <div class="card-header" id="headingTwo">
+                            <h5 class="mb-0">
+                                <button class="btn btn-link" type="button" data-toggle="collapse" data-target="#collapseTwo"
+                                        aria-expanded="true" aria-controls="collapseTwo">
+                                        Les congés validés <i class="fas fa-angle-down"></i>
+                                </button>
+                            </h5>
+                        </div>
+
+                        <div id="collapseTwo" class="collapse " aria-labelledby="headingTwo" data-parent="#accordion">
+                            <div class="card-body">
+                                <table class="table">
+                                    <thead>
+                                      <tr>
+                                        <th scope="col">Nom</th>
+                                        <th scope="col">Prénom</th>
+                                        <th scope="col">Service</th>
+                                        <th scope="col"></th>
+                                      </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                          <td>test</td>
+                                          <td>test</td>
+                                          <td>info</td>
+                                          <td>
+                                            <button type="button" class="btn btn-primary" data-toggle="modal" 
+                                                    data-target="#1">Voir
+                                            </button>
+
+                                                <div id="1" class="modal fade bd-example-modal-lg" tabindex="-1" role="dialog" 
+                                                     aria-labelledby="myLargeModalLabel" aria-hidden="true">
+                                                  <div class="modal-dialog modal-lg">
+                                                    <div class="modal-content">
+                                                     <div class="modal-header">
+                                                       <h5 class="modal-title" id="exampleModalLongTitle">Modal title</h5>
+                                                       <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                         <span aria-hidden="true">&times;</span>
+                                                       </button>
+                                                     </div>
+                                                     <div class="modal-body">
+                                                       ...
+                                                     </div>
+                                                     <div class="modal-footer">
+                                                       <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                                       <button type="button" class="btn btn-primary">Save changes</button>
+                                                     </div>
+                                                    </div>
+                                                  </div>
+                                                </div>
+                                          </td>
+                                        </tr>
+                                    </tbody>
+                                </table>  
+                            </div>
+                        </div>
+                    </div>
+                    <div class="card">
+                        <div class="card-header" id="headingTrois">
+                            <h5 class="mb-0">
+                                <button class="btn btn-link" type="button" data-toggle="collapse" data-target="#collapseTrois"
+                                        aria-expanded="true" aria-controls="collapseOne">
+                                        Les congés refusés <i class="fas fa-angle-down"></i>
+                                </button>
+                            </h5>
+                        </div>
+
+                        <div id="collapseTrois" class="collapse " aria-labelledby="headingTrois" data-parent="#accordion">
+                            <div class="card-body">
+                                <table class="table">
+                                    <thead>
+                                      <tr>
+                                        <th scope="col">Nom</th>
+                                        <th scope="col">Prénom</th>
+                                        <th scope="col">Service</th>
+                                        <th scope="col"></th>
+                                      </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                          <td>test</td>
+                                          <td>test</td>
+                                          <td>info</td>
+                                          <td>
+                                            <button type="button" class="btn btn-primary" data-toggle="modal" 
+                                                    data-target="#2">Voir
+                                            </button>
+
+                                                <div id="2" class="modal fade bd-example-modal-lg" tabindex="-1" role="dialog" 
+                                                     aria-labelledby="myLargeModalLabel" aria-hidden="true">
+                                                  <div class="modal-dialog modal-lg">
+                                                    <div class="modal-content">
+                                                     <div class="modal-header">
+                                                       <h5 class="modal-title" id="exampleModalLongTitle">Modal title</h5>
+                                                       <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                         <span aria-hidden="true">&times;</span>
+                                                       </button>
+                                                     </div>
+                                                     <div class="modal-body">
+                                                       ...
+                                                     </div>
+                                                     <div class="modal-footer">
+                                                       <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                                       <button type="button" class="btn btn-primary">Save changes</button>
+                                                     </div>
+                                                    </div>
+                                                  </div>
+                                                </div>
+                                          </td>
+                                        </tr>
+                                    </tbody>
+                                </table>  
+                            </div>
+                        </div>
+                    </div>
+                    
+                    
+                    
+                </div>
+            </div>
+                </section>
+                
+{% endblock %}

@@ -11,7 +11,7 @@ use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 class AdminController extends Controller
 {
     /**
-     * @Route("/", name="admin-tdb")
+     * @Route("/")
      */
     public function index()
     {
@@ -22,7 +22,7 @@ class AdminController extends Controller
     
     /**
      * 
-     * @Route("/liste-salaries" , name="admin-liste-salaries")
+     * @Route("/liste-salaries")
      */
     public function listeSalaries()
     {
@@ -31,10 +31,19 @@ class AdminController extends Controller
     
     /**
      * 
-     * @Route("/ajout-salaries" , name="admin-ajout-salaries")
+     * @Route("/ajout-salaries")
      */
     public function ajoutSalaries()
     {
         return $this->render('admin/ajout-salaries.html.twig');
+    }
+    
+    /**
+     * 
+     * @Route("/les-conges")
+     */
+    public function lesConges() 
+    {
+        return $this->render('admin/les-conges.html.twig');
     }
 }
