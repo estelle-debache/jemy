@@ -2,6 +2,7 @@
 
 namespace App\Controller;
 use App\Entity\Salarie;
+use App\Entity\Entreprise;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
     /**
@@ -60,15 +61,8 @@ class SalarieController extends Controller
      */
     public function trombinoscope()
     {
-        $em = $this->getDoctrine()->getManager();
-        $repository = $em->getRepository(Salarie::class);
-        $salaries = $repository->findAll();
         
-        
-        return $this->render('salarie/trombinoscope.html.twig',
-                [
-                    'salaries' => $salaries
-                ]);
+        return $this->render('salarie/trombinoscope.html.twig');
     }
     
     /**

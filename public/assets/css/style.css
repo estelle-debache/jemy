@@ -23,7 +23,7 @@ header .navbar-brand img{
 /** HOME PAGE **************************************************************************************************************************/
 section{
   margin-top: 5rem;
-    padding-top: 5rem;
+  
 }
 
 .home-droite img{
@@ -429,6 +429,62 @@ section{
 
 .trombinoscope p{
     margin-bottom: 0rem;
+}
+/** ADMIN LISTE SALARIES **************************************************************************************************************************/
+
+.liste-salaries h1{
+    color: #083b66;
+   margin-bottom: 4rem;
+}
+.liste-salaries .btn-outline-success{
+    margin-bottom: 3rem;
+}
+
+.liste-salaries .btn-primary{
+    background-color: #74d14c;
+    border-color:#74d14c;
+    margin-right:0.5rem;
+   
+}
+.liste-salaries .btn-primary:hover{
+    background-color:white;
+    color:#74d14c;
+}
+
+.liste-salaries a{
+    color:#083b66;
+}
+/** ADMIN AJOUT SALARIES **************************************************************************************************************************/
+
+.ajout-salaries .btn-primary{
+    background-color: #74d14c;
+    border-color:#74d14c;
+    float:right;
+    margin-bottom: 3rem;
+}
+
+.ajout-salaries .btn-primary:hover{
+    background-color:white;
+    color:#74d14c;
+}
+
+/** ADMIN AJOUT NEWS **************************************************************************************************************************/
+
+.ajout-news h1{
+    color: #083b66;
+   margin-bottom: 4rem;
+}
+
+.ajout-news .btn-primary{
+    background-color: #74d14c;
+    border-color:#74d14c;
+    float:right;
+    margin-bottom: 3rem;
+}
+
+.ajout-news .btn-primary:hover{
+    background-color:white;
+    color:#74d14c;
 }
 
 /** FOOTER **************************************************************************************************************************/

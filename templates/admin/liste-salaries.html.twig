@@ -4,14 +4,15 @@
 
 {% block content %}
     
+   
   <section>
-        <div class="container liste-employes">
+        <div class="container liste-salaries">
             <div class="row">
                 <div class="col-12 col-md-12">
                     <h1 class="text-center">Liste des employés </h1>
                 </div>
                 <div class="col-12 col-md-12 text-center">
-                <a href="ajout-employe.html"><button type="button" class="btn btn-outline-success ">Ajouté un employé</button></a>
+                <a href="{{path('app_admin_ajoutsalaries')}}"><button type="button" class="btn btn-outline-success ">Ajouté un employé</button></a>
             </div>
 
             </div>
@@ -33,11 +34,11 @@
                         <tbody>
                             {% for salarie in salaries %}
                             <tr>
-                                <th scope="row">1</th>
+                                <th scope="row">{{ salarie.id }}</th>
                                 <td>{{ salarie.nom }}</td>
                                 <td>{{ salarie.prenom }}</td>
                                 <td>{{ salarie.email }}</td>
-                                <td>{{ salarie.tel }}</td>
+                                <td>{{ salarie.telephone }}</td>
                                 <td><a href="modifier-employe.html"><i class="far fa-edit"></i></a></td>
                                 <td><a href="modifier-employe.html"><button type="button" class="btn btn-primary">Congés</button></i></a><a href="modifier-employe.html"><button type="button" class="btn btn-primary">Fiches de paie</button></i></a></td>
                             </tr>

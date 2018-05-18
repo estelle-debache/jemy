@@ -426,7 +426,17 @@ class Salarie implements UserInterface, Serializable
         $this->plainPassword = $plainPassword;
         return $this;
     }
-    public function serialize() {
+    
+    public function getTelephone() {
+        return $this->telephone;
+    }
+
+    public function setTelephone($telephone) {
+        $this->telephone = $telephone;
+        return $this;
+    }
+
+        public function serialize() {
            return serialize(             [
                     $this->id,
                     $this->nom,
