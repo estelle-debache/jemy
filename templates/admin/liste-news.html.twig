@@ -1,0 +1,49 @@
+{% extends 'layout.html.twig' %}
+
+{% block content %}
+
+
+  <section>
+        <div class="container liste-news">
+            <div class="row">
+                <div class="col-12 col-md-12">
+                    <h1 class="text-center">Liste des news </h1>
+                </div>
+                <div class="col-12 col-md-12 text-center">
+                <a href="{{path('app_admin_editnews')}}"><button type="button" class="btn btn-outline-success ">Ajouter une news</button></a>
+            </div>
+
+            </div>
+            <div class="row">
+                <div class="col-12 col-md-12">
+                    <table class="table table-hover">
+                        <thead>
+                            <tr>
+                                <th scope="col">#</th>
+                                <th scope="col">Titre</th>
+                                <th scope="col">Auteur</th>
+
+                                <th></th>
+                                <th></th>
+                                
+                            </tr>
+                        </thead>
+                        <tbody>
+                             {% for actualite in actualite %}
+                            <tr>
+                                <th scope="row">{{ actualite.id }}</th>
+                                <td>{{ actualite.titre }}</td>
+                                <td>{{ actualite.salarie }}</td>
+                                <td><a href='{{path('app_admin_editnews', {id:actualite.id})}}'><button type="button" class="btn btn-primary">Modifier</button></i></a></td>
+                            </tr>
+                             {% endfor %}
+                        
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+{% endblock %}
