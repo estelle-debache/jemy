@@ -5,7 +5,9 @@ namespace App\Controller;
 use App\Entity\OffreEmploi;
 use App\Entity\Salarie;
 use App\Form\OffresemploiType;
+use App\Form\SalarieeditType;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
+use Symfony\Component\HttpFoundation\File\File;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Routing\Annotation\Route;
     /**
@@ -35,11 +37,81 @@ class SalarieController extends Controller
      * 
      * @Route("/profiledit" )
      */
-    public function Profiledit()
+    public function Profiledit(Request $request)
     {
-        return $this->render('salarie/profiledit.html.twig');
+        $em = $this->getDoctrine()->getManager();
+       $salarie = $this->getUser();
+    
+        $originalImage = $salarie->getPhoto();
+       $salarie->setPhoto(
+            new File($this->getParameter('photo_dir') . '/' . $salarie->getPhoto())
+        );
+       
+       $form = $this->createForm(SalarieeditType::class, $salarie);
+       $form->handleRequest($request);
+       
+
+        
+    if($form->isSubmitted())
+    {
+        if ($form->isValid()) {
+                 /**
+                  * @var uploadedFile 
+                  */
+                 $photo = $salarie->getPhoto();
+                 
+                 //s'il y a eu une image uploadée
+                 if(!is_null($photo)){
+                     // nom du fichoer que l'on va enregistrer
+                    $filename = uniqid() . '.' . $photo->guessExtension();
+                    
+                    $photo->move(
+                            // répertoire de destination
+                            // cf config/services.yaml
+                            $this->getParameter('photo_dir'),
+                            $filename
+                            
+                    );
+                    // on sette l'image avec le nom qu'on lui a donné
+                    $salarie->setPhoto($filename);
+                    
+                    // suppression de l'ancienne image de l'article
+                    // s'il on est en modification d'un article qui en avait
+                    // déjà une 
+                    if(!is_null($originalImage) && is_file($this->getParameter('photo_dir') . '/' . $originalImage)){
+                        unlink($this->getParameter('photo_dir') . '/' . $originalImage);
+                    }else{
+                        // sans upload, on garde l'ancienne image
+                        $salarie->setPhoto($originalImage);
+                    }
+                     
+                 }
+                // enregistrement en bdd
+                $em->persist($salarie);
+                $em->flush();
+                
+                // message de confirmation
+                $this->addFlash(
+                    'success',
+                    'Votre profil a bien été modifié'
+                );
+                // redirection vers la page de liste
+                return $this->redirectToRoute('app_salarie_monprofil');
+        }
+    }
+        return $this->render('salarie/profiledit.html.twig',
+                 [
+                    
+                     'form'=>$form->createView()
+                 ]);
+        
+    
     }
     
+    
+    
+        
+       
     /**
      * 
      * @Route("/mes-conges")

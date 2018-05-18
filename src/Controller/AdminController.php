@@ -54,7 +54,7 @@ class AdminController extends Controller
         
         $salarie = new Salarie();
          
-        $form = $this->createForm(SalarieType::class, $salarie);
+        $form = $this->createForm(SalarieType::class, $salarie, ['validation_groups'=>'registration']);
         
         
         $form->handleRequest($request);

@@ -153,6 +153,7 @@ section{
     border:10px solid #083b66;
     background-size: 100% auto;
     background-position:middle center;
+    background-repeat: no-repeat;
     margin:auto;
 }
 
