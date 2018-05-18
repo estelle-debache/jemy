@@ -90,7 +90,7 @@ class Entreprise
      *
      *@ORM\OneToMany(targetEntity="Service", mappedBy="entreprise", cascade={"persist"})
      */
-    private $service;
+    private $services;
 
 
 
@@ -104,7 +104,7 @@ class Entreprise
     
     public function __construct() {
         $this->OffreEmploi = new ArrayCollection();
-        $this->service = new ArrayCollection();
+        $this->services = new ArrayCollection();
         $this->salaries = new ArrayCollection();
     }
 
@@ -145,8 +145,8 @@ class Entreprise
         return $this->salaries;
     }
 
-    public function getService() {
-        return $this->service;
+    public function getServices() {
+        return $this->services;
     }
 
     public function getOffreEmploi() {
@@ -195,15 +195,15 @@ class Entreprise
         return $this;
     }
 
-    public function setService($service) {
-        $this->service = $service;
+    public function setServices($services) {
+        $this->services = $services;
         return $this;
     }
     
-    public function addService(Service $service)
+    public function addService(Service $services)
     {
-        $this->service->add($service);
-        $service->setEntreprise($this);
+        $this->services->add($services);
+        $services->setEntreprise($this);
     }
 
     public function setOffreEmploi($OffreEmploi) {

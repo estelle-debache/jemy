@@ -70,7 +70,7 @@ class AccueilController extends Controller
             $session->set('identreprise', $entreprise->getId());
             $session->set('idservice', $service->getId());
             
-            $this->addFlash('success', " felicitation Votre Entreprise a ete créé");
+            $this->addFlash('success', " Félicitation ! Votre entreprise a bien été enregistrée  ");
             return $this->redirectToRoute('inscription-admin');
             }
          
@@ -178,8 +178,6 @@ class AccueilController extends Controller
             $this->addFlash('error', 'Identifiants incorrects');
             dump($error);
             
-        }else{
-            $this->addFlash('success', 'connexion reussi');
         }
        // on  est redirige automatiquement vers app_index_index grace au fichier security.yaml
         return $this->render('accueil/connexion.html.twig',

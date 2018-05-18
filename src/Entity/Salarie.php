@@ -189,11 +189,20 @@ class Salarie implements UserInterface, Serializable
     
     /**
      *
-     * @ORM\Column(type="string", nullable=true)
+     * @ORM\Column(type="string", nullable=false)
      */
     private $telephone;  
     
-    public function getId() {
+    public function getTelephone() {
+        return $this->telephone;
+    }
+
+    public function setTelephone($telephone) {
+        $this->telephone = $telephone;
+        return $this;
+    }
+
+        public function getId() {
         return $this->id;
     }
 

@@ -31,25 +31,23 @@ class AdminController extends Controller
     
     /**
      * 
-     * @Route("/liste-salaries")
+     * @Route("/listesalaries")
      */
-    public function listeSalaries()
+    public function listesalaries()
     {
       
        
         
-        return $this->render('admin/liste-salaries.html.twig', [
-            'salaries' => 'salaries',
-        ]);
+        return $this->render('admin/listesalaries.html.twig');
     }
     
    
     
      /**
      * 
-     * @Route("/ajout-salaries")
+     * @Route("/ajoutsalaries")
      */
-    public function ajoutSalaries(Request $request, UserPasswordEncoderInterface $passwordEncoder)
+    public function ajoutsalaries(Request $request, UserPasswordEncoderInterface $passwordEncoder)
     {
         
         $em = $this->getDoctrine()->getManager();
@@ -103,10 +101,10 @@ class AdminController extends Controller
 
                 $em->persist($salarie);
                 $em->flush();
-                return $this->redirectToRoute('app_accueil_login');
+                return $this->redirectToRoute('app_admin_listesalaries');
             }
         }
-        return $this->render('admin/ajout-salaries.html.twig',
+        return $this->render('admin/ajoutsalaries.html.twig',
                  [
                      //passage du formulaire a la vue
                      'form'=>$form->createView()
@@ -116,11 +114,11 @@ class AdminController extends Controller
     
     /**
      * 
-     * @Route("/salarie-edit" )
+     * @Route("/salarieedit" )
      */
-    public function salarieEdit()
+    public function salarieedit()
     {
-        return $this->render('admin/salarie-edit.html.twig');
+        return $this->render('admin/salarieedit.html.twig');
     }
     
     /**
@@ -214,6 +212,16 @@ class AdminController extends Controller
                     'original_image' => $originalImage
                 ]);
         
+        
+    }
+    
+    /**
+     * 
+     * @Route("/lesconges")
+     */
+    public function lesconges() {
+        
+        return $this->render('admin/lesconges.html.twig');
         
     }
     

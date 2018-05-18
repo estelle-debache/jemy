@@ -32,15 +32,17 @@
                             </tr>
                         </thead>
                         <tbody>
-                            {% for salarie in salaries %}
+                            {% for salarie in app.user.entreprise.salaries %}
                             <tr>
                                 <th scope="row">{{ salarie.id }}</th>
                                 <td>{{ salarie.nom }}</td>
                                 <td>{{ salarie.prenom }}</td>
                                 <td>{{ salarie.email }}</td>
                                 <td>{{ salarie.telephone }}</td>
-                                <td><a href="modifier-employe.html"><i class="far fa-edit"></i></a></td>
-                                <td><a href="modifier-employe.html"><button type="button" class="btn btn-primary">Congés</button></i></a><a href="modifier-employe.html"><button type="button" class="btn btn-primary">Fiches de paie</button></i></a></td>
+                                <td><a href="{{path('app_admin_salarieedit')}}"><i class="far fa-edit"></i></a></td>
+                                <td>
+                                    <a href="{{path('app_admin_salarieedit')}}"><button type="button" class="btn btn-primary">Congés</button></i></a>
+                                    <a href="{{path('app_admin_salarieedit')}}"><button type="button" class="btn btn-primary">Fiches de paie</button></i></a></td>
                             </tr>
                             {% endfor %}
                         

@@ -15,7 +15,7 @@ class SalarieController extends Controller
 {
     /**
      * 
-     * @Route("/" , name="salarie-tdb")
+     * @Route("/")
      */
     public function index()
     {
@@ -33,11 +33,11 @@ class SalarieController extends Controller
     
     /**
      * 
-     * @Route("/mon-profil-edit" )
+     * @Route("/profiledit" )
      */
-    public function monProfilEdit()
+    public function Profiledit()
     {
-        return $this->render('salarie/mon-profil-edit.html.twig');
+        return $this->render('salarie/profiledit.html.twig');
     }
     
     /**

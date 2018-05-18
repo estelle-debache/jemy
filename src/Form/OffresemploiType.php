@@ -38,7 +38,7 @@ class OffresemploiType extends AbstractType
                     ])
             ->add('salaire', TextType::class,['label'=>"salaire"])
             ->add('service', TextType::class,['label'=> 'service'])
-            ->add('entreprise', TextType::class,['label'=> 'entreprise'])
+           
         ;
     }
 
