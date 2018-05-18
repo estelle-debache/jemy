@@ -1,2 +1,27 @@
 {# empty Twig template #}
 {% extends 'layout.html.twig' %}
+{% block content %}
+    
+    <div class="offres">
+        <h1 class="text-center">Les offres d'emploi</h1>
+
+        <div class="container">
+
+            {{ form_start(form) }}
+            {{ form_row(form.poste) }}
+            {{ form_row(form.contrat) }}
+            {{ form_row(form.description) }}
+            {{ form_row(form.date_publication) }}
+            {{ form_row(form.salaire) }}
+            {{ form_row(form.service) }}
+            {{ form_row(form.entreprise) }}
+            <div class="form-btn-group text-right">
+                <button type="submit" class="btn btn-primary">Enregistrer l'offre d'emploi</button>
+
+            </div>
+            {# ferme la balise form #}
+            {{ form_end(form) }}
+        <div>
+    <div>
+    
+{% endblock %}

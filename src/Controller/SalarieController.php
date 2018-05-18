@@ -1,9 +1,13 @@
 <?php
 
 namespace App\Controller;
+
+use App\Entity\OffreEmploi;
 use App\Entity\Salarie;
-use Symfony\Component\Routing\Annotation\Route;
+use App\Form\OffresemploiType;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
+use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\Routing\Annotation\Route;
     /**
      * @Route("/salarie")
      */
@@ -84,8 +88,40 @@ class SalarieController extends Controller
      * 
      * @Route("/offres-emploi")
      */
-    public function offresEmploi()
+    public function offresEmploi(Request $request)
     {
-        return $this->render('salarie/offres-emploi.html.twig');
+        $em = $this->getDoctrine()->getManager();
+       
+     
+       $offresemploi= new OffreEmploi();
+       $offresemploi->setEntreprise($this->getUser());
+       $offresemploi->setService($this->getUser());
+       
+       
+   
+       $form = $this->createForm(OffresemploiType::class, $offresemploi);
+       $form->handleRequest($request);
+       if( $form->isSubmitted())
+        {
+            if($form->isValid())
+            {
+                
+               
+                
+                
+           
+
+                $em->persist($offresemploi);
+                $em->flush();
+                return $this->redirectToRoute('app_salarie_index');
+            }
+        }
+       
+       return $this->render('salarie/offres-emploi.html.twig',
+                 [
+                     
+                     'form'=>$form->createView()
+                 ]);
+        
     }
 }

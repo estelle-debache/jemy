@@ -120,15 +120,15 @@ class AccueilController extends Controller
                 
                 // modifier le nom obtenue lors de la precedente action
                 $photoname= $salarie->getNumSs().'.'.$photo->guessExtension();
-                $cniname=$salarie->getNumSs().'.'.$photo->guessExtension();
-                $cdtname= $salarie->getNumSs().'.'.$photo->guessExtension();
+                $cniname=$salarie->getNumSs().'.'.$cni->guessExtension();
+                $cdtname= $salarie->getNumSs().'.'.$cdt->guessExtension();
                 
                 
                 //deplacement des fichiers vers les dossiers dans images 
                 
                 $photo->move($this->getParameter('photo_dir'),$photoname);
                 $cni->move($this->getParameter('cni_dir'),$cniname);
-                $cdt->move($this->getParameter('photo_dir'),$cdtname);
+                $cdt->move($this->getParameter('cdt_dir'),$cdtname);
                 
                 // encodage du password
                 $password = $passwordEncoder->encodePassword($salarie, $salarie->getplainPassword());

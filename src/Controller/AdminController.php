@@ -2,8 +2,10 @@
 
 namespace App\Controller;
 
-use Symfony\Component\Routing\Annotation\Route;
+use App\Entity\OffreEmploi;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
+use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\Routing\Annotation\Route;
 
 /**
  * @Route("/admin")
@@ -37,4 +39,8 @@ class AdminController extends Controller
     {
         return $this->render('admin/ajout-salaries.html.twig');
     }
+    
+    
+     
+    
 }

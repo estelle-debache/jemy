@@ -38,7 +38,7 @@ class OffreEmploi
      * @Assert\NotBlank(message="LA DATE DE PUBLICATION EST OBLIGATOIRE")
      * @ORM\Column(type="date")
      */
-    private $date_publication;
+    private $datePublication;
         /**
      *
      * @ORM\Column(type="integer")
@@ -64,4 +64,68 @@ class OffreEmploi
     {
         return $this->id;
     }
+    public function getPoste() {
+        return $this->poste;
+    }
+
+    public function getContrat() {
+        return $this->contrat;
+    }
+
+    public function getDescription() {
+        return $this->description;
+    }
+
+    public function getDatePublication() {
+        return $this->datePublication;
+    }
+
+    public function getSalaire() {
+        return $this->salaire;
+    }
+
+    public function getService() {
+        return $this->service;
+    }
+
+    public function getEntreprise() {
+        return $this->entreprise;
+    }
+
+    public function setPoste($poste) {
+        $this->poste = $poste;
+        return $this;
+    }
+
+    public function setContrat($contrat) {
+        $this->contrat = $contrat;
+        return $this;
+    }
+
+    public function setDescription($description) {
+        $this->description = $description;
+        return $this;
+    }
+
+    public function setDatePublication($datePublication) {
+        $this->datePublication = $datePublication;
+        return $this;
+    }
+
+    public function setSalaire($salaire) {
+        $this->salaire = $salaire;
+        return $this;
+    }
+
+    public function setService($service) {
+        $this->service = $service;
+        return $this;
+    }
+
+    public function setEntreprise($entreprise) {
+        $this->entreprise = $entreprise;
+        return $this;
+    }
+
+
 }

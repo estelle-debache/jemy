@@ -138,8 +138,8 @@ class Entreprise
         return $this->telephone;
     }
 
-    public function getSalarie() {
-        return $this->salarie;
+    public function getSalaries() {
+        return $this->salaries;
     }
 
     public function getService() {
@@ -187,8 +187,8 @@ class Entreprise
         return $this;
     }
 
-    public function setSalarie($salarie) {
-        $this->salarie = $salarie;
+    public function setSalaries($salaries) {
+        $this->salarie = $salaries;
         return $this;
     }
 
