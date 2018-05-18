@@ -51,7 +51,7 @@ class AccueilController extends Controller
             if($form->isValid())
             {
                 
-                            // LES ATTRIBUT DE L'OBJETS CATEGORY ONT ETE SETTE A PARTIR DES CHAMPS DE FORMULAIRE 
+                
            
             
  
@@ -98,25 +98,61 @@ class AccueilController extends Controller
         $idEntreprise = $session->get('identreprise');
         
         $salarie = new Salarie();
-         //$service = $em->find(Service::class, $idEntreprise);
+         
         $form = $this->createForm(SalarieType::class, $salarie);
-        // le formulaire analyse la requete HTTP
+        
+        
         $form->handleRequest($request);
+        
+        // recupere un objet entreprise ayant l'id enregistre en session lors de la creation de l'entreprise 
         $entreprise = $em->find(Entreprise::class, $idEntreprise);
+        
+        // recupere un objet service ayant l'id enregistre en session lors de la creation de l'objet entreprise
         $service = $em->find(Service::class, $session->get('idservice'));
         if( $form->isSubmitted())
         {
-            $password = $passwordEncoder->encodePassword($salarie, $salarie->getplainPassword());
-            $salarie
-                ->setPassword($password)
-                ->setEntreprise($entreprise)
-                ->setRole('ROLE_ADMIN')
-                ->setService($service)
-                    ;
+            if($form->isValid())
+            {
+                // recuperer le nom du fichier en bdd
+                $photo = $salarie->getPhoto();
+                $cni = $salarie->getCarteIdentite();
+                $cdt = $salarie->getContratTravail();
                 
-        $em->persist($salarie);
-        $em->flush();
-        return $this->redirectToRoute('app_accueil_login');
+                // modifier le nom obtenue lors de la precedente action
+                $photoname= $salarie->getNumSs().'.'.$photo->guessExtension();
+                $cniname=$salarie->getNumSs().'.'.$cni->guessExtension();
+                $cdtname= $salarie->getNumSs().'.'.$cdt->guessExtension();
+                
+                
+                //deplacement des fichiers vers les dossiers dans images 
+                
+                $photo->move($this->getParameter('photo_dir'),$photoname);
+                $cni->move($this->getParameter('cni_dir'),$cniname);
+                $cdt->move($this->getParameter('cdt_dir'),$cdtname);
+                
+                // encodage du password
+                $password = $passwordEncoder->encodePassword($salarie, $salarie->getplainPassword());
+                $salarie
+                    ->setPassword($password)
+                    ->setEntreprise($entreprise)
+                    ->setRole('ROLE_ADMIN')
+                    ->setService($service)
+                        
+                // on sette l'image avec le nom qu'on lui a donné
+                    ->setPhoto($photoname)
+                    ->setCarteIdentite($cniname)
+                    ->setContratTravail($cdtname)
+                        ;
+
+
+                $em->persist($salarie);
+                $em->flush();
+                
+
+                return $this->redirectToRoute('app_accueil_login');
+                 
+                 
+            }
         }
         return $this->render('accueil/inscription-admin.html.twig',
                  [
