@@ -1,9 +1,12 @@
 <?php
 
 namespace App\Controller;
+
 use App\Entity\Salarie;
-use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
+use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\Routing\Annotation\Route;
+use function dump;
     /**
      * @Route("/salarie")
      */
@@ -11,10 +14,12 @@ class SalarieController extends Controller
 {
     /**
      * 
-     * @Route("/" , name="salarie-tdb")
+     * @Route("/")
      */
     public function index()
     {
+        
+dump($this->getUser());
         return $this->render('salarie/index.html.twig');
     }
     
@@ -29,11 +34,14 @@ class SalarieController extends Controller
     
     /**
      * 
-     * @Route("/mon-profil-edit" )
+     * @Route("/profiledit/{id}" )
      */
-    public function monProfilEdit()
+    public function ProfilEdit(Request $request, $id)
     {
-        return $this->render('salarie/mon-profil-edit.html.twig');
+        $em= $this->getDoctrine()->getManager();
+         $salarie = $em->find(Salarie::class, $id);
+
+        return $this->render('salarie/profiledit.html.twig');
     }
     
     /**
