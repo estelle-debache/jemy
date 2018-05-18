@@ -42,7 +42,7 @@ class SalarieController extends Controller
         $em = $this->getDoctrine()->getManager();
        $salarie = $this->getUser();
     
-        $originalImage = $salarie->getPhoto();
+       $originalImage = $salarie->getPhoto();
        $salarie->setPhoto(
             new File($this->getParameter('photo_dir') . '/' . $salarie->getPhoto())
         );
@@ -80,12 +80,12 @@ class SalarieController extends Controller
                     // déjà une 
                     if(!is_null($originalImage) && is_file($this->getParameter('photo_dir') . '/' . $originalImage)){
                         unlink($this->getParameter('photo_dir') . '/' . $originalImage);
-                    }else{
-                        // sans upload, on garde l'ancienne image
-                        $salarie->setPhoto($originalImage);
                     }
                      
-                 }
+                 }else{
+                    // sans upload, on garde l'ancienne image
+                    $salarie->setPhoto($originalImage);
+                }
                 // enregistrement en bdd
                 $em->persist($salarie);
                 $em->flush();
