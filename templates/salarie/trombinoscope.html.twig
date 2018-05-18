@@ -8,15 +8,15 @@
         <div class="container trombinoscope  ">
             <h1 class="text-center">Trombinoscope</h1>
             <div class="row">
-                 {% for salarie in entreprise.salaries %}
+                 {% for salarie in app.user.entreprise.salaries %}
                 <div class="col-12 col-md-3">
                     <div class="card">
-                        <div class="card-img-top" style="background-image:url('{{ asset('images/photo/' ~ salarie.photo) }}')"> </div>
+                        <div class="card-img-top" style="background-image:url('{{ asset('images/photo/'~salarie.photo )}}')"> </div>
                         <div class="card-body">
                             <h5 class="card-title">{{ salarie.nom }} {{ salarie.prenom }}</h5>
-                            <p class="card-text"><span>{{ salarie.statut }}</span></p>
-                            <p class="card-text">{{ salarie.telephone }}</p>
-                            <p class="card-text">{{ salarie.email }}</p>
+                            <p class="card-text"><span>service: {{ salarie.service.nom }}</span></p>
+                            <!--<p class="card-text">01.43.59.76.78</p>-->
+                            <p class="card-text">Actif depuis le: {{ salarie.dateEmbauche |date('d-m-Y') }}</p>
                         </div>
                     </div>
                 </div>

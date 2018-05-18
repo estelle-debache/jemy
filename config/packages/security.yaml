@@ -23,7 +23,7 @@ security:
                 login_path: app_accueil_login
                 check_path: app_accueil_login
                 # route vers laquelle on est redirigee si on sest correcteùment connecte 
-                default_target_path: salarie-tdb
+                default_target_path: app_salarie_index
             logout:
                 # route definie dans route.yaml
                 path: app_accueil_logout
