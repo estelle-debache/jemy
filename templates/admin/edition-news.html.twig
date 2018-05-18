@@ -1,0 +1,20 @@
+{% extends 'layout.html.twig' %}
+
+{% block content %}
+   <section>
+        <div class="container ajout-news">
+             <div class="row">
+                <div class="col-12 col-md-12">
+                    
+                </div>
+            </div>
+
+            {{ form_start(form) }}
+            {{form_row(form.titre)}}
+            {{form_row(form.contenu)}}
+   
+             <button type="submit" class="btn btn-primary">Ajouter votre actualité</button>
+            {{ form_end(form) }}
+        </div>
+    </section>
+    {% endblock %}

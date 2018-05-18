@@ -3,6 +3,7 @@
 namespace App\Repository;
 
 use App\Entity\Actualite;
+use App\Entity\Entreprise;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Symfony\Bridge\Doctrine\RegistryInterface;
 
@@ -19,32 +20,16 @@ class ActualiteRepository extends ServiceEntityRepository
         parent::__construct($registry, Actualite::class);
     }
 
-//    /**
-//     * @return Actualite[] Returns an array of Actualite objects
-//     */
-    /*
-    public function findByExampleField($value)
+    public function findByEntreprise(Entreprise $entreprise)
     {
-        return $this->createQueryBuilder('a')
-            ->andWhere('a.exampleField = :val')
-            ->setParameter('val', $value)
-            ->orderBy('a.id', 'ASC')
-            ->setMaxResults(10)
-            ->getQuery()
-            ->getResult()
+        $qb = $this->createQueryBuilder('a');
+        
+        $qb
+            ->join('a.salarie', 's')
+            ->join('s.entreprise', 'e', 'WITH', 'e.id = :id')
+            ->setParameter('id', $entreprise->getId())
         ;
+        
+        return $qb->getQuery()->getResult();
     }
-    */
-
-    /*
-    public function findOneBySomeField($value): ?Actualite
-    {
-        return $this->createQueryBuilder('a')
-            ->andWhere('a.exampleField = :val')
-            ->setParameter('val', $value)
-            ->getQuery()
-            ->getOneOrNullResult()
-        ;
-    }
-    */
 }

@@ -23,16 +23,13 @@ header .navbar-brand img{
 /** HOME PAGE **************************************************************************************************************************/
 section{
   margin-top: 5rem;
-    padding-top: 5rem;
+  
 }
 
 .home-droite img{
    margin:3rem auto;
 
 }
-
-
-
 
 .home-gauche h1{
     font-size: 2rem;
@@ -235,10 +232,9 @@ section{
     margin-top: 6rem;
 }
 
-
 .tableauDeBord .button{
-    margin-bottom: 3rem;
-   
+    margin:0rem auto 2rem auto;
+    width:5rem; 
 }
 
 .tableauDeBord .btn-primary{
@@ -249,19 +245,6 @@ section{
 .tableauDeBord .btn-primary:hover{
     background-color:white;
     color:#74d14c;
-}
-
-.tableauDeBord .button .btn-left{
-   margin-left: auto;
-   margin-right: 0.5rem;
-   width:5rem;
-
-   
-}
-.tableauDeBord .button .btn-right{
-    margin-right: auto;
-    margin-left: 0.5rem;
-    width:5rem;
 }
 
 .tableauDeBord a:hover{
@@ -282,6 +265,7 @@ section{
 }
 .tableauDeBord h5{
    text-align: center;
+   margin-top: 1rem;
 }
 .tableauDeBord .titre{
     color: #083b66;
@@ -335,6 +319,34 @@ section{
    text-decoration: underline;
    padding-top: 2rem;
 }
+
+.demandeConge span{
+    font-size: 0.7rem;
+}
+
+/** VALIDATION CONGE **************************************************************************************************************************/
+
+.validationConges h1{
+   color: #083b66;
+   margin-bottom:5rem;
+}
+
+.validationConges .btn-link{
+    text-decoration: none;
+    color: #083b66;
+}
+.validationConges .btn-primary{
+    background-color: #74d14c;
+    border-color:#74d14c;
+}
+
+.validationConges.btn-primary:hover{
+    background-color:white;
+    color:#74d14c;
+
+}
+
+
 
 /** MES FICHES DE PAIE **************************************************************************************************************************/
 .mesfichesdepaie h1{
@@ -433,6 +445,62 @@ section{
 
 .trombinoscope p{
     margin-bottom: 0rem;
+}
+/** ADMIN LISTE SALARIES **************************************************************************************************************************/
+
+.liste-salaries h1{
+    color: #083b66;
+   margin-bottom: 4rem;
+}
+.liste-salaries .btn-outline-success{
+    margin-bottom: 3rem;
+}
+
+.liste-salaries .btn-primary{
+    background-color: #74d14c;
+    border-color:#74d14c;
+    margin-right:0.5rem;
+   
+}
+.liste-salaries .btn-primary:hover{
+    background-color:white;
+    color:#74d14c;
+}
+
+.liste-salaries a{
+    color:#083b66;
+}
+/** ADMIN AJOUT SALARIES **************************************************************************************************************************/
+
+.ajout-salaries .btn-primary{
+    background-color: #74d14c;
+    border-color:#74d14c;
+    float:right;
+    margin-bottom: 3rem;
+}
+
+.ajout-salaries .btn-primary:hover{
+    background-color:white;
+    color:#74d14c;
+}
+
+/** ADMIN AJOUT NEWS **************************************************************************************************************************/
+
+.ajout-news h1{
+    color: #083b66;
+   margin-bottom: 4rem;
+}
+
+.ajout-news .btn-primary{
+    background-color: #74d14c;
+    border-color:#74d14c;
+    float:right;
+    margin-bottom: 3rem;
+}
+
+.ajout-news .btn-primary:hover{
+    background-color:white;
+    color:#74d14c;
 }
 
 /** FOOTER **************************************************************************************************************************/

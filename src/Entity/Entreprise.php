@@ -2,9 +2,10 @@
 
 namespace App\Entity;
 
+use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 use Symfony\Component\Validator\Constraints as Assert;
-use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity ;
 
 /**
  * 
@@ -80,6 +81,7 @@ class Entreprise
     private $telephone;
     
     /**
+     * 
      * @ORM\OneToMany(targetEntity="Salarie", mappedBy="entreprise", cascade={"persist"})
      */
     private $salaries;
@@ -101,8 +103,9 @@ class Entreprise
     private $OffreEmploi;
     
     public function __construct() {
-        $this->OffreEmploi = new \Doctrine\Common\Collections\ArrayCollection();
-        $this->service = new \Doctrine\Common\Collections\ArrayCollection();
+        $this->OffreEmploi = new ArrayCollection();
+        $this->service = new ArrayCollection();
+        $this->salaries = new ArrayCollection();
     }
 
     
@@ -188,7 +191,7 @@ class Entreprise
     }
 
     public function setSalaries($salaries) {
-        $this->salarie = $salaries;
+        $this->salaries = $salaries;
         return $this;
     }
 

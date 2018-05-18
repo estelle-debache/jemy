@@ -115,7 +115,7 @@ class Salarie implements UserInterface, Serializable
     
     /**
      * @Assert\NotBlank(message = "LA PIECE D'IDENTITE EST OBLIGATOIRE")
-     * @Assert\File(mimeTypes={"application/pdf", "image/*"})
+     * @Assert\File(mimeTypes={"application/pdf"})
      *@ORM\Column(type="string", length=255)
      * 
      */
@@ -186,6 +186,13 @@ class Salarie implements UserInterface, Serializable
      * @Assert\NotBlank(message="vous devez imperativement remplir le champs mot de passe")
     */
     private $plainPassword;
+    
+    /**
+     *
+     * @ORM\Column(type="string", nullable=true)
+     */
+    private $telephone;  
+    
     public function getId() {
         return $this->id;
     }

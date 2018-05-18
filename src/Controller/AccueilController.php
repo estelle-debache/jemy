@@ -144,9 +144,14 @@ class AccueilController extends Controller
                     ->setContratTravail($cdtname)
                         ;
 
+
                 $em->persist($salarie);
                 $em->flush();
+                
+
                 return $this->redirectToRoute('app_accueil_login');
+                 
+                 
             }
         }
         return $this->render('accueil/inscription-admin.html.twig',

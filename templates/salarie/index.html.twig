@@ -7,8 +7,7 @@
         <div class="container ">
             {% if is_granted('ROLE_ADMIN') %}
             <div class="row button">
-                <button type="button" class="btn btn-primary btn-left">Perso</button>
-                <button type="button" class="btn btn-primary btn-right">Admin</button>
+                <a class=" btn-left"href='{{ path('app_admin_index') }}'><button type="button" class="btn btn-primary ">Admin</button></a>
             </div>
             {% endif %}
             <div class="row haut">
@@ -16,10 +15,7 @@
                     <a class="titre" href="{{path('app_salarie_monprofil')}}">
                         <div class="card">
                           <i class=" icone far fa-6x fa-user-circle"></i>
-                          <h5 class=" card-title">Mon profil</h5>
-                          <div class="card-body">
-                            <p class="card-text">Modifier mes informations</p>
-                          </div>
+                          <h5 class=" card-title">Mon profil</h5>                        
                         </div>
                     </a>
                 </div>
@@ -28,9 +24,6 @@
                         <div class="card">
                           <i class=" icone fab fa-6x fa-angellist"></i>
                           <h5 class="card-title">Mes congés</h5>
-                          <div class="card-body">
-                            <p class="card-text">Voir mon soldes</p>
-                          </div>
                         </div>
                     </a>
                 </div>
@@ -39,9 +32,6 @@
                         <div class="card">
                           <i class=" icone fas fa-6x fa-paper-plane"></i>
                           <h5 class="card-title">Mes fiches de paie</h5>
-                          <div class="card-body">
-                            <p class="card-text">Voir et archiver mes fiches de paie</p>
-                          </div>
                         </div>
                     </a>
                 </div>
@@ -53,9 +43,6 @@
                         <div class="card">
                           <i class="icone fas fa-6x fa-camera-retro"></i>
                           <h5 class="card-title">Trombinoscope</h5>
-                          <div class="card-body">
-                            <p class="card-text">Trombinoscope de la société</p>
-                          </div>
                         </div>
                     </a>
                 </div>
@@ -64,9 +51,6 @@
                         <div class="card">
                           <i class="icone fas fa-6x fa-newspaper"></i>
                           <h5 class="card-title">Les News</h5>
-                          <div class="card-body">
-                            <p class="card-text">Les actualités de la société</p>
-                          </div>
                         </div>
                     </a>
                 </div>
@@ -75,9 +59,6 @@
                         <div class="card">
                           <i class="icone fas fa-6x fa-newspaper"></i>
                           <h5 class="card-title">Les offres d'emploi</h5>
-                          <div class="card-body">
-                            <p class="card-text">Offres internes</p>
-                          </div>
                         </div>
                     </a>
                 </div>
