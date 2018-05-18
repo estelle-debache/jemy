@@ -115,7 +115,7 @@ class Salarie implements UserInterface, Serializable
     
     /**
      * @Assert\NotBlank(message = "LA PIECE D'IDENTITE EST OBLIGATOIRE")
-     * @Assert\File(mimeTypes={"application/pdf", "image/*"})
+     * @Assert\File(mimeTypes={"application/pdf"})
      *@ORM\Column(type="string", length=255)
      * 
      */

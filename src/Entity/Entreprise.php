@@ -103,6 +103,7 @@ class Entreprise
     public function __construct() {
         $this->OffreEmploi = new \Doctrine\Common\Collections\ArrayCollection();
         $this->service = new \Doctrine\Common\Collections\ArrayCollection();
+        $this->salaries = new \Doctrine\Common\Collections\ArrayCollection();
     }
 
     
@@ -138,8 +139,8 @@ class Entreprise
         return $this->telephone;
     }
 
-    public function getSalarie() {
-        return $this->salarie;
+    public function getSalaries() {
+        return $this->salaries;
     }
 
     public function getService() {
@@ -187,8 +188,8 @@ class Entreprise
         return $this;
     }
 
-    public function setSalarie($salarie) {
-        $this->salarie = $salarie;
+    public function setSalaries($salaries) {
+        $this->salaries = $salaries;
         return $this;
     }
 
