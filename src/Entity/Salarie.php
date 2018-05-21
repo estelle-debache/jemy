@@ -114,16 +114,16 @@ class Salarie implements UserInterface, Serializable
     private $iban;
     
     /**
-     * @Assert\NotBlank(message = "LA PIECE D'IDENTITE EST OBLIGATOIRE", groups={"registration"})
-     * @Assert\File(mimeTypes={"application/pdf"}, groups={"registration"})
+     * @Assert\NotBlank(message = "LA PIECE D'IDENTITE EST OBLIGATOIRE")
+     * @Assert\File(mimeTypes={"application/pdf"})
      *@ORM\Column(type="string", length=255)
      * 
      */
     private $carteIdentite;
     
     /**
-     *@Assert\NotBlank(message = "LE CONTRAT DU TRAVAIL EST OBLIGATOIRE", groups={"registration"})
-     * @Assert\File(mimeTypes={"application/pdf"}, groups={"registration"})
+     *@Assert\NotBlank(message = "LE CONTRAT DU TRAVAIL EST OBLIGATOIRE")
+     * @Assert\File(mimeTypes={"application/pdf"})
      * @ORM\Column(type="string", length=255)
      */
     private $contratTravail;
@@ -183,7 +183,7 @@ class Salarie implements UserInterface, Serializable
     /**
      *Mot de passe en clair pourinteragir avec le formulaire 
      * va recuperer le mot de passe en clair dans l'interaction avec le formulaire
-     * @Assert\NotBlank(message="vous devez imperativement remplir le champs mot de passe", groups={"registration"})
+     * @Assert\NotBlank(message="vous devez imperativement remplir le champs mot de passe")
     */
     private $plainPassword;
     
@@ -482,6 +482,7 @@ class Salarie implements UserInterface, Serializable
         return $this->getFullName();
         
     }
+
 
 
 
