@@ -2,7 +2,7 @@
 
 
 {% block content %}
-    
+
   <section class="tableauDeBord">
         <div class="container ">
             {% if is_granted('ROLE_ADMIN') %}
@@ -16,7 +16,7 @@
                         <div class="card">
                           <i class=" icone far fa-6x fa-user-circle"></i>
                           <h5 class=" card-title">Les salariés</h5>
-                          
+
                         </div>
                     </a>
                 </div>
@@ -29,7 +29,7 @@
                     </a>
                 </div>
                 <div class="col-12 col-md-4">
-                    <a class="titre" href="">
+                    <a class="titre" href="{{ path('app_admin_listenews') }}">
                         <div class="card">
                           <i class=" icone fas fa-6x fa-paper-plane"></i>
                           <h5 class="card-title">les News</h5>
@@ -40,7 +40,7 @@
 
             <div class="row bas">
                 <div class="col-12 col-md-4">
-                    <a class="titre" href="">
+                    <a class="titre" href="{{ path('app_admin_listeemploi') }}">
                         <div class="card">
                           <i class="icone fas fa-6x fa-briefcase"></i>
                           <h5 class="card-title">Les Offres d'emploi</h5>
@@ -55,7 +55,7 @@
                         </div>
                     </a>
                 </div>
-                
+
             </div>
         </div>
     </section>

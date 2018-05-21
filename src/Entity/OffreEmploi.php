@@ -22,21 +22,21 @@ class OffreEmploi
      * @ORM\Column(type="string", length=255)
      */
     private $poste;
-    
+
     /**
      *@Assert\NotBlank(message="LE CONTRAT EST OBLIGATOIRE")
-     * @ORM\Column(type="string", columnDefinition="enum('cdd', 'cdi')", nullable=false)
+     * @ORM\Column(type="string", columnDefinition="enum('CDD', 'CDI')", nullable=false)
     */
     private $contrat;
-    
+
     /**
      * @Assert\NotBlank(message="LA DESCRIPTION EST OBLIGATOIRE")
      * @ORM\Column(type="text")
      */
         private $description;
-    
+
     /**
-     * 
+     *
      * @var \Datetime
      * @ORM\Column(type="date")
      */
@@ -46,19 +46,19 @@ class OffreEmploi
      * @ORM\Column(type="integer")
      */
     private $salaire;
-    
+
       /**
      *
      * @ORM\JoinColumn(nullable=false)
-     * @ORM\ManyToOne(targetEntity="Service", inversedBy="OffreEmploi") 
+     * @ORM\ManyToOne(targetEntity="Service", inversedBy="OffreEmploi")
      */
     private $service;
-    
-    
+
+
     /**
      *
      * @ORM\JoinColumn(nullable=false)
-     * @ORM\ManyToOne(targetEntity="Entreprise", inversedBy="OffreEmploi") 
+     * @ORM\ManyToOne(targetEntity="Entreprise", inversedBy="OffreEmploi")
      */
     private $entreprise;
 
