@@ -173,40 +173,17 @@ class SalarieController extends Controller
      * 
      * @Route("/offres-emploi")
      */
-    public function offresEmploi(Request $request)
+    public function offresEmploi()
     {
         $em = $this->getDoctrine()->getManager();
-       
-     
-       $offresemploi= new OffreEmploi();
-       $offresemploi->setEntreprise($this->getUser());
-       $offresemploi->setService($this->getUser());
-       
-       
-   
-       $form = $this->createForm(OffresemploiType::class, $offresemploi);
-       $form->handleRequest($request);
-       if( $form->isSubmitted())
-        {
-            if($form->isValid())
-            {
-                
-               
-                
-                
-           
-
-                $em->persist($offresemploi);
-                $em->flush();
-                return $this->redirectToRoute('app_salarie_index');
-            }
-        }
-       
-       return $this->render('salarie/offres-emploi.html.twig',
-                 [
-                     
-                     'form'=>$form->createView()
-                 ]);
+        $repository = $em->getRepository(OffreEmploi::class);
+        $entreprise = $this->getUser()->getEntreprise();
+        $emploi = $repository->findByEntreprise($entreprise);
+        
+        return $this->render('salarie/offres-emploi.html.twig',
+                [
+                    'emploi' => $emploi
+                ]);
         
     }
 }

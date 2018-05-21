@@ -2,6 +2,7 @@
 
 namespace App\Entity;
 
+use DateTime;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Validator\Constraints as Assert;
 /**
@@ -23,8 +24,8 @@ class OffreEmploi
     private $poste;
     
     /**
-     * @Assert\NotBlank(message="LE CONTRAT EST OBLIGATOIRE")
-     *@ORM\Column(type="string", columnDefinition="enum('cdd', 'cdi')", nullable=false)
+     *@Assert\NotBlank(message="LE CONTRAT EST OBLIGATOIRE")
+     * @ORM\Column(type="string", columnDefinition="enum('cdd', 'cdi')", nullable=false)
     */
     private $contrat;
     
@@ -35,7 +36,8 @@ class OffreEmploi
         private $description;
     
     /**
-     * @Assert\NotBlank(message="LA DATE DE PUBLICATION EST OBLIGATOIRE")
+     * 
+     * @var \Datetime
      * @ORM\Column(type="date")
      */
     private $datePublication;
@@ -127,5 +129,8 @@ class OffreEmploi
         return $this;
     }
 
+     public function __construct() {
+        $this->datePublication = new DateTime();
+    }
 
 }
