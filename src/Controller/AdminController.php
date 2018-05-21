@@ -4,14 +4,17 @@ namespace App\Controller;
 
 use App\Entity\Actualite;
 use App\Entity\Salarie;
+use App\Entity\Service;
 use App\Form\ActualiteType;
 use App\Form\AjoutsalarieType;
 use App\Form\ModifsalarieType;
+use App\Form\ServiceType;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
+use Symfony\Component\HttpFoundation\File\File;
 use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\Security\Core\Encoder\UserPasswordEncoderInterface;
-use Symfony\Component\HttpFoundation\File\File;
 
 
 
@@ -398,8 +401,42 @@ class AdminController extends Controller
         
     }
     
-    
-    
-    
-    
+    /**
+     * @Route("/ajoutservice")
+     */
+    public function ajoutservice(Request $request) 
+    {
+        $em = $this->getDoctrine()->getManager();
+        $service = new Service();
+        
+         $form = $this->createForm(ServiceType::class, $service);
+        $form->handleRequest($request);
+        
+           
+        if($form->isSubmitted()){
+            
+            if($form->isValid()){
+                
+                 $service->setEntreprise($this->getUser()->getEntreprise());           
+              
+                    
+                    
+                $em->persist($service);
+                $em->flush();
+
+                $this->addFlash('success', 'Le service a bien été ajouté');
+
+                return $this->redirectToRoute('app_admin_index');
+
+                }
+        
+    }
+     return $this->render('admin/ajoutservice.html.twig',
+                [
+                    'form'=>$form->createView(),
+                   
+                ]);
+   
+  }
+      
 }

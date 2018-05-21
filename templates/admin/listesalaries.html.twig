@@ -38,7 +38,7 @@
                                 <th scope="row">{{ salarie.id }}</th>
                                 <td>{{ salarie.nom }}</td>
                                 <td>{{ salarie.prenom }}</td>
-                                <td>{{ salarie.role }}</td>
+                                <td>{{ salarie.service.nom }}</td>
                                 <td>{{ salarie.role }}</td>
                                 <td><a href="{{path('app_admin_salarieprofil', {id: salarie.id})}}"><i class="fas fa-eye"></i></a></td>
                                 <td><a href="{{path('app_admin_modifsalarie', {id: salarie.id})}}"><i class="far fa-edit"></i></a></td>

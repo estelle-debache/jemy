@@ -3,6 +3,8 @@
 namespace App\Form;
 
 use App\Entity\Salarie;
+use App\Entity\Service;
+use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 use Symfony\Component\Form\Extension\Core\Type\DateType;
@@ -39,6 +41,17 @@ class ModifsalarieType extends AbstractType
                         'Admin' => 'ROLE_ADMIN',
                         'Employé' => 'ROLE_USER',
                   )))
+            ->add('service', EntityType::class, 
+                    [
+                        'label' => 'Service',
+                        // nom de l'entité
+                        'class' => Service::class,
+                        // nom de l(attribut utilisé pour l'affichage des options
+                        'choice_label' => 'nom',
+                        // pour avoir une 1ère option vide
+                        'placeholder' =>' Choisissez un service'
+                    ])
+                
             ->add('dateDeNaissance', DateType::class, array(
                     'widget' => 'single_text',
                     // this is actually the default format for single_text

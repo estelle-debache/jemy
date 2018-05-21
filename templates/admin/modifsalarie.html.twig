@@ -3,14 +3,14 @@
 
 {% block content %}
   <section>
-        <div class="container ajout-salaries ">
+        <div class="container adminmodif-salaries ">
             <h1 class="text-center">Modification du profil </h1>
             
      {{ form_start(salarie) }}
         {{ form_row(salarie.civilite) }}
         {{ form_row(salarie.nom) }}
         {{ form_row(salarie.prenom) }}
-        {#{{ form_row(salarie.service) }}#}
+        {{ form_row(salarie.service) }}
         {{ form_row(salarie.role) }}
         {{ form_row(salarie.dateDeNaissance) }}
         {{form_row(salarie.email) }}

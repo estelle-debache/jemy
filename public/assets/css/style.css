@@ -454,6 +454,12 @@ section{
 }
 .liste-salaries .btn-outline-success{
     margin-bottom: 3rem;
+    color:#74d14c;
+}
+
+.liste-salaries .btn-outline-success:hover{
+    background-color:#74d14c;
+    color:white;
 }
 
 .liste-salaries .btn-primary{
@@ -482,6 +488,26 @@ section{
 .ajout-salaries .btn-primary:hover{
     background-color:white;
     color:#74d14c;
+}
+
+/** ADMIN MODIF SALARIES **************************************************************************************************************************/
+
+.adminmodif-salaries .btn-primary{
+    background-color: #74d14c;
+    border-color:#74d14c;
+    float:right;
+    margin-bottom: 3rem;
+}
+
+.adminmodif-salaries .btn-primary:hover{
+    background-color:white;
+    color:#74d14c;
+}
+
+.adminmodif-salaries h1{
+    color: #083b66;
+    margin-bottom: 2rem;
+
 }
 
 /** ADMIN VOIR SALARIE PROFIL **************************************************************************************************************************/
