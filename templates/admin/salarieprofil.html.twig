@@ -1,0 +1,47 @@
+{% extends 'layout.html.twig' %}
+
+
+{% block content %}
+    <section>
+        <div class="container salarieprofil  ">
+            <h1 class="text-center">{{salarie}}</h1>
+           
+            
+            <div class="row infos ">
+                <div class="col-12 col-md-6 text-center ">
+                    
+                    <div class="photo-profil" style="background-image:url({{asset('images/photo/'~ salarie.photo)}})">
+
+                    </div>
+
+
+                </div>
+                <div class="col-12 col-md-6 information">
+                    <p><span>Civilité : </span>{{salarie.civilite}}</p>
+                    <p><span>Date de naissance : </span>{{ salarie.dateDeNaissance |date('d-m-Y') }}</p>
+                    <p><span>Adresse : </span>{{ salarie.adresse }}</p>
+                    <p><span>Mail : </span>{{ salarie.email }}</p>
+                    <p><span>Service : </span> {{ salarie.service.nom }}</p>
+                    <p><span>Date embauche : </span>{{ salarie.dateEmbauche |date('d-m-Y') }}</p>
+                    <p><span>N° sécurité social : </span>{{ salarie.numSs}}</p>
+                    <p><span>IBAN : </span>{{ salarie.iban }}</p>
+
+
+                   
+                </div>
+                <div class="row">
+                    <div class="col-6 col-lg-6">
+                        <a class="btn btn-outline-dark" href="{{asset('images/cdt/'~ salarie.contratTravail)}}" target="_blank"><i class="fas fa-download"></i> Contrat de travail</a>
+                    </div>
+                    <div class="col-6 col-lg-6">
+                     <a class="btn btn-outline-dark" href="{{asset('images/cni/'~ salarie.carteIdentite)}}" target="_blank"><i class="fas fa-download"></i> Carte d'identité</a>
+                </div>
+                </div>
+
+
+
+            </div>
+
+        </div>
+    </section>
+{% endblock %}

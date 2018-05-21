@@ -14,7 +14,8 @@ use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
-class SalarieType extends AbstractType
+
+class AjoutsalarieType extends AbstractType
 {
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
@@ -30,8 +31,14 @@ class SalarieType extends AbstractType
                        )))
             ->add('nom', TextType::class,['label'=>"Nom"])
             ->add('prenom', TextType::class,['label'=>"Prenom"])
-           
-           
+            ->add('service', TextType::class,['label'=>"Service"])
+            ->add('role', ChoiceType::class,array(
+                   
+                    'choices' => array(
+                        ''=>'',
+                        'Admin' => 'ROLE_ADMIN',
+                        'Employé' => 'ROLE_USER',
+                  )))
             ->add('dateDeNaissance', DateType::class, array(
                     'widget' => 'single_text',
                     // this is actually the default format for single_text
