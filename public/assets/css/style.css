@@ -484,6 +484,82 @@ section{
     color:#74d14c;
 }
 
+/** ADMIN VOIR SALARIE PROFIL **************************************************************************************************************************/
+.salarieprofil h1{
+    color: #083b66;
+    margin-bottom: 2rem;
+
+}
+
+.salarieprofil .infos{
+    margin-top:4rem;
+    border: 2px solid #083b66;
+    padding: 3rem;
+    background-color: #F8F9FA;
+    margin-bottom: 5rem;
+}
+
+.salarieprofil .photo-profil{
+    width:20rem;
+    height:20rem;
+    border-radius: 50%;
+    border:10px solid #083b66;
+    background-size: 100% auto;
+    background-position:middle center;
+    margin:auto;
+}
+
+
+.salarieprofil span{
+    font-size:1rem;
+    color : #74d14c;
+    font-weight: bold;
+}
+
+.salarieprofil p {
+    color:#083b66 ;
+}
+
+
+.salarieprofil .btn-outline-success{
+    margin-top: 2rem;
+    background-color: #74d14c;
+    border-color:#74d14c;
+    padding-left : 3rem;
+    padding-right:3rem;
+    color:white;
+    margin:auto;
+
+}
+
+.salarieprofil .btn-outline-success:hover{
+    background-color:white;
+    color:#74d14c;
+
+}
+
+
+.salarieprofil .btn-outline-dark{
+    margin-top: 2rem;
+   background-color:white;
+    color:#74d14c;
+    width:13rem;
+
+
+}
+
+.salarieprofil .btn-outline-dark:hover{
+    background-color: #74d14c;
+    border-color:#74d14c;
+    color:white;
+
+}
+
+
+.salarieprofil .information{
+    margin-top: 4rem;
+}
+
 /** ADMIN AJOUT NEWS **************************************************************************************************************************/
 
 .ajout-news h1{

@@ -73,17 +73,17 @@ class Salarie implements UserInterface, Serializable
     private $dateDeNaissance;
     
     /**
-     *@Assert\NotBlank(message = "L'ADRESSE EST OBLIGATOIRE")
+     * @Assert\NotBlank(message = "L'ADRESSE EST OBLIGATOIRE")
      * @ORM\Column(type="string", length=255)
      */
     private $adresse;
     /**
-     *@Assert\NotBlank(message = "LE CODE POSTAL EST OBLIGATOIRE")
+     * @Assert\NotBlank(message = "LE CODE POSTAL EST OBLIGATOIRE")
      * @ORM\Column(type="integer", length=5)
      */
     private $codePostal;
     /**
-     *@Assert\NotBlank(message = "LA VILLE EST OBLIGATOIRE")
+     * @Assert\NotBlank(message = "LA VILLE EST OBLIGATOIRE")
      * @ORM\Column(type="string", length=255)
      */
     private $ville;
@@ -96,7 +96,7 @@ class Salarie implements UserInterface, Serializable
     
     
     /**
-     *@Assert\NotBlank(message = "LE NUMERO DE SECURITE SOCIALE EST OBLIGATOIRE")
+     * @Assert\NotBlank(message = "LE NUMERO DE SECURITE SOCIALE EST OBLIGATOIRE")
      * @ORM\Column(type="string", length=15)
      */
     private $numSs;
@@ -108,7 +108,7 @@ class Salarie implements UserInterface, Serializable
     private $role;
     
     /**
-     *@Assert\NotBlank(message = "LE RIB EST OBLIGATOIRE")
+     * @Assert\NotBlank(message = "LE RIB EST OBLIGATOIRE")
      * @ORM\Column(type="string", length=27)
      */
     private $iban;
@@ -116,13 +116,13 @@ class Salarie implements UserInterface, Serializable
     /**
      * @Assert\NotBlank(message = "LA PIECE D'IDENTITE EST OBLIGATOIRE")
      * @Assert\File(mimeTypes={"application/pdf"})
-     *@ORM\Column(type="string", length=255)
+     * @ORM\Column(type="string", length=255)
      * 
      */
     private $carteIdentite;
     
     /**
-     *@Assert\NotBlank(message = "LE CONTRAT DU TRAVAIL EST OBLIGATOIRE")
+     * @Assert\NotBlank(message = "LE CONTRAT DU TRAVAIL EST OBLIGATOIRE")
      * @Assert\File(mimeTypes={"application/pdf"})
      * @ORM\Column(type="string", length=255)
      */

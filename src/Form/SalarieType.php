@@ -30,6 +30,8 @@ class SalarieType extends AbstractType
                        )))
             ->add('nom', TextType::class,['label'=>"Nom"])
             ->add('prenom', TextType::class,['label'=>"Prenom"])
+           
+           
             ->add('dateDeNaissance', DateType::class, array(
                     'widget' => 'single_text',
                     // this is actually the default format for single_text
@@ -42,10 +44,10 @@ class SalarieType extends AbstractType
                     [
                         'type'=> PasswordType::class,
                         'first_options'=> [
-                            'label'=> 'Mot De Passe'
+                            'label'=> 'Mot de passe'
                         ],
                         'second_options'=>  [
-                            'label'=>'confirmation du mot de passe'
+                            'label'=>'Confirmation du mot de passe'
                         ]
                     ]
                     )

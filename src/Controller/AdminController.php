@@ -5,12 +5,13 @@ namespace App\Controller;
 use App\Entity\Actualite;
 use App\Entity\Salarie;
 use App\Form\ActualiteType;
-use App\Form\SalarieType;
+use App\Form\AjoutsalarieType;
+use App\Form\ModifsalarieType;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\Security\Core\Encoder\UserPasswordEncoderInterface;
-
+use Symfony\Component\HttpFoundation\File\File;
 
 
 
@@ -36,13 +37,9 @@ class AdminController extends Controller
     public function listesalaries()
     {
       
-       
-        
         return $this->render('admin/listesalaries.html.twig');
     }
-    
    
-    
      /**
      * 
      * @Route("/ajoutsalaries")
@@ -54,7 +51,7 @@ class AdminController extends Controller
         
         $salarie = new Salarie();
          
-        $form = $this->createForm(SalarieType::class, $salarie);
+        $form = $this->createForm(AjoutsalarieType::class, $salarie );
         
         
         $form->handleRequest($request);
@@ -75,22 +72,22 @@ class AdminController extends Controller
                 
                 // modifier le nom obtenue lors de la precedente action
                 $photoname= $salarie->getNumSs().'.'.$photo->guessExtension();
-                $cniname=$salarie->getNumSs().'.'.$photo->guessExtension();
-                $cdtname= $salarie->getNumSs().'.'.$photo->guessExtension();
+                $cniname=$salarie->getNumSs().'.'.$cni->guessExtension();
+                $cdtname= $salarie->getNumSs().'.'.$cdt->guessExtension();
                 
                 
                 //deplacement des fichiers vers les dossiers dans images 
                 
                 $photo->move($this->getParameter('photo_dir'),$photoname);
                 $cni->move($this->getParameter('cni_dir'),$cniname);
-                $cdt->move($this->getParameter('photo_dir'),$cdtname);
+                $cdt->move($this->getParameter('cdt_dir'),$cdtname);
                 
                 // encodage du password
                 $password = $passwordEncoder->encodePassword($salarie, $salarie->getplainPassword());
                 $salarie
                     ->setPassword($password)
                     ->setEntreprise($entreprise)
-                    ->setRole('ROLE_USER')
+                 
                     ->setService($service)
                         
                 // on sette l'image avec le nom qu'on lui a donné
@@ -114,12 +111,129 @@ class AdminController extends Controller
     
     /**
      * 
-     * @Route("/salarieedit" )
+     * @Route("/salarieedit/{id}" )
      */
-    public function salarieedit()
-    {
-        return $this->render('admin/salarieedit.html.twig');
+    public function modifsalarie(Request $request, Salarie $salarie, $id) {
+        $em= $this->getDoctrine()->getManager();
+        
+        $salarie = $em->find(Salarie::class , $id);
+
+      $originalphoto = $salarie->getPhoto();
+      $originalcdt = $salarie->getContratTravail();
+      $originalcni = $salarie->getCarteIdentite();
+      $salarie->setPhoto(
+           new File($this->getParameter('photo_dir') . '/' . $salarie->getPhoto()))
+              ->setContratTravail(
+           new File($this->getParameter('cdt_dir') . '/' . $salarie->getContratTravail()))
+              ->setCarteIdentite(
+           new File($this->getParameter('cni_dir') . '/' . $salarie->getCarteIdentite()))        
+              ;
+     
+      $form = $this->createForm(ModifsalarieType::class, $salarie);
+      $form->handleRequest($request);
+     
+
+       
+   if($form->isSubmitted())
+   {
+       if ($form->isValid()) {
+                /**
+                 * @var uploadedFile
+                 */
+                $photo = $salarie->getPhoto();
+                $cdt = $salarie->getContratTravail();
+                $cni = $salarie->getCarteIdentite();
+                
+               
+                //s'il y a eu une image uploadée
+                if(!is_null($photo)&& !is_null($cni)&& !is_null($cdt)){
+                    // nom du fichoer que l'on va enregistrer
+                   $photoname = uniqid() . '.' . $photo->guessExtension();
+                   $cdtname = uniqid() . '.' . $cdt->guessExtension();
+                   $cniname = uniqid() . '.' . $cni->guessExtension();
+                   $photo->move(
+                           // répertoire de destination
+                           // cf config/services.yaml
+                           $this->getParameter('photo_dir'),$photoname);
+                   $cdt->move(
+                           // répertoire de destination
+                           // cf config/services.yaml
+                           $this->getParameter('cdt_dir'),$cdtname);
+                   $cni->move(
+                           // répertoire de destination
+                           // cf config/services.yaml
+                           $this->getParameter('cni_dir'),$cniname);
+                   
+                   
+                   // on sette l'image avec le nom qu'on lui a donné
+                   $salarie->setPhoto($photoname)
+                           ->setCarteIdentite($cniname)
+                           ->setContratTravail($cdtname)
+                           
+                           ;
+                   
+                   // suppression de l'ancienne image de l'article
+                   // s'il on est en modification d'un article qui en avait
+                   // déjà une
+                   if(!is_null($originalphoto) && is_file($this->getParameter('photo_dir') . '/' . $originalphoto)){
+                       unlink($this->getParameter('photo_dir') . '/' . $originalImage);
+                   }
+                   if(!is_null($originalcdt) && is_file($this->getParameter('cdt_dir') . '/' . $originalcdt)){
+                       unlink($this->getParameter('photo_dir') . '/' . $originalImage);
+                   }
+                   if(!is_null($originalcni) && is_file($this->getParameter('photo_cni') . '/' . $originalcni)){
+                       unlink($this->getParameter('photo_dir') . '/' . $originalImage);
+                   }
+                   
+                }else{
+                   // sans upload, on garde l'ancienne image
+                   $salarie->setPhoto($originalphoto);
+                   $salarie->setContratTravail($originalcdt);
+                   $salarie->setCarteIdentite($originalcni);
+               }
+               
+               $salarie->setEntreprise($this->getUser()->getEntreprise());
+
+               // enregistrement en bdd
+               $em->persist($salarie);
+               $em->flush();
+               
+               // message de confirmation
+               $this->addFlash(
+                   'success',
+                   'Le profil a bien été modifié'
+               );
+               // redirection vers la page de liste
+               return $this->redirectToRoute('app_admin_listesalaries');
+       }
+   }
+       return $this->render('admin/modifsalarie.html.twig',
+                [
+                   
+                    'salarie'=>$form->createView()
+                  
+                ]);
+       
+   
+   }
+    
+    /**
+     * 
+     * @param Salarie $salarie
+     * @Route("/salarieprofil/{id}")
+     */
+    public function salarieprofil(Salarie $salarie, $id) {
+       
+        
+        
+        return $this->render('admin/salarieprofil.html.twig', 
+               [
+                   "salarie" => $salarie
+               ]);
     }
+    
+    
+    
     
     /**
      * 
@@ -224,6 +338,9 @@ class AdminController extends Controller
         return $this->render('admin/lesconges.html.twig');
         
     }
+    
+    
+    
     
     
 }
