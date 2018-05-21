@@ -117,7 +117,8 @@ class AdminController extends Controller
         $em= $this->getDoctrine()->getManager();
         
         $salarie = $em->find(Salarie::class , $id);
-
+        
+     
       $originalphoto = $salarie->getPhoto();
       $originalcdt = $salarie->getContratTravail();
       $originalcni = $salarie->getCarteIdentite();
@@ -126,96 +127,97 @@ class AdminController extends Controller
               ->setContratTravail(
            new File($this->getParameter('cdt_dir') . '/' . $salarie->getContratTravail()))
               ->setCarteIdentite(
-           new File($this->getParameter('cni_dir') . '/' . $salarie->getCarteIdentite()))        
+           new File($this->getParameter('cni_dir') . '/' . $salarie->getCarteIdentite())) 
+              
               ;
      
       $form = $this->createForm(ModifsalarieType::class, $salarie);
       $form->handleRequest($request);
      
+        if($form->isSubmitted())
+        {
+            if ($form->isValid()) {
+                     /**
+                      * @var uploadedFile
+                      */
+                     $photo = $salarie->getPhoto();
+                     $cdt = $salarie->getContratTravail();
+                     $cni = $salarie->getCarteIdentite();
 
-       
-   if($form->isSubmitted())
-   {
-       if ($form->isValid()) {
-                /**
-                 * @var uploadedFile
-                 */
-                $photo = $salarie->getPhoto();
-                $cdt = $salarie->getContratTravail();
-                $cni = $salarie->getCarteIdentite();
-                
-               
-                //s'il y a eu une image uploadée
-                if(!is_null($photo)&& !is_null($cni)&& !is_null($cdt)){
-                    // nom du fichoer que l'on va enregistrer
-                   $photoname = uniqid() . '.' . $photo->guessExtension();
-                   $cdtname = uniqid() . '.' . $cdt->guessExtension();
-                   $cniname = uniqid() . '.' . $cni->guessExtension();
-                   $photo->move(
-                           // répertoire de destination
-                           // cf config/services.yaml
-                           $this->getParameter('photo_dir'),$photoname);
-                   $cdt->move(
-                           // répertoire de destination
-                           // cf config/services.yaml
-                           $this->getParameter('cdt_dir'),$cdtname);
-                   $cni->move(
-                           // répertoire de destination
-                           // cf config/services.yaml
-                           $this->getParameter('cni_dir'),$cniname);
-                   
-                   
-                   // on sette l'image avec le nom qu'on lui a donné
-                   $salarie->setPhoto($photoname)
-                           ->setCarteIdentite($cniname)
-                           ->setContratTravail($cdtname)
-                           
-                           ;
-                   
-                   // suppression de l'ancienne image de l'article
-                   // s'il on est en modification d'un article qui en avait
-                   // déjà une
-                   if(!is_null($originalphoto) && is_file($this->getParameter('photo_dir') . '/' . $originalphoto)){
-                       unlink($this->getParameter('photo_dir') . '/' . $originalImage);
-                   }
-                   if(!is_null($originalcdt) && is_file($this->getParameter('cdt_dir') . '/' . $originalcdt)){
-                       unlink($this->getParameter('photo_dir') . '/' . $originalImage);
-                   }
-                   if(!is_null($originalcni) && is_file($this->getParameter('photo_cni') . '/' . $originalcni)){
-                       unlink($this->getParameter('photo_dir') . '/' . $originalImage);
-                   }
-                   
-                }else{
-                   // sans upload, on garde l'ancienne image
-                   $salarie->setPhoto($originalphoto);
-                   $salarie->setContratTravail($originalcdt);
-                   $salarie->setCarteIdentite($originalcni);
-               }
-               
-               $salarie->setEntreprise($this->getUser()->getEntreprise());
 
-               // enregistrement en bdd
-               $em->persist($salarie);
-               $em->flush();
-               
-               // message de confirmation
-               $this->addFlash(
-                   'success',
-                   'Le profil a bien été modifié'
-               );
-               // redirection vers la page de liste
-               return $this->redirectToRoute('app_admin_listesalaries');
-       }
-   }
+                     //s'il y a eu une image uploadée
+                     if(!is_null($photo)&& !is_null($cni)&& !is_null($cdt)){
+                         // nom du fichoer que l'on va enregistrer
+                        $photoname = uniqid() . '.' . $photo->guessExtension();
+                        $cdtname = uniqid() . '.' . $cdt->guessExtension();
+                        $cniname = uniqid() . '.' . $cni->guessExtension();
+                        $photo->move(
+                                // répertoire de destination
+                                // cf config/services.yaml
+                                $this->getParameter('photo_dir'),$photoname);
+                        $cdt->move(
+                                // répertoire de destination
+                                // cf config/services.yaml
+                                $this->getParameter('cdt_dir'),$cdtname);
+                        $cni->move(
+                                // répertoire de destination
+                                // cf config/services.yaml
+                                $this->getParameter('cni_dir'),$cniname);
+
+
+                        // on sette l'image avec le nom qu'on lui a donné
+                        $salarie->setPhoto($photoname)
+                                ->setCarteIdentite($cniname)
+                                ->setContratTravail($cdtname)
+
+                                ;
+
+                        // suppression de l'ancienne image de l'article
+                        // s'il on est en modification d'un article qui en avait
+                        // déjà une
+                        if(!is_null($originalphoto) && is_file($this->getParameter('photo_dir') . '/' . $originalphoto)){
+                            unlink($this->getParameter('photo_dir') . '/' . $originalphoto);
+                        }
+                        if(!is_null($originalcdt) && is_file($this->getParameter('cdt_dir') . '/' . $originalcdt)){
+                            unlink($this->getParameter('photo_dir') . '/' . $originalcdt);
+                        }
+                        if(!is_null($originalcni) && is_file($this->getParameter('photo_cni') . '/' . $originalcni)){
+                            unlink($this->getParameter('photo_dir') . '/' . $originalcni);
+                        }
+
+                     }else{
+                        // sans upload, on garde l'ancienne image
+                        $salarie->setPhoto($originalphoto);
+                        $salarie->setContratTravail($originalcdt);
+                        $salarie->setCarteIdentite($originalcni);
+                    }
+
+                    $salarie->setEntreprise($this->getUser()->getEntreprise());
+
+                    // enregistrement en bdd
+                    $em->persist($salarie);
+                    $em->flush();
+
+                    // message de confirmation
+                    $this->addFlash(
+                        'success',
+                        'Le profil a bien été modifié'
+                    );
+                    // redirection vers la page de liste
+                    return $this->redirectToRoute('app_admin_listesalaries');
+            }
+        }
        return $this->render('admin/modifsalarie.html.twig',
                 [
                    
-                    'salarie'=>$form->createView()
-                  
+                    'salarie'=>$form->createView(),
+                    'original_photo' => $originalphoto,
+                    'original_cdt' => $originalcdt,
+                    'original_cni' => $originalcni
                 ]);
        
    
-   }
+}
     
     /**
      * 

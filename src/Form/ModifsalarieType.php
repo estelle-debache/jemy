@@ -45,31 +45,10 @@ class ModifsalarieType extends AbstractType
                     'format' => 'yyyy-MM-dd',
                 ))
             ->add('email', EmailType::class,['label'=>"Email"])
-            ->add('plainPassword',
-                    //2champs qui doivent avoir la meme valeur
-                    RepeatedType::class,
-                    [
-                        'type'=> PasswordType::class,
-                        'first_options'=> [
-                            'label'=> 'Mot de passe'
-                        ],
-                        'second_options'=>  [
-                            'label'=>'Confirmation du mot de passe'
-                        ]
-                    ]
-                    )
-            
-           
              
             ->add('adresse', TextType::class,['label'=>"Adresse"])
             ->add('codePostal', TextType::class,['label'=>"Code Postal"])
             ->add('ville', TextType::class,['label'=>"Ville"])
-            ->add('dateEmbauche', DateType::class, array(
-                    'widget' => 'single_text',
-                    // this is actually the default format for single_text
-                    'format' => 'yyyy-MM-dd',
-                ))
-            ->add('numSs', TextType::class,['label'=>"Numero Securite Social"])
             
             ->add('iban', TextType::class,['label'=>"IBAN"])
             ->add('carteIdentite', FileType::class,['label'=>"Carte d'identite"])
@@ -84,7 +63,6 @@ class ModifsalarieType extends AbstractType
             ->add('statut',ChoiceType::class,array(
                    
                     'choices' => array(
-                        ''=>'',
                         'En activité' => 'en activité',
                         'Fin de contrat' => 'fin de contrat',
                   )))
