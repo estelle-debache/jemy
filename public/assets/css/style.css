@@ -423,9 +423,10 @@ section{
 
 .trombinoscope .card-img-top{
 
-    height:15rem;
+  
     background-size: 100% auto;
     background-position:middle center;
+    background-repeat: no-repeat;
 
 }
 
@@ -445,6 +446,10 @@ section{
 
 .trombinoscope p{
     margin-bottom: 0rem;
+}
+
+.trombinoscope .card-body{
+    height:10rem;
 }
 /** ADMIN LISTE SALARIES **************************************************************************************************************************/
 

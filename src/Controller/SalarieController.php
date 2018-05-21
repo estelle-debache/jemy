@@ -142,7 +142,8 @@ class SalarieController extends Controller
     {
         $em = $this->getDoctrine()->getManager();
         $repository = $em->getRepository(Salarie::class);
-        $salaries = $repository->findAll();
+        $entreprise = $this->getUser()->getEntreprise();
+        $salaries = $repository->findByEntreprise($entreprise);
         
         
         return $this->render('salarie/trombinoscope.html.twig',
