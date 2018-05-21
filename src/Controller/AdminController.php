@@ -50,6 +50,7 @@ class AdminController extends Controller
         $em = $this->getDoctrine()->getManager();
         
         $salarie = new Salarie();
+        $salarie->setStatut('en activite');
          
         $form = $this->createForm(AjoutsalarieType::class, $salarie );
         
@@ -151,6 +152,7 @@ class AdminController extends Controller
                         $photoname = uniqid() . '.' . $photo->guessExtension();
                         $cdtname = uniqid() . '.' . $cdt->guessExtension();
                         $cniname = uniqid() . '.' . $cni->guessExtension();
+                        
                         $photo->move(
                                 // répertoire de destination
                                 // cf config/services.yaml
@@ -179,10 +181,10 @@ class AdminController extends Controller
                             unlink($this->getParameter('photo_dir') . '/' . $originalphoto);
                         }
                         if(!is_null($originalcdt) && is_file($this->getParameter('cdt_dir') . '/' . $originalcdt)){
-                            unlink($this->getParameter('photo_dir') . '/' . $originalcdt);
+                            unlink($this->getParameter('cdt_dir') . '/' . $originalcdt);
                         }
-                        if(!is_null($originalcni) && is_file($this->getParameter('photo_cni') . '/' . $originalcni)){
-                            unlink($this->getParameter('photo_dir') . '/' . $originalcni);
+                        if(!is_null($originalcni) && is_file($this->getParameter('cni_dir') . '/' . $originalcni)){
+                            unlink($this->getParameter('cni_dir') . '/' . $originalcni);
                         }
 
                      }else{

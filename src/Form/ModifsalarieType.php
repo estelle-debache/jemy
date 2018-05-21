@@ -51,9 +51,9 @@ class ModifsalarieType extends AbstractType
             ->add('ville', TextType::class,['label'=>"Ville"])
             
             ->add('iban', TextType::class,['label'=>"IBAN"])
-            ->add('carteIdentite', FileType::class,['label'=>"Carte d'identite"])
-            ->add('contratTravail', FileType::class,['label'=>"Contrat de travail"])
-            ->add('photo', FileType::class,['label'=>"Photo"])
+            ->add('carteIdentite', FileType::class,['label'=>"Carte d'identite", 'required' => false])
+            ->add('contratTravail', FileType::class,['label'=>"Contrat de travail", 'required' => false])
+            ->add('photo', FileType::class,['label'=>"Photo", 'required' => false])
             ->add('telephone', TextType::class,['label'=>"Téléphone"])
             ->add ('dateFinContrat', DateType::class, array(
                     'widget' => 'single_text',
@@ -77,6 +77,7 @@ class ModifsalarieType extends AbstractType
     {
         $resolver->setDefaults([
             'data_class' => Salarie::class,
+            'validation_groups' => array('edition-admin'),
         ]);
     }
 }

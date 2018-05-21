@@ -114,7 +114,7 @@ class Salarie implements UserInterface, Serializable
     private $iban;
     
     /**
-     * @Assert\NotBlank(groups={"inscription-admin", "edition-admin"}, message = "LA PIECE D'IDENTITE EST OBLIGATOIRE")
+     * @Assert\NotBlank(groups={"inscription-admin"}, message = "LA PIECE D'IDENTITE EST OBLIGATOIRE")
      * @Assert\File(groups={"inscription-admin", "edition-admin"}, mimeTypes={"application/pdf"})
      * @ORM\Column(type="string", length=255)
      * 
@@ -122,7 +122,7 @@ class Salarie implements UserInterface, Serializable
     private $carteIdentite;
     
     /**
-     * @Assert\NotBlank(groups={"inscription-admin", "edition-admin"}, message = "LE CONTRAT DU TRAVAIL EST OBLIGATOIRE")
+     * @Assert\NotBlank(groups={"inscription-admin"}, message = "LE CONTRAT DU TRAVAIL EST OBLIGATOIRE")
      * @Assert\File(groups={"inscription-admin", "edition-admin"}, mimeTypes={"application/pdf"})
      * @ORM\Column(type="string", length=255)
      */
