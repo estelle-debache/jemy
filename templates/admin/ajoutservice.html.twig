@@ -1,0 +1,19 @@
+{# admin/ajoutservice.html.twig #}
+{% extends 'layout.html.twig' %}
+
+
+{% block content %}
+    
+ <section>
+        <div class="container ajout-salaries ">
+            <h1 class="text-center">Ajouter service d'employé</h1>
+            {{form_start(form)}}
+            {{ form_row(form.nom) }}
+            <div class="form-btn-group">
+            <button type="submit" class="btn btn-primary">Enregistrer</button>
+            </div>
+         {{ form_end(form) }}
+        </div>
+    </section>
+
+{% endblock %}

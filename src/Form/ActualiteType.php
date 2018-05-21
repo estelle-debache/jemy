@@ -26,12 +26,9 @@ class ActualiteType extends AbstractType
                        'label'=> 'Contenu'
                     ]
                 )
-                
-            ->add('image', FileType::class,
-                    [
-                       'label'=> 'Image'
-                    ]
-                )
+            // $builder->geData() retourne $actualite
+            // si ID est null(car actualité pas créer) alors l'image est requise 
+            ->add('image', FileType::class,['label'=>"image", 'required' => is_null($builder->getData()->getId())])
             
                 
 

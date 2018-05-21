@@ -487,4 +487,5 @@ class Salarie implements UserInterface, Serializable
 
 
 
+
 }

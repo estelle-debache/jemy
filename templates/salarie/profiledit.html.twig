@@ -5,116 +5,21 @@
      <section>
         <div class="container mon-profil  ">
             <h1 class="text-center">Modification de mon profil</h1>
-            <form>
-                <div class="form-group">
-                    <label for="formGroupExampleInput">Nom</label>
-                    <input type="text" class="form-control" id="formGroupExampleInput" placeholder="">
+           {{form_start(form)}}{# ouvre la balise form #}
+
+                
+                {{ form_row(form.adresse) }}
+                {{ form_row(form.codePostal) }}
+                {{ form_row(form.ville) }}
+                {{ form_row(form.iban) }}
+                {{ form_row(form.telephone) }}
+                {{ form_row(form.photo) }}
+
+
+                <div class="form-btn-group">
+                    <button type="submit" class="btn btn-primary">Valider</button>
                 </div>
-                <div class="form-group">
-                    <label for="formGroupExampleInput2">Prénom</label>
-                    <input type="text" class="form-control" id="formGroupExampleInput2" placeholder="">
-                </div>
-                <div class="row">
-                    <div class="col-12 col-md-4">
-                        <div class="form-group">
-                            <label for="exampleFormControlSelect1">Civilité</label>
-                            <select class="form-control" id="exampleFormControlSelect1">
-                                <option selected></option>
-                                <option>Madame</option>
-                                <option>Monsieur</option>
-                            </select>
-                        </div>
-                    </div>
-                    <div class="col-12 col-md-4">
-                        <div class="form-group">
-                            <label for="formGroupExampleInput2">Date de naissance</label>
-                            <input type="text" class="form-control" id="formGroupExampleInput2" placeholder="">
-                        </div>
-                    </div>
-                    <div class="col-12 col-md-4">
-                        <div class="form-group">
-                            <label for="formGroupExampleInput2">Date d'entrée dans l'entreprise</label>
-                            <input type="text" class="form-control" id="formGroupExampleInput2" placeholder="">
-                        </div>
-                    </div>
-                </div>
-                <div class="row">
-                    <div class="col-12 col-md-8">
-                        <div class="form-group">
-                            <label for="formGroupExampleInput2">Adresse</label>
-                            <input type="text" class="form-control" id="formGroupExampleInput2" placeholder="">
-                        </div>
-                    </div>
-                    <div class="col-12 col-md-4">
-                        <div class="form-group">
-                            <label for="formGroupExampleInput2">Code postal</label>
-                            <input type="text" class="form-control" id="formGroupExampleInput2" placeholder="">
-                        </div>
-                    </div>
-                </div>
-                <div class="row">
-                    <div class="col-12 col-md-6">
-                        <div class="form-group">
-                            <label for="formGroupExampleInput2">Ville</label>
-                            <input type="text" class="form-control" id="formGroupExampleInput2" placeholder="">
-                        </div>
-                    </div>
-                    <div class="col-12 col-md-6">
-                        <div class="form-group">
-                            <label for="formGroupExampleInput2">Téléphone</label>
-                            <input type="text" class="form-control" id="formGroupExampleInput2" placeholder="">
-                        </div>
-                    </div>
-                </div>
-                <div class="row">
-                    <div class="col-12 col-md-6">
-                        <div class="form-group">
-                            <label for="formGroupExampleInput">Mail</label>
-                            <input type="text" class="form-control" id="formGroupExampleInput" placeholder="">
-                        </div>
-                    </div>
-                    <div class="col-12 col-md-6">
-                        <div class="form-group">
-                            <label for="formGroupExampleInput">IBAN</label>
-                            <input type="text" class="form-control" id="formGroupExampleInput" placeholder="">
-                        </div>
-                    </div>
-                </div>
-                <div class="row">
-                    <div class="col-12 col-md-6">
-                        <div class="form-group">
-                            <label for="formGroupExampleInput">Mot de passe</label>
-                            <input type="text" class="form-control" id="formGroupExampleInput" placeholder="">
-                        </div>
-                    </div>
-                    <div class="col-12 col-md-6">
-                        <div class="form-group">
-                            <label for="formGroupExampleInput">Confirmation du mot de passe</label>
-                            <input type="text" class="form-control" id="formGroupExampleInput" placeholder="">
-                        </div>
-                    </div>
-                </div>
-                <div class="row">
-                    <div class="col-12 col-md-4">
-                        <div class="form-group">
-                            <label for="exampleFormControlFile1">Photo</label>
-                            <input type="file" class="form-control-file" id="exampleFormControlFile1">
-                        </div>
-                    </div>
-                    <div class="col-12 col-md-4">
-                        <div class="form-group">
-                            <label for="exampleFormControlFile1">Carte identité</label>
-                            <input type="file" class="form-control-file" id="exampleFormControlFile1">
-                        </div>
-                    </div>
-                    <div class="col-12 col-md-4">
-                        <div class="form-group">
-                            <label for="exampleFormControlFile1">Contrat de travail</label>
-                            <input type="file" class="form-control-file" id="exampleFormControlFile1">
-                        </div>
-                    </div>
-                </div>
-                <button type="submit" class="btn btn-primary">Valider</button>
+         {{ form_end(form) }}{# ferme la balise form #}
 
     </section>
 
