@@ -25,6 +25,8 @@ class SalarieController extends Controller
         return $this->render('salarie/index.html.twig');
     }
     
+
+    
     /**
      * 
      * @Route("/monprofil" )
@@ -34,7 +36,7 @@ class SalarieController extends Controller
         return $this->render('salarie/monprofil.html.twig');
     }
     
-     /**
+    /**
      * 
      * @Route("/profiledit" )
      */
