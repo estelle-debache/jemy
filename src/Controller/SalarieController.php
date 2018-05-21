@@ -25,6 +25,8 @@ class SalarieController extends Controller
         return $this->render('salarie/index.html.twig');
     }
     
+
+    
     /**
      * 
      * @Route("/monprofil" )
@@ -51,7 +53,6 @@ class SalarieController extends Controller
        $form = $this->createForm(SalarieeditType::class, $salarie);
        $form->handleRequest($request);
        
-
         
     if($form->isSubmitted())
     {
