@@ -2,6 +2,7 @@
 
 namespace App\Controller;
 
+use App\Entity\Actualite;
 use App\Entity\OffreEmploi;
 use App\Entity\Salarie;
 use App\Form\OffresemploiType;
@@ -55,6 +56,8 @@ class SalarieController extends Controller
     if($form->isSubmitted())
     {
         if ($form->isValid()) {
+            
+            
                  /**
                   * @var uploadedFile 
                   */
@@ -74,7 +77,7 @@ class SalarieController extends Controller
                     );
                     // on sette l'image avec le nom qu'on lui a donné
                     $salarie->setPhoto($filename);
-                    
+                     
                     // suppression de l'ancienne image de l'article
                     // s'il on est en modification d'un article qui en avait
                     // déjà une 
@@ -153,7 +156,15 @@ class SalarieController extends Controller
      */
     public function news()
     {
-        return $this->render('salarie/news.html.twig');
+        $em = $this->getDoctrine()->getManager();
+        $repository = $em->getRepository(Actualite::class);
+        $entreprise = $this->getUser()->getEntreprise();
+        $actualites = $repository->findByEntreprise($entreprise);
+        
+        return $this->render('salarie/news.html.twig',
+                [
+                    'actualites' => $actualites
+                ]);
     }
     
     /**

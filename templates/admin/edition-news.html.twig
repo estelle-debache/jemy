@@ -12,8 +12,13 @@
             {{ form_start(form) }}
             {{form_row(form.titre)}}
             {{form_row(form.contenu)}}
+            {{form_row(form.image) }}
+            {{form_errors(form.titre)}}
+            {{form_errors(form.contenu)}}
+            {{form_errors(form.image) }}
+            
    
-             <button type="submit" class="btn btn-primary">Ajouter votre actualité</button>
+             <button type="submit" class="btn btn-primary">Modifier votre actualité</button>
             {{ form_end(form) }}
         </div>
     </section>

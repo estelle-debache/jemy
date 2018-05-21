@@ -471,6 +471,47 @@ section{
 .liste-salaries a{
     color:#083b66;
 }
+/** ADMIN LISTE NEWS **************************************************************************************************************************/
+
+.liste-news h1{
+    color: #083b66;
+   margin-bottom: 4rem;
+}
+.liste-news .btn-outline-success{
+    margin-bottom: 3rem;
+    color:#74d14c;
+    border-color:#74d14c;
+}
+.liste-news .btn-outline-success:hover{
+    background-color:#74d14c;
+    color:white;
+}
+
+.liste-news .btn-primary{
+    background-color: #74d14c;
+    border-color:#74d14c;
+    margin-right:0.5rem;
+   
+}
+.liste-news .btn-primary:hover{
+    background-color:white;
+    color:#74d14c;
+}
+
+.liste-news .btn-danger{
+    background-color: #f2af58;
+    border-color:#f2af58;
+    margin-right:0.5rem;
+   
+}
+.liste-news .btn-danger:hover{
+    background-color:white;
+    color:#f2af58;
+}
+
+.liste-news a{
+    color:#083b66;
+}
 /** ADMIN AJOUT SALARIES **************************************************************************************************************************/
 
 .ajout-salaries .btn-primary{
@@ -484,6 +525,8 @@ section{
     background-color:white;
     color:#74d14c;
 }
+
+
 
 /** ADMIN AJOUT NEWS **************************************************************************************************************************/
 
@@ -502,6 +545,22 @@ section{
 .ajout-news .btn-primary:hover{
     background-color:white;
     color:#74d14c;
+}
+/**SALARIE NEWS **************************************************************************************************************************/
+.news h1{
+    color: #083b66;
+   margin-bottom: 4rem;
+}
+
+.news .card{
+    margin-bottom: 2rem;
+}
+
+.news .card-img-top{
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: 100%;
+   height:30rem;
 }
 
 /** FOOTER **************************************************************************************************************************/
