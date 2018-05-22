@@ -5,7 +5,6 @@ namespace App\Controller;
 use App\Entity\Actualite;
 use App\Entity\OffreEmploi;
 use App\Entity\Salarie;
-use App\Form\OffresemploiType;
 use App\Form\SalarieeditType;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\File\File;
@@ -185,5 +184,20 @@ class SalarieController extends Controller
                     'emploi' => $emploi
                 ]);
         
+    }
+    
+    /**
+     * 
+     * 
+     * @Route("/offreemploidetail/{id}")
+     */
+    public function offreemploidetail(OffreEmploi $emploi, $id) {
+      
+        
+        
+        return $this->render('salarie/offre-emploi-detail.html.twig', 
+               [
+                   "emploi" => $emploi
+               ]);
     }
 }

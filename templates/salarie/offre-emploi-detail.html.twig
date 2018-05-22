@@ -1,0 +1,22 @@
+{# empty Twig template #}
+{% extends 'layout.html.twig' %}
+
+
+{% block content %}
+    
+  <section>
+        <div class="container news  ">
+            
+            {% for emploi in emploi %}
+                <h1 class="text-center">{{ emploi.poste }}</h1>
+            <div class="row">
+                
+                 
+            </div>
+                  
+                {% endfor %}
+        </div>
+            
+    </section>
+
+{% endblock %}
