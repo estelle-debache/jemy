@@ -527,7 +527,7 @@ class AdminController extends Controller
         $em = $this->getDoctrine()->getManager();
         $service = new Service();
         
-         $form = $this->createForm(ServiceType::class, $service);
+        $form = $this->createForm(ServiceType::class, $service);
         $form->handleRequest($request);
         
            
@@ -548,30 +548,98 @@ class AdminController extends Controller
 
                 }
         
-    }
+         }
      return $this->render('admin/ajoutservice.html.twig',
                 [
                     'form'=>$form->createView(),
-                   
-                ]);
-   
-  }
-      
-/**
+                                  
+                ]);  
+    }
+    
+    /**
      * 
-     * @Route("/entreprise")
+     * @Route("/editservice/{id}")
      */
-    public function entreprise()
+    public function editservice(Request $request, Service $service, $id) {
+        
+        $em = $this->getDoctrine()->getManager();
+        $service = $em->find(Service::class, $id);
+        
+        $form = $this->createForm(ServiceType::class, $service);
+        $form->handleRequest($request);
+        
+        if ($form->isSubmitted()) {
+            if ($form->isValid()) {
+                $em->persist($service);
+                $em->flush();
+                
+                
+                $this->addFlash(
+                    'success',
+                    'Le service a bien été modifié'
+                );
+                
+                return $this->redirectToRoute('app_admin_index');
+            } else {
+                
+                $this->addFlash(
+                    'error',
+                    'Le formulaire contient des erreurs'
+                );
+            }
+        }
+       
+        return $this->render(
+            'admin/editservice.html.twig',
+            [
+                
+                'form' => $form->createView(),
+                
+            ]
+        );
+    }
+    
+    /**
+     * 
+     * @Route("/deleteservice/{id}")
+     */
+    public function deleteservice(Service $service, $id)
     {
-        return $this->render('admin/entreprise.html.twig');
+        $em = $this->getDoctrine()->getManager();
+        $em->remove($service);
+        $em->flush();
+        
+        $this->addFlash(
+            'success',
+            'Le service est supprimé'
+        );
+        
+        return $this->render('admin/index.html.twig');
+    }
+      
+     /**
+     * 
+     * @Route("/entreprise/{id}")
+     */
+    public function entreprise(Entreprise $entreprise, Service $service, $id)
+    {
+        $em = $this->getDoctrine()->getManager();
+        $repository = $em->getRepository(Service::class);
+        $service = $repository->findByEntreprise($entreprise);
+        
+        return $this->render('admin/entreprise.html.twig',
+                [
+                    "entreprise" => $entreprise,
+                    "service" => $service
+                ]);
     }
     
     
     
     
     /**
-     * @Route("/modifentreprise/{id}")
-     */
+    * @Route("/modifentreprise/{id}")
+    */
     public function modifentreprise(Request $request, Entreprise $entreprise, $id) {
         $em= $this->getDoctrine()->getManager();
         
@@ -597,8 +665,5 @@ class AdminController extends Controller
                     'form' => $form->createView()
                 ]
                 );
-        
-        
-        
     }
 }

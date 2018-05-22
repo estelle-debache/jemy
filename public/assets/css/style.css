@@ -616,6 +616,75 @@ section{
     margin-top: 4rem;
 }
 
+/** ADMIN ENTREPRISE PROFIL **************************************************************************************************************************/
+.entrepriseprofil h1{
+    color: #083b66;
+    margin-bottom: 2rem;
+
+}
+
+.entrepriseprofil .infos{
+    margin-top:1rem;
+    border: 2px solid #083b66;
+    padding: 3rem;
+    background-color: #F8F9FA;
+    
+}.entrepriseprofil .photo-profil{
+    width:20rem;
+    height:20rem;
+    border-radius: 50%;
+    border:10px solid #083b66;
+    background-size: 100% auto;
+    background-position:middle center;
+    margin:auto;
+}
+
+.entrepriseprofil span{
+    font-size:1rem;
+    color : #74d14c;
+    font-weight: bold;
+    margin: 0rem 0.5rem 0rem 0.5rem;
+}
+
+.entrepriseprofil p {
+    color:#083b66 ;
+}
+
+
+.entrepriseprofil .btn-outline-success{
+    color:#74d14c;
+}
+
+.entrepriseprofil .btn-outline-success:hover{
+    background-color:#74d14c;
+    color:white;
+}
+
+.entrepriseprofil .btn-outline-danger{
+    color:#f2af58;
+    border-color:#f2af58;
+}
+
+.entrepriseprofil .btn-outline-danger:hover{
+    background-color:#f2af58;
+    color:white;
+}
+
+.entrepriseprofil .btn-primary{
+    background-color: #74d14c;
+    border-color:#74d14c;
+    margin-right:0.5rem; 
+}
+
+.entrepriseprofil .btn-primary:hover{
+    background-color:white;
+    border-color:#74d14c;
+    color:#74d14c;
+}
+
+.entrepriseprofil .information{
+    margin-top: 2rem;
+}
 /** ADMIN AJOUT NEWS **************************************************************************************************************************/
 
 .ajout-news h1{
