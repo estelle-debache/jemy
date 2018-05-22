@@ -3,9 +3,10 @@
 namespace App\Form;
 
 use App\Entity\OffreEmploi;
+use App\Entity\Service;
+use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
-use Symfony\Component\Form\Extension\Core\Type\DateType;
 use Symfony\Component\Form\Extension\Core\Type\TextareaType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\FormBuilderInterface;
@@ -16,7 +17,7 @@ class OffresemploiType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('poste', TextType::class,['label'=> 'Intitulé du poste/métier'])
+            ->add('poste', TextType::class,['label'=> 'Intitulé du poste'])
             ->add('contrat',  ChoiceType::class,array(
                     'expanded'=>false,
                     'multiple'=>false,
@@ -24,20 +25,21 @@ class OffresemploiType extends AbstractType
                         ''=>'',
                         'CDI' => 'CDI',
                         'CDD' => 'CDD',
-                        'ALTERNANCE'=>'ALTERNANCE',
-                        'STAGE'=>'STAGE',
+                        
                            )))
                 
             ->add('description', TextareaType::class,
                     [
-                        'label' => 'Message'])
-            ->add('date_publication', DateType::class,
-                    [
-                        'widget' => 'single_text',
-                         'format' => 'yyyy-MM-dd'
-                    ])
-            ->add('salaire', TextType::class,['label'=>"salaire"])
-            ->add('service', TextType::class,['label'=> 'service'])
+                        'label' => 'Description du poste'])
+           
+            ->add('salaire', TextType::class,['label'=>"Salaire"])
+            ->add('service', EntityType::class,[
+                'label'=> 'Service',
+                'class' => Service::class,
+                'choice_label'=> 'nom',
+                'placeholder' => 'Choisissez un service'
+                
+                ])
            
         ;
     }

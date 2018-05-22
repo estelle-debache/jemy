@@ -1,0 +1,60 @@
+{% extends 'layout.html.twig' %}
+
+{% block content %}
+
+
+  <section>
+        <div class="container liste-news">
+            <div class="row">
+                <div class="col-12 col-md-12">
+                    <h1 class="text-center">Liste des offres d'emploi </h1>
+                </div>
+                <div class="col-12 col-md-12 text-center">
+                <a href="{{path('app_admin_editemploi')}}"><button type="button" class="btn btn-outline-success ">Ajouter une offre d'emploi</button></a>
+            </div>
+
+            </div>
+            <div class="row">
+                <div class="col-12 col-md-12">
+                    <table class="table table-hover text-center">
+                        <thead>
+                            <tr>
+                                <th scope="col">#</th>
+                                <th scope="col">Poste</th>
+                                <th scope="col">Contrat</th>
+                                <th scope="col">Service</th>
+                                <th scope="col">Date</th>
+
+                                <th scope="col"></th>
+                                <th scope="col"></th>
+                                
+                            </tr>
+                        </thead>
+                        <tbody >
+                             {% for emploi in emploi %}
+                            <tr>
+                                <th scope="row">{{ emploi.id }}</th>
+                                <td>{{ emploi.poste }}</td>
+                                <td>{{ emploi.contrat }}</td>
+                                <td>{{ emploi.service.nom }}</td>
+                                <td>{{ emploi.datePublication|date('d/m/Y') }}</td>
+                                <td><a href='{{path('app_admin_editemploi', {id:emploi.id})}}'><button type="button" class="btn btn-primary">Modifier</button></i></a> 
+                                    <a href='{{path('app_admin_deleteemploi', {id:emploi.id})}}'><button type="button" class="btn btn-danger">Supprimer</button></i></a>
+                               
+                                </td>
+                                <td>
+                                   
+                                </td>
+                              
+                            </tr>
+                             {% endfor %}
+                        
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+{% endblock %}

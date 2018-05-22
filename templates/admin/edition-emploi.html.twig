@@ -1,0 +1,27 @@
+{% extends 'layout.html.twig' %}
+
+{% block content %}
+   <section>
+        <div class="container ajout-news">
+             <div class="row">
+                <div class="col-12 col-md-12">
+                    <h1 class="text-center">Liste des offres d'emploi </h1>
+                </div>
+            </div>
+
+            {{ form_start(form) }}
+            {{form_row(form.poste)}}
+            {{form_row(form.description)}}
+            {{form_row(form.contrat) }}
+            {{form_row(form.salaire)}}
+            {{form_row(form.service)}}
+          
+        
+        
+            
+   
+             <button type="submit" class="btn btn-primary">Enregistrer votre offre d'emploi</button>
+            {{ form_end(form) }}
+        </div>
+    </section>
+    {% endblock %}

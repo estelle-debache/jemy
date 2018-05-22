@@ -15,7 +15,7 @@ use Symfony\Component\Security\Http\Authentication\AuthenticationUtils;
 use function dump;
 
 /**
- * @Route("/accueil")
+ * @Route("/")
  */
 class AccueilController extends Controller
 {
@@ -26,9 +26,9 @@ class AccueilController extends Controller
     {
         return $this->render('accueil/index.html.twig');
     }
-    
+
     /**
-     * 
+     *
      * @Route("/inscription" , name="inscription")
      */
     public function inscription(Request $request)
@@ -44,69 +44,69 @@ class AccueilController extends Controller
         $form = $this->createForm(EntrepriseType::class, $entreprise);
         // le formulaire analyse la requete HTTP
         $form->handleRequest($request);
-        
-        //SI LE FORMULAIRE A ETE ENVOYE 
+
+        //SI LE FORMULAIRE A ETE ENVOYE
         if( $form->isSubmitted())
         {
             if($form->isValid())
             {
-                
-                
-           
-            
- 
-            
-            // RESTE PLKUS QUA LES METTRE EN BASE DE DONNéES 
+
+
+
+
+
+
+            // RESTE PLKUS QUA LES METTRE EN BASE DE DONNéES
             $em->persist($entreprise);
             $em->persist($service);
             $em->flush();
-        
+
             dump($entreprise->getId());
-            
-           
-            
+
+
+
             $session = $request->getSession();
-        
+
             $session->set('identreprise', $entreprise->getId());
             $session->set('idservice', $service->getId());
-            
+
             $this->addFlash('success', " Félicitation ! Votre entreprise a bien été enregistrée  ");
             return $this->redirectToRoute('inscription-admin');
             }
-         
+
         }
-                
-        
+
+
         return $this->render('accueil/inscription.html.twig',
                  [
                      //passage du formulaire a la vue
                      'form'=>$form->createView()
                  ]);
-        
+
     }
-    
+
     /**
-     * 
+     *
      * @Route("/inscription-admin" , name="inscription-admin")
      */
     public function inscriptionAdmin(Request $request, UserPasswordEncoderInterface $passwordEncoder)
     {
-        
+
         $em = $this->getDoctrine()->getManager();
-       
+
         $session = $request->getSession();
         $idEntreprise = $session->get('identreprise');
-        
+
         $salarie = new Salarie();
-         
+
         $form = $this->createForm(SalarieType::class, $salarie, ['validation_groups'=>'registration']);
-        
-        
+
+
         $form->handleRequest($request);
-        
-        // recupere un objet entreprise ayant l'id enregistre en session lors de la creation de l'entreprise 
+
+        // recupere un objet entreprise ayant l'id enregistre en session lors de la creation de l'entreprise
         $entreprise = $em->find(Entreprise::class, $idEntreprise);
-        
+
         // recupere un objet service ayant l'id enregistre en session lors de la creation de l'objet entreprise
         $service = $em->find(Service::class, $session->get('idservice'));
         if( $form->isSubmitted())
@@ -117,19 +117,19 @@ class AccueilController extends Controller
                 $photo = $salarie->getPhoto();
                 $cni = $salarie->getCarteIdentite();
                 $cdt = $salarie->getContratTravail();
-                
+
                 // modifier le nom obtenue lors de la precedente action
                 $photoname= $salarie->getNumSs().'.'.$photo->guessExtension();
                 $cniname=$salarie->getNumSs().'.'.$cni->guessExtension();
                 $cdtname= $salarie->getNumSs().'.'.$cdt->guessExtension();
-                
-                
-                //deplacement des fichiers vers les dossiers dans images 
-                
+
+
+                //deplacement des fichiers vers les dossiers dans images
+
                 $photo->move($this->getParameter('photo_dir'),$photoname);
                 $cni->move($this->getParameter('cni_dir'),$cniname);
                 $cdt->move($this->getParameter('cdt_dir'),$cdtname);
-                
+
                 // encodage du password
                 $password = $passwordEncoder->encodePassword($salarie, $salarie->getplainPassword());
                 $salarie
@@ -137,7 +137,7 @@ class AccueilController extends Controller
                     ->setEntreprise($entreprise)
                     ->setRole('ROLE_ADMIN')
                     ->setService($service)
-                        
+
                 // on sette l'image avec le nom qu'on lui a donné
                     ->setPhoto($photoname)
                     ->setCarteIdentite($cniname)
@@ -147,11 +147,11 @@ class AccueilController extends Controller
 
                 $em->persist($salarie);
                 $em->flush();
-                
+
 
                 return $this->redirectToRoute('app_accueil_login');
-                 
-                 
+
+
             }
         }
         return $this->render('accueil/inscription-admin.html.twig',
@@ -159,25 +159,25 @@ class AccueilController extends Controller
                      //passage du formulaire a la vue
                      'form'=>$form->createView()
                  ]);
-        
+
     }
 
     /**
-     * 
+     *
      * @Route("/login" )
      */
     public function login(AuthenticationUtils $auth)
     {
         $error = $auth->getLastAuthenticationError();
-        
+
         $lastUsername = $auth->getLastUsername();
-    
-       
+
+
         if(!empty($error))
         {
             $this->addFlash('error', 'Identifiants incorrects');
             dump($error);
-            
+
         }
        // on  est redirige automatiquement vers app_index_index grace au fichier security.yaml
         return $this->render('accueil/connexion.html.twig',
@@ -185,5 +185,5 @@ class AccueilController extends Controller
                     'last_username'=> $lastUsername
                 ]
                 );
-    } 
+    }
 }

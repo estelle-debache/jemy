@@ -1,13 +1,28 @@
 /********************************* HTML/ BODY *************************************************/
 html{
     font-size:3vw;
+    height: 100%;
+}
+
+body {
+    position: relative;
+    margin: 0;
+    padding-bottom: 5rem;
+    min-height: 100%;
 }
 
 /** NAVBAR *****************************************************************************************************************************/
 
+header {
+    height: 5rem;
+}
 
 header .navbar-brand img{
     width:10rem;
+}
+
+header .navbar {
+    height: 5rem;
 }
 
  ul.navbar-nav{
@@ -22,8 +37,18 @@ header .navbar-brand img{
 
 /** HOME PAGE **************************************************************************************************************************/
 section{
-  margin-top: 5rem;
-  
+  /*margin-top: 5rem;*/
+  margin: 2rem 0;
+}
+
+.home-page {
+    padding-top: 5rem;
+}
+
+.home-page > .row{
+    min-height: calc(100vh - 19rem);
+    align-content: center;
+    align-items: center;
 }
 
 .home-droite img{
@@ -234,7 +259,7 @@ section{
 
 .tableauDeBord .button{
     margin:0rem auto 2rem auto;
-    width:5rem; 
+    width:5rem;
 }
 
 .tableauDeBord .btn-primary{
@@ -423,9 +448,10 @@ section{
 
 .trombinoscope .card-img-top{
 
-    height:15rem;
+
     background-size: 100% auto;
     background-position:middle center;
+    background-repeat: no-repeat;
 
 }
 
@@ -445,6 +471,10 @@ section{
 
 .trombinoscope p{
     margin-bottom: 0rem;
+}
+
+.trombinoscope .card-body{
+    height:10rem;
 }
 /** ADMIN LISTE SALARIES **************************************************************************************************************************/
 
@@ -670,8 +700,13 @@ footer{
     height:5rem;
     background-color:#f2af58;
     color:white;
-    margin-top: 3rem;
+    /*margin-top: 3rem;*/
+    position: absolute;
+    right: 0;
+    bottom: 0;
+    left: 0;
 }
+
 footer .container{
     padding-top: 2rem;
 }
@@ -702,17 +737,17 @@ html{
     }
     /** HOME PAGE **************************************************************************************************************************/
     .home-page{
-        margin-top: 6rem;
+        padding-top: 2rem;
     }
 
     /********************************USER ******************************************/
     .tableauDeBord .bas{
-        padding-top: 2rem;
+        /*padding-top: 2rem;*/
     }
 
     /**************************FOOTER*********************************/
     footer{
-        margin-top:10rem;
+        /*margin-top:10rem;*/
     }
 }
 

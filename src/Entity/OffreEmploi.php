@@ -2,6 +2,7 @@
 
 namespace App\Entity;
 
+use DateTime;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Validator\Constraints as Assert;
 /**
@@ -21,21 +22,22 @@ class OffreEmploi
      * @ORM\Column(type="string", length=255)
      */
     private $poste;
-    
+
     /**
-     * @Assert\NotBlank(message="LE CONTRAT EST OBLIGATOIRE")
-     *@ORM\Column(type="string", columnDefinition="enum('cdd', 'cdi')", nullable=false)
+     *@Assert\NotBlank(message="LE CONTRAT EST OBLIGATOIRE")
+     * @ORM\Column(type="string", columnDefinition="enum('CDD', 'CDI')", nullable=false)
     */
     private $contrat;
-    
+
     /**
      * @Assert\NotBlank(message="LA DESCRIPTION EST OBLIGATOIRE")
      * @ORM\Column(type="text")
      */
         private $description;
-    
+
     /**
-     * @Assert\NotBlank(message="LA DATE DE PUBLICATION EST OBLIGATOIRE")
+     *
+     * @var \Datetime
      * @ORM\Column(type="date")
      */
     private $datePublication;
@@ -44,19 +46,19 @@ class OffreEmploi
      * @ORM\Column(type="integer")
      */
     private $salaire;
-    
+
       /**
      *
      * @ORM\JoinColumn(nullable=false)
-     * @ORM\ManyToOne(targetEntity="Service", inversedBy="OffreEmploi") 
+     * @ORM\ManyToOne(targetEntity="Service", inversedBy="OffreEmploi")
      */
     private $service;
-    
-    
+
+
     /**
      *
      * @ORM\JoinColumn(nullable=false)
-     * @ORM\ManyToOne(targetEntity="Entreprise", inversedBy="OffreEmploi") 
+     * @ORM\ManyToOne(targetEntity="Entreprise", inversedBy="OffreEmploi")
      */
     private $entreprise;
 
@@ -127,5 +129,8 @@ class OffreEmploi
         return $this;
     }
 
+     public function __construct() {
+        $this->datePublication = new DateTime();
+    }
 
 }

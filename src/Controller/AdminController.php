@@ -3,11 +3,13 @@
 namespace App\Controller;
 
 use App\Entity\Actualite;
+use App\Entity\OffreEmploi;
 use App\Entity\Salarie;
 use App\Entity\Service;
 use App\Form\ActualiteType;
 use App\Form\AjoutsalarieType;
 use App\Form\ModifsalarieType;
+use App\Form\OffresemploiType;
 use App\Form\ServiceType;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\File\File;
@@ -372,6 +374,120 @@ class AdminController extends Controller
         
     }
     
+    /**
+     * 
+     * @Route("/liste-emploi" )
+     */
+    public function listeEmploi()
+    {
+        
+        $em = $this->getDoctrine()->getManager();
+        $repository = $em->getRepository(OffreEmploi::class);
+        $entreprise = $this->getUser()->getEntreprise();
+        $emploi = $repository->findByEntreprise($entreprise);
+        
+        return $this->render('admin/liste-emploi.html.twig', [
+            'emploi' => $emploi,
+            
+        ]);
+    }
+    
+    /**
+     * 
+     * @Route("/edition-emploi/{id}", defaults={"id":null} )
+     * @param Request $request
+     */
+    public function editEmploi(Request $request, $id)
+    {
+         //Faire le rendu du formulaire et son traitement
+        // Validation : tous les champs obligatoires
+        // En creation setter l'auteur avec l'utilisateur connecté
+        // $this->getUser()
+        // Si enregistrement ok, rediriger vers la liste avec un message de confirmation
+        
+        $em = $this->getDoctrine()->getManager();
+        
+        
+        if (is_null($id)) { // création
+            $emploi = new OffreEmploi();
+            $emploi->setEntreprise($this->getUser()->getEntreprise());
+        } else { // modification
+            $emploi = $em->find(OffreEmploi::class, $id);
+            
+            // 404 si l'id reçu dans l'URL n'existe pas en bdd
+            if (is_null($emploi)) {
+                throw new NotFoundHttpException();
+            }
+            
+            
+        }
+        
+        // création d'un formulaire relié à la catégorie
+        $form = $this->createForm(OffresemploiType::class, $emploi);
+        // le formulaire analyse la requête HTTP
+        $form->handleRequest($request);
+        
+        // si le formulaire a été envoyé
+        if ($form->isSubmitted()) {
+            // les attributs de l'objet Catégory ont été
+            // settés à partir des champs de formulaires
+            //dump($category);
+            
+            // Valide la saisie du formulaire à partir
+            // des annotations dans la classe Category
+            if ($form->isValid()) {
+                 /**
+                  * @var uploadedFile 
+                  */
+                
+                // enregistrement en bdd
+                $em->persist($emploi);
+                $em->flush();
+                
+                // message de confirmation
+                $this->addFlash(
+                    'success',
+                    'L\'offre d\'emploi est enregistrée'
+                );
+                // redirection vers la page de liste
+                return $this->redirectToRoute('app_admin_listeemploi');
+            } else {
+                // message d'erreur en haut de la page
+                $this->addFlash(
+                    'error',
+                    'Le formulaire contient des erreurs'
+                );
+            }
+        }
+        
+        return $this->render(
+            'admin/edition-emploi.html.twig',
+            [
+                // passage du formulaire à la vue
+                'form' => $form->createView(),
+                
+            ]
+        );
+        
+    }
+    
+    /**
+     * 
+     * @Route("/delete-emploi/{id}")
+     */
+    public function deleteEmploi(OffreEmploi $emploi)
+    {
+        $em = $this->getDoctrine()->getManager();
+        $em->remove($emploi);
+        $em->flush();
+        
+        $this->addFlash(
+            'success',
+            'L\'offre d\'emploi est supprimée'
+        );
+        
+        return $this->redirectToRoute('app_admin_listeemploi');
+    }
     /**
      * 
      * @Route("/delete/{id}")

@@ -1,27 +1,27 @@
-{# empty Twig template #}
 {% extends 'layout.html.twig' %}
+
+
 {% block content %}
     
-    <div class="offres">
-        <h1 class="text-center">Les offres d'emploi</h1>
-
-        <div class="container">
-
-            {{ form_start(form) }}
-            {{ form_row(form.poste) }}
-            {{ form_row(form.contrat) }}
-            {{ form_row(form.description) }}
-            {{ form_row(form.date_publication) }}
-            {{ form_row(form.salaire) }}
-            {{ form_row(form.service) }}
-            {{ form_row(form.entreprise) }}
-            <div class="form-btn-group text-right">
-                <button type="submit" class="btn btn-primary">Enregistrer l'offre d'emploi</button>
-
+  <section>
+        <div class="container news  ">
+            <h1 class="text-center">Les offres d'emplois</h1>
+            {% for emploi in emploi %}
+            <div class="row">
+                
+                <div class="card w-100">
+                    <div class="card-img-top" > </div>
+                    <div class="card-body">
+                        <h5 class="card-title"></h5>
+                        <p class="card-text"> </p>
+                        <p class="card-text"><small class="text-muted"></small></p>
+                    </div>
+                </div>
+                    
             </div>
-            {# ferme la balise form #}
-            {{ form_end(form) }}
-        <div>
-    <div>
-    
+                {% endfor %}
+        </div>
+            
+    </section>
+
 {% endblock %}
