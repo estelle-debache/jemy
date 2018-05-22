@@ -3,11 +3,13 @@
 namespace App\Controller;
 
 use App\Entity\Actualite;
+use App\Entity\Entreprise;
 use App\Entity\OffreEmploi;
 use App\Entity\Salarie;
 use App\Entity\Service;
 use App\Form\ActualiteType;
 use App\Form\AjoutsalarieType;
+use App\Form\EntrepriseType;
 use App\Form\ModifsalarieType;
 use App\Form\OffresemploiType;
 use App\Form\ServiceType;
@@ -555,4 +557,48 @@ class AdminController extends Controller
    
   }
       
+/**
+     * 
+     * @Route("/entreprise")
+     */
+    public function entreprise()
+    {
+        return $this->render('admin/entreprise.html.twig');
+    }
+    
+    
+    
+    
+    /**
+     * @Route("/modifentreprise/{id}")
+     */
+    public function modifentreprise(Request $request, Entreprise $entreprise, $id) {
+        $em= $this->getDoctrine()->getManager();
+        
+        $entreprise = $em->find(Entreprise::class , $id);
+         
+        //creation d'un formulaire relié a la categorie
+        $form = $this->createForm(EntrepriseType::class, $entreprise);
+        // le formulaire analyse la requete HTTP
+        $form->handleRequest($request);
+        
+        //SI LE FORMULAIRE A ETE ENVOYE 
+        if( $form->isSubmitted())
+        {
+            if($form->isValid())
+            {
+                $em->persist($entreprise);
+                $em->flush();
+                return $this->redirectToRoute('app_admin_index');
+            }
+        }
+        return $this->render('admin/modifentreprise.html.twig',
+                [
+                    'form' => $form->createView()
+                ]
+                );
+        
+        
+        
+    }
 }

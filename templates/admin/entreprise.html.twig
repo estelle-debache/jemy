@@ -1,0 +1,11 @@
+{% extends 'layout.html.twig' %}
+
+{% block content %}
+    <div class="row button">
+                <a class="btn-left"href='{{ path('app_admin_modifentreprise', {id: app.user.entreprise.id}) }}'><button type="button" class="btn btn-primary ">modif</button></a>
+    </div>
+     <div class="row button">
+                <a class="btn-left"href='{{ path('app_admin_ajoutservice') }}'><button type="button" class="btn btn-primary ">ajout service</button></a>
+    </div>
+    
+{% endblock %}

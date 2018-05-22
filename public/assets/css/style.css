@@ -677,6 +677,25 @@ section{
     color:#083b66;
 }
 
+/** ADMIN MODIF ENTREPRISE **************************************************************************************************************************/
+
+.modif-entreprise h1{
+    color: #083b66;
+   margin-bottom: 4rem;
+}
+
+.modif-entreprise .btn-primary{
+    background-color: #74d14c;
+    border-color:#74d14c;
+    float:right;
+    margin-bottom: 3rem;
+}
+
+.modif-entreprise .btn-primary:hover{
+    background-color:white;
+    color:#74d14c;
+}
+
 /**SALARIE NEWS **************************************************************************************************************************/
 .news h1{
     color: #083b66;
