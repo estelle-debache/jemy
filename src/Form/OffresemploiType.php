@@ -25,22 +25,22 @@ class OffresemploiType extends AbstractType
                         ''=>'',
                         'CDI' => 'CDI',
                         'CDD' => 'CDD',
-                        
+
                            )))
-                
+
             ->add('description', TextareaType::class,
                     [
                         'label' => 'Description du poste'])
-           
+
             ->add('salaire', TextType::class,['label'=>"Salaire"])
             ->add('service', EntityType::class,[
                 'label'=> 'Service',
                 'class' => Service::class,
                 'choice_label'=> 'nom',
                 'placeholder' => 'Choisissez un service'
-                
+
                 ])
-           
+
         ;
     }
 
