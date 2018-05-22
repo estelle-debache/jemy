@@ -5,16 +5,26 @@
 {% block content %}
     
   <section>
-        <div class="container news  ">
+        <div class="container detail-emploi ">
             
-            {% for emploi in emploi %}
-                <h1 class="text-center">{{ emploi.poste }}</h1>
+            
+            <h1 class="text-center">Développeur (CDI)</h1>
             <div class="row">
+                <div class="card w-100">
+                    <div class="card-body">
+                        <p>sectionuites dans leur version originale, accompagnée de la traduction anglaise de H. Rackham (1914).</p>
+                        <p><span>Service : </span> Informatique</p>
+                        <p><span>Salaire : </span>7000€ brut mensuel</p>
+                        <p><span>Contrat : </span> CDI</p>
+                        <p class="text-right"><span>Annonce publiée le  : </span>01/04/2018</p>
+                    </div>
+                </div>
                 
-                 
+                    <a href="{{path('app_salarie_offresemploi')}}"<button type="button" class="btn btn-outline-success"><i class="fas fa-arrow-left"></i> Retour</button></a>
+                  
             </div>
                   
-                {% endfor %}
+               
         </div>
             
     </section>

@@ -7,6 +7,7 @@ use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Validator\Constraints as Assert;
 /**
  * @ORM\Entity(repositoryClass="App\Repository\OffreEmploiRepository")
+ * 
  */
 class OffreEmploi
 {
@@ -39,6 +40,7 @@ class OffreEmploi
      *
      * @var \Datetime
      * @ORM\Column(type="date")
+     * 
      */
     private $datePublication;
         /**
