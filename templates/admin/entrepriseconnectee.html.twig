@@ -4,7 +4,7 @@
 
     <section>
         <div class="container entrepriseprofil  ">
-            <h1 class="text-center">{{entreprise.nom}}</h1>
+            <h1 class="text-center">{{app.user.entreprise.nom}}</h1>
             
             <div class="col-12 col-md-12 text-center">
                 <a href='{{ path('app_admin_modifentreprise', {id: app.user.entreprise.id}) }}'>
@@ -14,14 +14,14 @@
             
             <div class="row infos ">
                 <div class="col-12 col-md-6 information">
-                    <p><span>Forme juridique : </span>{{ entreprise.formejuridique }}</p>
-                    <p><span>Siren : </span>{{ entreprise.siren }} <span>Siret : </span> {{ entreprise.siret }}</p>
+                    <p><span>Forme juridique : </span>{{ app.user.entreprise.formejuridique }}</p>
+                    <p><span>Siren : </span>{{ app.user.entreprise.siren }} <span>Siret : </span> {{ app.user.entreprise.siret }}</p>
                 </div>
                 
                 <div class="col-12 col-md-6 information">
-                    <p><span>Adresse : </span>{{ entreprise.adresse }}</p>
-                    <p><span>Code postal : </span>{{ entreprise.codepostal }}
-                    <span>Ville : </span>{{ entreprise.ville }}</p>
+                    <p><span>Adresse : </span>{{ app.user.entreprise.adresse }}</p>
+                    <p><span>Code postal : </span>{{ app.user.entreprise.codepostal }}
+                    <span>Ville : </span>{{ app.user.entreprise.ville }}</p>
                 </div>
             </div>
                 

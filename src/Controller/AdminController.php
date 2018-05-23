@@ -68,7 +68,8 @@ class AdminController extends Controller
         $entreprise = $this->getUser()->getEntreprise();
         
         // recupere un objet service ayant l'id enregistre en session lors de la creation de l'objet entreprise
-        $service = $this->getUser()->getService();
+
+        
         if( $form->isSubmitted())
         {
             if($form->isValid())
@@ -95,8 +96,7 @@ class AdminController extends Controller
                 $salarie
                     ->setPassword($password)
                     ->setEntreprise($entreprise)
-                 
-                    ->setService($service)
+                    
                         
                 // on sette l'image avec le nom qu'on lui a donné
                     ->setPhoto($photoname)
@@ -527,6 +527,7 @@ class AdminController extends Controller
         $em = $this->getDoctrine()->getManager();
         $service = new Service();
         
+        
         $form = $this->createForm(ServiceType::class, $service);
         $form->handleRequest($request);
         
@@ -544,7 +545,7 @@ class AdminController extends Controller
 
                 $this->addFlash('success', 'Le service a bien été ajouté');
 
-                return $this->redirectToRoute('app_admin_index');
+                return $this->redirectToRoute('app_admin_entrepriseconnectee');
 
                 }
         
@@ -565,6 +566,7 @@ class AdminController extends Controller
         $em = $this->getDoctrine()->getManager();
         $service = $em->find(Service::class, $id);
         
+        
         $form = $this->createForm(ServiceType::class, $service);
         $form->handleRequest($request);
         
@@ -579,7 +581,7 @@ class AdminController extends Controller
                     'Le service a bien été modifié'
                 );
                 
-                return $this->redirectToRoute('app_admin_index');
+                return $this->redirectToRoute('app_admin_entrepriseconnectee');
             } else {
                 
                 $this->addFlash(
@@ -611,26 +613,25 @@ class AdminController extends Controller
         
         $this->addFlash(
             'success',
-            'Le service est supprimé'
+            'Le service est bien supprimé'
         );
         
-        return $this->render('admin/index.html.twig');
+        return $this->redirectToRoute('app_admin_entrepriseconnectee');
     }
       
      /**
      * 
      * @Route("/entreprise/{id}")
      */
-    public function entreprise(Entreprise $entreprise, Service $service, $id)
+    public function entreprise(Entreprise $entreprise, $id)
     {
         $em = $this->getDoctrine()->getManager();
         $repository = $em->getRepository(Service::class);
-        $service = $repository->findByEntreprise($entreprise);
+       
         
         return $this->render('admin/entreprise.html.twig',
                 [
-                    "entreprise" => $entreprise,
-                    "service" => $service
+                    "entreprise" => $entreprise
                 ]);
     }
     
@@ -657,7 +658,7 @@ class AdminController extends Controller
             {
                 $em->persist($entreprise);
                 $em->flush();
-                return $this->redirectToRoute('app_admin_index');
+                return $this->redirectToRoute('app_admin_entrepriseconnectee');
             }
         }
         return $this->render('admin/modifentreprise.html.twig',
@@ -665,5 +666,12 @@ class AdminController extends Controller
                     'form' => $form->createView()
                 ]
                 );
+    }
+    /**
+     * @Route("/entrepriseconnectee")
+     */
+    public function entrepriseconnectee()
+    {
+       return $this->render('admin/entrepriseconnectee.html.twig'); 
     }
 }

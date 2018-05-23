@@ -15,12 +15,24 @@ use Symfony\Component\Form\Extension\Core\Type\RepeatedType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
+use Symfony\Component\Security\Core\Authentication\Token\Storage\TokenStorageInterface;
+
+
 
 
 class ModifsalarieType extends AbstractType
 {
+    private $salarie;
+    private $entreprise; 
+    function __construct(TokenStorageInterface $tokenStorage) {
+        $this->entreprise = $tokenStorage->getToken()->getUser()->getEntreprise();
+        
+    }
+
+    
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
+        
         $builder
             ->add('civilite', ChoiceType::class,array(
                 'expanded'=>false,
@@ -41,15 +53,20 @@ class ModifsalarieType extends AbstractType
                         'Admin' => 'ROLE_ADMIN',
                         'Employé' => 'ROLE_USER',
                   )))
-            ->add('service', EntityType::class, 
+            ->add('service', EntityType::class,
                     [
                         'label' => 'Service',
                         // nom de l'entité
                         'class' => Service::class,
+                        'query_builder' => function(\Doctrine\ORM\EntityRepository $er){
+                            return $er->createQueryBuilder("s")
+                                     ->where('IDENTITY(s.entreprise)=' . $this->entreprise->getId());              
+                        },
                         // nom de l(attribut utilisé pour l'affichage des options
-                        'choice_label' => 'nom',
+                       
                         // pour avoir une 1ère option vide
                         'placeholder' =>' Choisissez un service'
+
                     ])
                 
             ->add('dateDeNaissance', DateType::class, array(
@@ -68,10 +85,15 @@ class ModifsalarieType extends AbstractType
             ->add('contratTravail', FileType::class,['label'=>"Contrat de travail", 'required' => false])
             ->add('photo', FileType::class,['label'=>"Photo", 'required' => false])
             ->add('telephone', TextType::class,['label'=>"Téléphone"])
+                                
+                                    
+                                
             ->add ('dateFinContrat', DateType::class, array(
                     'widget' => 'single_text',
                     // this is actually the default format for single_text
                     'format' => 'yyyy-MM-dd',
+                    'required'=>false
+                
                 ))
             ->add('statut',ChoiceType::class,array(
                    

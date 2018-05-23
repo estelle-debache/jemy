@@ -28,7 +28,7 @@ class Service
     /**
      *
      * @ORM\JoinColumn(nullable=false)
-     * @ORM\ManyToOne(targetEntity="Entreprise", inversedBy="service") 
+     * @ORM\ManyToOne(targetEntity="Entreprise", inversedBy="services") 
      */
     private $entreprise;
     
@@ -49,9 +49,9 @@ class Service
         $this->OffreEmploi = new \Doctrine\Common\Collections\ArrayCollection();
         $this->salarie = new \Doctrine\Common\Collections\ArrayCollection();
     }
-
-    
-    
+    public function __toString() {
+            return $this->nom;
+    }
 
     public function getId()
     {
