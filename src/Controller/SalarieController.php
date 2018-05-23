@@ -200,4 +200,19 @@ class SalarieController extends Controller
                    "emploi" => $emploi
                ]);
     }
+    
+    /**
+     *
+     *
+     * @Route("/candidature/{id}")
+     */
+    public function candidature(OffreEmploi $emploi, $id) {
+
+
+        dump($emploi);
+        return $this->render('salarie/candidature.html.twig',
+               [
+                   "emploi" => $emploi
+               ]);
+    }
 }

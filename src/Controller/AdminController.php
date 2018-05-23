@@ -490,9 +490,9 @@ class AdminController extends Controller
     }
     /**
      * 
-     * @Route("/delete/{id}")
+     * @Route("/delete-news/{id}")
      */
-    public function delete(Actualite $actualite)
+    public function deleteNews(Actualite $actualite)
     {
         $em = $this->getDoctrine()->getManager();
         $em->remove($actualite);
