@@ -277,6 +277,7 @@ section{
 }
 .tableauDeBord .card{
    transition: transform .2s;
+   margin-bottom:2rem;
 }
 
 .tableauDeBord .card:hover{
@@ -781,7 +782,73 @@ section{
     background-size: 100%;
    height:30rem;
 }
+/**LISTE EMPLOI SALARIE **************************************************************************************************************************/
+.liste-emploi h1{
+    color: #083b66;
+   margin-bottom: 4rem;
+}
 
+.liste-emploi .card{
+   transition: transform .2s;
+   margin-bottom:1rem;
+}
+
+.liste-emploi .card:hover{
+    transform: scale(1.05 , 1.1);
+}
+
+.liste-emploi .btn-primary{
+    float:right;
+    background-color: #74d14c;
+    border-color:#74d14c;
+}
+
+
+
+.liste-emploi .btn-primary:hover{
+    background-color:white;
+    color:#74d14c;
+}
+
+.liste-emploi p{
+    font-size:1.1rem;
+    color:#083b66;
+}
+
+.liste-emploi p span{
+    font-size:0.7rem;
+    color:#f2af58;
+}
+
+/**DETAIL EMPLOI SALARIE **************************************************************************************************************************/
+.detail-emploi h1{
+    color: #083b66;
+   margin-bottom: 4rem;
+}
+
+.detail-emploi p{
+    color: #083b66;
+
+}
+
+.detail-emploi .btn-outline-success{
+    margin-top: 2rem;
+    background-color: #74d14c;
+    border-color:#74d14c;
+    padding-left : 3rem;
+    padding-right:3rem;
+    color:white;
+    margin:auto;
+    float:right;
+    margin-top: 2rem;
+
+}
+
+.detail-emploi .btn-outline-success:hover{
+    background-color:white;
+    color:#74d14c;
+
+}
 /** FOOTER **************************************************************************************************************************/
 
 footer{

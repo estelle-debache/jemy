@@ -1,0 +1,32 @@
+{# empty Twig template #}
+{% extends 'layout.html.twig' %}
+
+
+{% block content %}
+
+  <section>
+        <div class="container detail-emploi ">
+
+
+            <h1 class="text-center">{{ emploi.poste }}</h1>
+            <div class="row">
+                <div class="card w-100">
+                    <div class="card-body">
+                        <p>{{ emploi.description|raw|nl2br }}</p>
+                        <p><span>Service : </span> {{ emploi.service.nom }} </p>
+                        <p><span>Salaire : </span>{{emploi.salaire}} </p>
+                        <p><span>Contrat : </span> {{ emploi.contrat }}</p>
+                        <p class="text-right"><span>Annonce publiée le  : </span>{{ emploi.datePublication|date('d/m/Y')}}</p>
+                    </div>
+                </div>
+
+                    <a href="{{path('app_salarie_offresemploi')}}"<button type="button" class="btn btn-outline-success"><i class="fas fa-arrow-left"></i> Retour</button></a>
+
+            </div>
+
+
+        </div>
+
+    </section>
+
+{% endblock %}

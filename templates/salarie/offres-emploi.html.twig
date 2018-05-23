@@ -4,21 +4,20 @@
 {% block content %}
     
   <section>
-        <div class="container news  ">
+        <div class="container liste-emploi  ">
             <h1 class="text-center">Les offres d'emplois</h1>
             {% for emploi in emploi %}
             <div class="row">
                 
                 <div class="card w-100">
-                    <div class="card-img-top" > </div>
                     <div class="card-body">
-                        <h5 class="card-title"></h5>
-                        <p class="card-text"> </p>
-                        <p class="card-text"><small class="text-muted"></small></p>
+                        <p>{{ emploi.poste }} ({{ emploi.contrat }}) - <span>{{ emploi.datePublication|date('d/m/Y')}}</span> 
+                            <a href='{{path('app_salarie_offreemploidetail', {id:emploi.id})}}'><button type="button" class="btn btn-primary">Voir l'annonce</button></a>
+                        </p>
                     </div>
-                </div>
-                    
+                </div>           
             </div>
+                  
                 {% endfor %}
         </div>
             
