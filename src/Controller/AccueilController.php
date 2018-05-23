@@ -36,7 +36,7 @@ class AccueilController extends Controller
         $em = $this->getDoctrine()->getManager();
         $entreprise = new Entreprise();
         $service = new Service();
-        $service->setNom('RH');
+        $service->setNom('Ressource Humaines');
         $entreprise->addService($service);// ca cree l'id dans entreprise_id de la table service grace a la methode add service dans entreprise
         dump($service);
 

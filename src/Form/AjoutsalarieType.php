@@ -3,6 +3,8 @@
 namespace App\Form;
 
 use App\Entity\Salarie;
+use App\Entity\Service;
+use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 use Symfony\Component\Form\Extension\Core\Type\DateType;
@@ -13,10 +15,14 @@ use Symfony\Component\Form\Extension\Core\Type\RepeatedType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
-
+use Symfony\Component\Security\Core\Authentication\Token\Storage\TokenStorageInterface;
 
 class AjoutsalarieType extends AbstractType
 {
+    private $entreprise; 
+    function __construct(TokenStorageInterface $tokenStorage) {
+        $this->entreprise = $tokenStorage->getToken()->getUser()->getEntreprise();         
+    }
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
@@ -31,7 +37,19 @@ class AjoutsalarieType extends AbstractType
                        )))
             ->add('nom', TextType::class,['label'=>"Nom"])
             ->add('prenom', TextType::class,['label'=>"Prenom"])
-            ->add('service', TextType::class,['label'=>"Service"])
+            ->add('service', EntityType::class, 
+                    [
+                        'label' => 'Service',
+                        // nom de l'entité
+                        'class' => Service::class,
+                        // nom de l(attribut utilisé pour l'affichage des options
+                        'query_builder' => function(\Doctrine\ORM\EntityRepository $er){
+                            return $er->createQueryBuilder("s")
+                                     ->where('IDENTITY(s.entreprise)=' . $this->entreprise->getId());              
+                        },
+                        // pour avoir une 1ère option vide
+                        'placeholder' =>' Choisissez un service'
+                    ])
             ->add('role', ChoiceType::class,array(
                    
                     'choices' => array(

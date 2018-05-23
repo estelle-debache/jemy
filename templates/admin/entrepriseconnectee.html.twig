@@ -1,0 +1,55 @@
+{% extends 'layout.html.twig' %}
+
+{% block content %}
+
+    <section>
+        <div class="container entrepriseprofil  ">
+            <h1 class="text-center">{{app.user.entreprise.nom}}</h1>
+            
+            <div class="col-12 col-md-12 text-center">
+                <a href='{{ path('app_admin_modifentreprise', {id: app.user.entreprise.id}) }}'>
+                <button type="button" class="btn btn btn-primary ">Modifier les informations</button></a>
+            </div>
+           
+            
+            <div class="row infos ">
+                <div class="col-12 col-md-6 information">
+                    <p><span>Forme juridique : </span>{{ app.user.entreprise.formejuridique }}</p>
+                    <p><span>Siren : </span>{{ app.user.entreprise.siren }} <span>Siret : </span> {{ app.user.entreprise.siret }}</p>
+                </div>
+                
+                <div class="col-12 col-md-6 information">
+                    <p><span>Adresse : </span>{{ app.user.entreprise.adresse }}</p>
+                    <p><span>Code postal : </span>{{ app.user.entreprise.codepostal }}
+                    <span>Ville : </span>{{ app.user.entreprise.ville }}</p>
+                </div>
+            </div>
+                
+            <div class="row infos">    
+                <div class="col-12 col-md-12 text-center">
+                 <a href='{{ path('app_admin_ajoutservice') }}'>
+                 <button type="button" class="btn btn btn-primary ">Ajouter un service</button></a>
+                </div>
+                    {% for service in app.user.entreprise.services %}
+                        <div class="information col-12 col-md-4  ">
+                                <div class="card " style="width: 18rem;">
+                                    <div class="card-body text-center">
+                                      <h5 class="card-title">{{service.nom}}</h5>
+                                      <p class="card-text">Le nombres de salariés dans ce service</p>
+                                      <a href='{{path('app_admin_editservice', {id: service.id})}}'>
+                                      <button type="button" class="btn btn-outline-success ">Modifier</button>
+                                      </a>
+                                      <a href='{{path('app_admin_deleteservice', {id: service.id})}}'>
+                                      <button type="button" class="btn btn-outline-danger ">Supprimer</button>
+                                      </a>
+                                    </div>
+                                </div>
+                            </div>
+                    {% endfor %}
+            </div>
+        </div>
+    </section>
+    
+     
+    
+{% endblock %}

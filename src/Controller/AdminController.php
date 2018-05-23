@@ -3,11 +3,13 @@
 namespace App\Controller;
 
 use App\Entity\Actualite;
+use App\Entity\Entreprise;
 use App\Entity\OffreEmploi;
 use App\Entity\Salarie;
 use App\Entity\Service;
 use App\Form\ActualiteType;
 use App\Form\AjoutsalarieType;
+use App\Form\EntrepriseType;
 use App\Form\ModifsalarieType;
 use App\Form\OffresemploiType;
 use App\Form\ServiceType;
@@ -66,7 +68,8 @@ class AdminController extends Controller
         $entreprise = $this->getUser()->getEntreprise();
         
         // recupere un objet service ayant l'id enregistre en session lors de la creation de l'objet entreprise
-        $service = $this->getUser()->getService();
+
+        
         if( $form->isSubmitted())
         {
             if($form->isValid())
@@ -93,8 +96,7 @@ class AdminController extends Controller
                 $salarie
                     ->setPassword($password)
                     ->setEntreprise($entreprise)
-                 
-                    ->setService($service)
+                    
                         
                 // on sette l'image avec le nom qu'on lui a donné
                     ->setPhoto($photoname)
@@ -525,7 +527,8 @@ class AdminController extends Controller
         $em = $this->getDoctrine()->getManager();
         $service = new Service();
         
-         $form = $this->createForm(ServiceType::class, $service);
+        
+        $form = $this->createForm(ServiceType::class, $service);
         $form->handleRequest($request);
         
            
@@ -542,17 +545,133 @@ class AdminController extends Controller
 
                 $this->addFlash('success', 'Le service a bien été ajouté');
 
-                return $this->redirectToRoute('app_admin_index');
+                return $this->redirectToRoute('app_admin_entrepriseconnectee');
 
                 }
         
-    }
+         }
      return $this->render('admin/ajoutservice.html.twig',
                 [
                     'form'=>$form->createView(),
-                   
-                ]);
-   
-  }
+                                  
+                ]);  
+    }
+    
+    /**
+     * 
+     * @Route("/editservice/{id}")
+     */
+    public function editservice(Request $request, Service $service, $id) {
+        
+        $em = $this->getDoctrine()->getManager();
+        $service = $em->find(Service::class, $id);
+        
+        
+        $form = $this->createForm(ServiceType::class, $service);
+        $form->handleRequest($request);
+        
+        if ($form->isSubmitted()) {
+            if ($form->isValid()) {
+                $em->persist($service);
+                $em->flush();
+                
+                
+                $this->addFlash(
+                    'success',
+                    'Le service a bien été modifié'
+                );
+                
+                return $this->redirectToRoute('app_admin_entrepriseconnectee');
+            } else {
+                
+                $this->addFlash(
+                    'error',
+                    'Le formulaire contient des erreurs'
+                );
+            }
+        }
+       
+        return $this->render(
+            'admin/editservice.html.twig',
+            [
+                
+                'form' => $form->createView(),
+                
+            ]
+        );
+    }
+    
+    /**
+     * 
+     * @Route("/deleteservice/{id}")
+     */
+    public function deleteservice(Service $service, $id)
+    {
+        $em = $this->getDoctrine()->getManager();
+        $em->remove($service);
+        $em->flush();
+        
+        $this->addFlash(
+            'success',
+            'Le service est bien supprimé'
+        );
+        
+        return $this->redirectToRoute('app_admin_entrepriseconnectee');
+    }
       
+     /**
+     * 
+     * @Route("/entreprise/{id}")
+     */
+    public function entreprise(Entreprise $entreprise, $id)
+    {
+        $em = $this->getDoctrine()->getManager();
+        $repository = $em->getRepository(Service::class);
+       
+        
+        return $this->render('admin/entreprise.html.twig',
+                [
+                    "entreprise" => $entreprise
+                ]);
+    }
+    
+    
+    
+    
+    /**
+    * @Route("/modifentreprise/{id}")
+    */
+    public function modifentreprise(Request $request, Entreprise $entreprise, $id) {
+        $em= $this->getDoctrine()->getManager();
+        
+        $entreprise = $em->find(Entreprise::class , $id);
+         
+        //creation d'un formulaire relié a la categorie
+        $form = $this->createForm(EntrepriseType::class, $entreprise);
+        // le formulaire analyse la requete HTTP
+        $form->handleRequest($request);
+        
+        //SI LE FORMULAIRE A ETE ENVOYE 
+        if( $form->isSubmitted())
+        {
+            if($form->isValid())
+            {
+                $em->persist($entreprise);
+                $em->flush();
+                return $this->redirectToRoute('app_admin_entrepriseconnectee');
+            }
+        }
+        return $this->render('admin/modifentreprise.html.twig',
+                [
+                    'form' => $form->createView()
+                ]
+                );
+    }
+    /**
+     * @Route("/entrepriseconnectee")
+     */
+    public function entrepriseconnectee()
+    {
+       return $this->render('admin/entrepriseconnectee.html.twig'); 
+    }
 }
