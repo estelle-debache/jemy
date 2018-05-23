@@ -11,9 +11,15 @@ use Symfony\Component\Form\Extension\Core\Type\TextareaType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
+use Symfony\Component\Security\Core\Authentication\Token\Storage\TokenStorageInterface;
 
 class OffresemploiType extends AbstractType
 {
+    private $entreprise; 
+    function __construct(TokenStorageInterface $tokenStorage) {
+        $this->entreprise = $tokenStorage->getToken()->getUser()->getEntreprise();         
+    }
+    
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
@@ -36,7 +42,10 @@ class OffresemploiType extends AbstractType
             ->add('service', EntityType::class,[
                 'label'=> 'Service',
                 'class' => Service::class,
-                'choice_label'=> 'nom',
+                'query_builder' => function(\Doctrine\ORM\EntityRepository $er){
+                            return $er->createQueryBuilder("s")
+                                     ->where('IDENTITY(s.entreprise)=' . $this->entreprise->getId());              
+                        },
                 'placeholder' => 'Choisissez un service'
 
                 ])
