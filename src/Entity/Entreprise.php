@@ -93,8 +93,20 @@ class Entreprise
     private $services;
 
 
+    public function getCandidatures() {
+        return $this->candidatures;
+    }
 
-        
+    public function setCandidatures($candidatures) {
+        $this->candidatures = $candidatures;
+        return $this;
+    }
+    
+    /**
+     *
+     *  @ORM\OneToMany(targetEntity="Candidature", mappedBy="entreprise")
+     */
+    private $candidatures;    
     
     /**
      *
@@ -106,6 +118,7 @@ class Entreprise
         $this->OffreEmploi = new ArrayCollection();
         $this->services = new ArrayCollection();
         $this->salaries = new ArrayCollection();
+        $this->candidatures = new ArrayCollection();
     }
 
     

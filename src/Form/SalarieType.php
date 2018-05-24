@@ -67,7 +67,7 @@ class SalarieType extends AbstractType
             ->add('iban', TextType::class,['label'=>"IBAN"])
             ->add('carteIdentite', FileType::class,['label'=>"Carte d'identite (pdf)"])
             ->add('contratTravail', FileType::class,['label'=>"Contrat de travail (pdf)"])
-            ->add('photo', FileType::class,['label'=>"Photo (portrait jpg)"])
+            ->add('photo', FileType::class,['label'=>"Photo (portrait)"])
             ->add('telephone', TextType::class,['label'=>"Téléphone"])
 
 

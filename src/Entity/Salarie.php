@@ -192,7 +192,11 @@ class Salarie implements UserInterface, Serializable
      * @ORM\Column(type="string", nullable=false)
      */
     private $telephone;  
-    
+    /**
+     *
+     *@ORM\OneToMany(targetEntity="Candidature", mappedBy="salarie") 
+     */
+    private $candidature;
     public function getTelephone() {
         return $this->telephone;
     }

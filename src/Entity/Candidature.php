@@ -33,15 +33,34 @@ class Candidature
 
     /**
      * @ORM\JoinColumn(nullable=false)
-     * @ORM\ManyToOne(targetEntity="OffreEmploi", inversedBy="candidature")
+     * @ORM\ManyToOne(targetEntity="OffreEmploi", inversedBy="candidatures")
      */
     private $offreEmploi;
     
     /**
      * @ORM\JoinColumn(nullable=false)
-     * @ORM\ManyToOne(targetEntity="OffreEmploi", inversedBy="candidature")
+     * @ORM\ManyToOne(targetEntity="Entreprise", inversedBy="candidatures")
+     */
+    private $entreprise;
+    public function getEntreprise() {
+        return $this->entreprise;
+    }
+
+    public function setEntreprise($entreprise) {
+        $this->entreprise = $entreprise;
+        return $this;
+    }
+
+        /**
+     * @ORM\JoinColumn(nullable=false)
+     * @ORM\ManyToOne(targetEntity="Salarie", inversedBy="candidature")
      */
     private $salarie;
+    
+        public function __construct()
+    {
+        $this->dateCandidature = new \DateTime();
+    }
     
     public function getSalarie() {
         return $this->salarie;
@@ -86,7 +105,7 @@ class Candidature
         return $this->dateCandidature;
     }
 
-    public function setDateCandidature( $dateCandidature)
+    public function setDateCandidature(\DateTimeInterface $dateCandidature) :self
     {
         $this->dateCandidature = $dateCandidature;
 
