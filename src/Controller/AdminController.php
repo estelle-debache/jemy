@@ -692,16 +692,10 @@ class AdminController extends Controller
      * 
      * @Route("/liste-candidatures/{id}")
      */
-    public function listecandidatures(OffreEmploi $emploi, $id) {
-            
-        $em = $this->getDoctrine()->getManager();
-        $repository = $em->getRepository(OffreEmploi::class);
-        $repository = $em->getRepository(Candidature::class);
-        
-        $candidature = $repository->findByOffreEmploi($emploi);
+    public function listecandidatures(OffreEmploi $emploi) {
         
         return $this->render('admin/liste-candidatures.html.twig', [
-            'candidatures' => $candidature,
+            
             'emploi' => $emploi,
             
         ]);
