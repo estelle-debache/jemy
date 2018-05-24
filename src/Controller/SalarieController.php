@@ -238,6 +238,11 @@ class SalarieController extends Controller
                                
                 $em->persist($candidature);
                 $em->flush();
+                
+                $this->addFlash(
+                        'success',
+                        'Votre candidature a bien été envoyée'
+                    );
 
 
                 return $this->redirectToRoute('app_salarie_offresemploi');

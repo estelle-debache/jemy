@@ -747,6 +747,59 @@ section{
     color:#083b66;
 }
 
+/** ADMIN LISTE OFFRES EMPLOI **************************************************************************************************************************/
+
+.liste-offresemploi h1{
+   color: #083b66;
+   margin-bottom: 4rem;
+}
+.liste-offresemploi .btn-outline-success{
+    margin-bottom: 3rem;
+    color:#74d14c;
+    border-color:#74d14c;
+}
+.liste-offresemploi .btn-outline-success:hover{
+    background-color:#74d14c;
+    color:white;
+}
+
+.liste-offresemploi .btn-primary{
+    background-color: #74d14c;
+    border-color:#74d14c;
+    margin-right:0.5rem;
+   
+}
+.liste-offresemploi .btn-primary:hover{
+    background-color:white;
+    color:#74d14c;
+}
+
+.liste-offresemploi .btn-info{
+    background-color: #083b66;
+    border-color:#083b66;
+    margin-right:0.5rem;
+   
+}
+.liste-offresemploi .btn-info:hover{
+    background-color:white;
+    color:#083b66;
+}
+
+.liste-offresemploi .btn-danger{
+    background-color: #f2af58;
+    border-color:#f2af58;
+    margin-right:0.5rem;
+   
+}
+.liste-offresemploi .btn-danger:hover{
+    background-color:white;
+    color:#f2af58;
+}
+
+.liste-offresemploi a{
+    color:#083b66;
+}
+
 /** ADMIN MODIF ENTREPRISE **************************************************************************************************************************/
 
 .modif-entreprise h1{
@@ -828,9 +881,24 @@ section{
 
 .detail-emploi p{
     color: #083b66;
-
 }
 
+.detail-emploi .postule{
+    text-align: right;
+    margin-bottom: 1rem;
+    padding-right: 1rem;
+}
+
+.detail-emploi .btn-info{
+    background-color: #083b66;
+    border-color:#083b66;
+    margin-right:0.5rem;
+   
+}
+.detail-emploi .btn-info:hover{
+    background-color:white;
+    color:#083b66;
+}
 .detail-emploi .btn-outline-success{
     margin-top: 2rem;
     background-color: #74d14c;

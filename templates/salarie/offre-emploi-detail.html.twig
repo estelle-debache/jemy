@@ -20,10 +20,14 @@
                         
                         
                     </div>
-                        <a href="{{ path("app_salarie_postuler", {id: emploi.id}) }}"><button type="button" class="btn btn-primary ">Je postule à cette annonce</button></a>
+                        <a class="postule" href="{{ path("app_salarie_postuler", {id: emploi.id}) }}">
+                            <button type="button" class="btn btn-info ">Je postule à cette annonce</button>
+                        </a>
                 </div>
 
-                    <a href="{{path('app_salarie_offresemploi')}}"><button type="button" class="btn btn-outline-success"><i class="fas fa-arrow-left"></i> Retour</button></a>
+                    <a href="{{path('app_salarie_offresemploi')}}">
+                        <button type="button" class="btn btn-outline-success"><i class="fas fa-arrow-left"></i> Retour</button>
+                    </a>
 
             </div>
 
