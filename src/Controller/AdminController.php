@@ -397,6 +397,18 @@ class AdminController extends Controller
     
     /**
      * 
+     * @Route("/liste-candidature" )
+     */
+    public function listeCandidature()
+    {
+        return $this->render('admin/liste-candidature.html.twig');
+       
+            
+        
+    }
+    
+    /**
+     * 
      * @Route("/edition-emploi/{id}", defaults={"id":null} )
      * @param Request $request
      */
