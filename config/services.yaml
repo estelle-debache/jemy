@@ -9,7 +9,9 @@ parameters:
     #repertoire de fichier de stockage de carte d'identite
     cni_dir: '%kernel.project_dir%/public/images/cni'
     #répertoire de ficher de stockage de image pour les news
-    upload_dir: '%kernel.project_dir%/public/images/'
+    upload_dir: '%kernel.project_dir%/public/images/news'
+    #répertoire de ficher de stockage des cv  pour les candidatures
+    candidatures_dir: '%kernel.project_dir%/public/images/candidatures'
 services:
     # default configuration for services in *this* file
     _defaults:

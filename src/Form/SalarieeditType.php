@@ -20,7 +20,7 @@ class SalarieeditType extends AbstractType
             ->add('ville', TextType::class,['label'=>"Ville"])
             ->add('iban', TextType::class,['label'=>"IBAN"])
             ->add('telephone', TextType::class,['label'=>"Téléphone"])
-            ->add('photo', FileType::class,['label'=>"Photo", 'required' => false])
+            ->add('photo', FileType::class,['label'=>"Photo (portrait jpg)", 'required' => false])
         ;
     }
 

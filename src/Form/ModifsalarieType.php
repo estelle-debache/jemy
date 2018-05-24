@@ -81,9 +81,9 @@ class ModifsalarieType extends AbstractType
             ->add('ville', TextType::class,['label'=>"Ville"])
             
             ->add('iban', TextType::class,['label'=>"IBAN"])
-            ->add('carteIdentite', FileType::class,['label'=>"Carte d'identite", 'required' => false])
-            ->add('contratTravail', FileType::class,['label'=>"Contrat de travail", 'required' => false])
-            ->add('photo', FileType::class,['label'=>"Photo", 'required' => false])
+            ->add('carteIdentite', FileType::class,['label'=>"Carte d'identite (pdf)", 'required' => false])
+            ->add('contratTravail', FileType::class,['label'=>"Contrat de travail (pdf)", 'required' => false])
+            ->add('photo', FileType::class,['label'=>"Photo (portrait jpg)", 'required' => false])
             ->add('telephone', TextType::class,['label'=>"Téléphone"])
                                 
                                     

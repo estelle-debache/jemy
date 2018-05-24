@@ -3,13 +3,16 @@
 namespace App\Controller;
 
 use App\Entity\Actualite;
+use App\Entity\Candidature;
 use App\Entity\OffreEmploi;
 use App\Entity\Salarie;
+use App\Form\CandidatureType;
 use App\Form\SalarieeditType;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\File\File;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Routing\Annotation\Route;
+use function dump;
     /**
      * @Route("/salarie")
      */
@@ -172,7 +175,7 @@ class SalarieController extends Controller
      *
      * @Route("/offres-emploi")
      */
-    public function offresEmploi()
+    public function offresemploi()
     {
         $em = $this->getDoctrine()->getManager();
         $repository = $em->getRepository(OffreEmploi::class);
@@ -199,5 +202,55 @@ class SalarieController extends Controller
                [
                    "emploi" => $emploi
                ]);
+    }
+    
+
+    /**
+     * 
+     * @Route("/postuler/{id}")
+     */
+    public function postuler(Request $request, OffreEmploi $offreEmploi)
+    {
+        $em = $this->getDoctrine()->getManager();
+        $candidature = new Candidature;
+        $user= $this->getUser()->getId();
+        $form = $this->createForm(CandidatureType::class, $candidature);
+        $form->handleRequest($request);
+        
+        if($form->isSubmitted())
+        {
+            if($form->isValid())
+            {
+                // recuperer le nom du fichier en bdd
+                $cv = $candidature->getCv();
+                // modifier le nom obtenue lors de la precedente action
+                $cvname= $offreEmploi->getId().$user.$cv->guessExtension();
+     
+                //deplacement des fichiers vers les dossiers dans images
+                $cv->move($this->getParameter('candidatures_dir'),$cvname);
+                
+                $candidature->setOffreEmploi($offreEmploi)
+                            ->setSalarie($this->getUser())
+                            ->setCv($cvname)
+                            ->setEntreprise($this->getUser()->getEntreprise())
+                        ;
+                                
+                               
+                $em->persist($candidature);
+                $em->flush();
+
+
+                return $this->redirectToRoute('app_salarie_offresemploi');
+
+                
+                
+            }
+        }
+        
+        return $this->render('salarie/postuler.html.twig',
+                [
+                    'form'=>$form->createView()
+                ]
+                );
     }
 }

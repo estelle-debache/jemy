@@ -1,0 +1,24 @@
+{% extends 'layout.html.twig' %}
+
+
+{% block content %}
+     <section>
+        <div class="container mon-profil  ">
+            <h1 class="text-center">Postuler à cette annonce</h1>
+           {{form_start(form)}}{# ouvre la balise form #}
+           
+               
+                {{ form_row(form.motivation) }}
+                 {{ form_row(form.cv) }}
+
+                <div class="form-btn-group">
+                   <button type="submit" class="btn btn-primary">Valider</button>
+                </div>
+         {{ form_end(form) }}{# ferme la balise form #}
+
+    </section>
+
+  
+   
+    
+{% endblock %}

@@ -17,10 +17,13 @@
                         <p><span>Salaire : </span>{{emploi.salaire}} </p>
                         <p><span>Contrat : </span> {{ emploi.contrat }}</p>
                         <p class="text-right"><span>Annonce publiée le  : </span>{{ emploi.datePublication|date('d/m/Y')}}</p>
+                        
+                        
                     </div>
+                        <a href="{{ path("app_salarie_postuler", {id: emploi.id}) }}"><button type="button" class="btn btn-primary ">Je postule à cette annonce</button></a>
                 </div>
 
-                    <a href="{{path('app_salarie_offresemploi')}}"<button type="button" class="btn btn-outline-success"><i class="fas fa-arrow-left"></i> Retour</button></a>
+                    <a href="{{path('app_salarie_offresemploi')}}"><button type="button" class="btn btn-outline-success"><i class="fas fa-arrow-left"></i> Retour</button></a>
 
             </div>
 

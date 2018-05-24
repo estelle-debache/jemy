@@ -3,6 +3,7 @@
 namespace App\Entity;
 
 use DateTime;
+use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Validator\Constraints as Assert;
 /**
@@ -55,7 +56,21 @@ class OffreEmploi
      * @ORM\ManyToOne(targetEntity="Service", inversedBy="OffreEmploi")
      */
     private $service;
+    
+   /**
+    *
+    * @ORM\OneToMany(targetEntity="Candidature", mappedBy="offreEmploi", cascade={"persist"})
+    */
+    private $candidatures;
 
+    public function getCandidatures() {
+        return $this->candidatures;
+    }
+
+    public function setCandidatures($candidatures) {
+        $this->candidatures = $candidatures;
+        return $this;
+    }
 
     /**
      *
@@ -130,9 +145,14 @@ class OffreEmploi
         $this->entreprise = $entreprise;
         return $this;
     }
+    
+        
+
+
 
      public function __construct() {
         $this->datePublication = new DateTime();
+        $this->candidatures = new ArrayCollection();
     }
 
 }
