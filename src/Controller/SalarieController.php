@@ -224,7 +224,7 @@ class SalarieController extends Controller
                 // recuperer le nom du fichier en bdd
                 $cv = $candidature->getCv();
                 // modifier le nom obtenue lors de la precedente action
-                $cvname= $offreEmploi->getId().$user.$cv->guessExtension();
+                $cvname= $offreEmploi->getId().$user.'.'.$cv->guessExtension();
      
                 //deplacement des fichiers vers les dossiers dans images
                 $cv->move($this->getParameter('candidatures_dir'),$cvname);

@@ -105,7 +105,7 @@ class Candidature
         return $this->dateCandidature;
     }
 
-    public function setDateCandidature(\DateTimeInterface $dateCandidature) :self
+    public function setDateCandidature(\DateTimeInterface $dateCandidature)
     {
         $this->dateCandidature = $dateCandidature;
 
