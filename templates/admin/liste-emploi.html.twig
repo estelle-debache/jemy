@@ -38,7 +38,7 @@
                                 <td>{{ emploi.contrat }}</td>
                                 <td>{{ emploi.service.nom }}</td>
                                 <td>{{ emploi.datePublication|date('d/m/Y') }}</td>
-                                <td><a href=''>
+                                <td><a href='{{path('app_admin_listecandidatures', {id:emploi.id})}}'>
                                         <button type="button" class="btn btn-info">Les candidatures</button>
                                     </a>
                                     <a href='{{path('app_admin_editemploi', {id:emploi.id})}}'>

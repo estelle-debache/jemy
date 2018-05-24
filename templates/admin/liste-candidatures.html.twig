@@ -1,0 +1,50 @@
+{% extends 'layout.html.twig' %}
+
+{% block content %}
+
+
+  <section>
+        <div class="container liste-news">
+            <div class="row">
+                
+                <div class="col-12 col-md-12">
+                    <h1 class="text-center">{{emploi.poste}} </h1>
+                </div>
+             
+
+            </div>
+            <div class="row">
+                <div class="col-12 col-md-12">
+                    <table class="table table-hover text-center">
+                        <thead>
+                            <tr>
+                                <th scope="col">Poste</th>
+                                <th scope="col">Nom - Prenom</th>
+                                <th scope="col">Service</th>
+                                <th scope="col">Date</th>
+                                
+
+                               
+                                
+                            </tr>
+                        </thead>
+                        <tbody >
+                             {% for candidature in candidature %}
+                            <tr>
+                                <th scope="row">{{ candidature.offreemploi.poste }}</th>
+                                <td>{{ candidature.salarie }}</td>
+                                <td>{{ candidature.offreemploi.service }}</td>
+                                <td>{{ candidature.dateCandidature|date('d/m/Y') }}</td>
+                              
+                            </tr>
+                             {% endfor %}
+                        
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+{% endblock %}

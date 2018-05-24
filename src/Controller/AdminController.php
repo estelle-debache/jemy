@@ -3,6 +3,7 @@
 namespace App\Controller;
 
 use App\Entity\Actualite;
+use App\Entity\Candidature;
 use App\Entity\Entreprise;
 use App\Entity\OffreEmploi;
 use App\Entity\Salarie;
@@ -673,5 +674,24 @@ class AdminController extends Controller
     public function entrepriseconnectee()
     {
        return $this->render('admin/entrepriseconnectee.html.twig'); 
+    }
+    
+    /**
+     * 
+     * @Route("/les-candidature/{id}")
+     */
+    public function listecandidatures(Entreprise $entreprise, OffreEmploi $emploi, $id) {
+            
+        $em = $this->getDoctrine()->getManager();
+        $repository = $em->getRepository(OffreEmploi::class);
+        $repository = $em->getRepository(Candidature::class);
+        $entreprise = $this->getUser()->getEntreprise();
+        $candidature = $repository->findByOffreEmploi($emploi);
+        
+        return $this->render('admin/liste-candidatures.html.twig', [
+            'candidature' => $candidature,
+            'emploi' => $emploi,
+            
+        ]);
     }
 }
