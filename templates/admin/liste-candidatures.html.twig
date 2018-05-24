@@ -4,47 +4,43 @@
 
 
   <section>
-        <div class="container liste-news">
+        <div class="container liste-candidature">
             <div class="row">
-                
-                <div class="col-12 col-md-12">
-                    <h1 class="text-center">{{emploi.poste}} </h1>
-                </div>
-             
-
-            </div>
-            <div class="row">
-                <div class="col-12 col-md-12">
-                    <table class="table table-hover text-center">
-                        <thead>
-                            <tr>
-                                <th scope="col">Poste</th>
-                                <th scope="col">Nom - Prenom</th>
-                                <th scope="col">Service</th>
-                                <th scope="col">Date</th>
-                                
-
-                               
-                                
-                            </tr>
-                        </thead>
-                        <tbody >
-                             {% for candidature in candidature %}
-                            <tr>
-                                <th scope="row">{{ candidature.offreemploi.poste }}</th>
-                                <td>{{ candidature.salarie }}</td>
-                                <td>{{ candidature.offreemploi.service }}</td>
-                                <td>{{ candidature.dateCandidature|date('d/m/Y') }}</td>
-                              
-                            </tr>
-                             {% endfor %}
-                        
-                        </tbody>
-                    </table>
+                <div class="col-12 col-md-12 text-center">
+                    <h1 class="text-center">Les candidatures </h1>
+                    <h2>{{emploi.poste}}</h2>
                 </div>
             </div>
+            <div class="">
+                {% for candidature in candidatures %}
+                <div class="card w-100">
+                    <div class="card-body row">
+                        <div class="col-4   text-center">
+                            <img class="img-fluid" src="/images/photo/53165.gif">
+                            <button type="button" class="btn btn-primary w-100">Télécharger le CV </button>
+                            <div class="text-left">
+                                <p><span>Nom et prénom :</span> {{ candidature.salarie }}</p>
+                                <p><span>Service :</span> {{ candidature.salarie.service }}</p>
+                                <p><span>Mail :</span> {{ candidature.salarie.email }}</p>
+                                <p><span>Téléphone :</span> {{ candidature.salarie.telephone }}</p>
+                                <p><span>Date de candidature :</span> {{ candidature.dateCandidature|date('d/m/Y') }}</p>
+                            </div>
+                        </div>
+                        <div class="col-8">
+                            
+                            <p> {{ candidature.motivation|nl2br }}</p>
+                        </div>
+                      
+                    </div>
+                </div>
+                 {% endfor %}
+            </div>
+
+            
+            
 
         </div>
     </section>
 
 {% endblock %}
+

@@ -690,7 +690,7 @@ class AdminController extends Controller
     
     /**
      * 
-     * @Route("/les-candidature/{id}")
+     * @Route("/liste-candidatures/{id}")
      */
     public function listecandidatures(Entreprise $entreprise, OffreEmploi $emploi, $id) {
             
@@ -701,7 +701,7 @@ class AdminController extends Controller
         $candidature = $repository->findByOffreEmploi($emploi);
         
         return $this->render('admin/liste-candidatures.html.twig', [
-            'candidature' => $candidature,
+            'candidatures' => $candidature,
             'emploi' => $emploi,
             
         ]);
