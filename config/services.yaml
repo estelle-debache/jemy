@@ -12,6 +12,8 @@ parameters:
     upload_dir: '%kernel.project_dir%/public/images/news'
     #répertoire de ficher de stockage des cv  pour les candidatures
     candidatures_dir: '%kernel.project_dir%/public/images/candidatures'
+    #répertoire de ficher de stockage des fiches de paies par salaries 
+    fdp_dir: '%kernel.project_dir%/public/images/fdp'
 services:
     # default configuration for services in *this* file
     _defaults:
