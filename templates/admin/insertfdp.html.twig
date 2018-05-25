@@ -7,7 +7,17 @@
         <div class="container ajout-salaries ">
             <h1 class="text-center">Ajouter une fiche de paie</h1>
             {{form_start(form)}}
-            {{ form_row(form.fiche_de_paie) }}
+            <div class="row">
+                <div class="col-md-4">
+             {{ form_row(form.mois) }}
+             </div>
+              <div class="col-md-4">
+              {{ form_row(form.annee) }}
+              </div>
+               <div class="col-md-4">
+              {{ form_row(form.fiche_de_paie) }}
+               </div>
+            </div>
             <div class="form-btn-group">
             <button type="submit" class="btn btn-primary">Enregistrer</button>
             </div>
