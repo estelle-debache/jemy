@@ -4,6 +4,7 @@ namespace App\Controller;
 
 use App\Entity\Actualite;
 use App\Entity\Candidature;
+use App\Entity\FicheDePaie;
 use App\Entity\OffreEmploi;
 use App\Entity\Salarie;
 use App\Form\CandidatureType;

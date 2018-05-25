@@ -490,7 +490,18 @@ class Salarie implements UserInterface, Serializable
         $this->FicheDePaies = new ArrayCollection();
     }
 
-
+    public function getFicheDePaieByYear($year)
+    {
+        $result = [];
+        
+        foreach ($this->FicheDePaies as $fdp) {
+            if ($fdp->getAnnee() == $year) {
+                $result[] = $fdp;
+            }
+        }
+        
+        return $result;
+    }
 
 
 
