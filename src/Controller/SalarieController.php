@@ -258,4 +258,13 @@ class SalarieController extends Controller
                 ]
                 );
     }
+    
+    /**
+     * @Route("/fdp")
+     */
+    public function fdp()
+    {
+        
+       return $this->render('salarie/mesfichesdepaie.html.twig');
+    }
 }

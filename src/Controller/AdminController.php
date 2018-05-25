@@ -3,14 +3,15 @@
 namespace App\Controller;
 
 use App\Entity\Actualite;
-use App\Entity\Candidature;
 use App\Entity\Entreprise;
+use App\Entity\FicheDePaie;
 use App\Entity\OffreEmploi;
 use App\Entity\Salarie;
 use App\Entity\Service;
 use App\Form\ActualiteType;
 use App\Form\AjoutsalarieType;
 use App\Form\EntrepriseType;
+use App\Form\FdpType;
 use App\Form\ModifsalarieType;
 use App\Form\OffresemploiType;
 use App\Form\ServiceType;
@@ -699,5 +700,56 @@ class AdminController extends Controller
             'emploi' => $emploi,
             
         ]);
-    }
+    
+   }
+   
+   /**
+    * @Route("/insertfdp/{id}")
+    */
+   public function insertfdp(Request $request, Salarie $salarie) {
+       
+       $em =$this->getDoctrine()->getManager();
+       
+       $fdp = new FicheDePaie();
+       
+       
+       $form = $this->createForm(FdpType::class, $fdp);
+       $form->handleRequest($request);
+       
+       if($form->isSubmitted()){
+           if($form->isValid())
+           {
+                // recuperer le nom du fichier en bdd
+                $blo = $fdp->getFicheDePaie();
+                 // modifier le nom obtenue lors de la precedente action
+                $bloname= uniqid() . '.' . $blo->guessExtension();
+                
+                $blo->move($this->getParameter('fdp_dir'),$bloname);
+                
+                $fdp->setFicheDePaie($bloname)
+                    ->setSalarie($salarie)
+                        ;
+
+
+ 
+               
+            $em->persist($fdp);
+            $em->flush();
+                         return $this->redirectToRoute('app_admin_listesalaries');     
+               
+           }
+       }
+       
+       
+       return $this->render('admin/insertfdp.html.twig',
+               [
+                   'form'=>$form->createView()
+               ]
+               
+               );
+       
+       
+   }     
+        
+
 }

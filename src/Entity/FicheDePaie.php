@@ -16,40 +16,63 @@ class FicheDePaie
      * @ORM\Column(type="integer")
      */
     private $id;
-   
-    /*
-     * @ORM\Column(type="date")
-     */
-    private $date_emission;
-    /**
-     * @Assert\NotBlank(message="LE MOIS EST OBLIGATOIRE")
-     * @ORM\Column(type="string", length=20)
-     */
-    private $mois;
-    
+
     /**
      * @Assert\NotBlank(message="LE FICHE DE PAIE EST OBLIGATOIRE")
      * @ORM\Column(type="string", length=255)
      */
-    private $fiche_de_paie;
+    private $ficheDePaie;
+    /**
+     *
+     *  @ORM\JoinColumn(nullable=false)
+     * @ORM\ManyToOne(targetEntity="Salarie", inversedBy="FicheDePaies") 
+     */
+    private $salarie;
+    
     /**
      *
      * @ORM\Column(type="date")
      */
-    private $dateEmission;
+    private $date;
     
-    /**
-     *
-     *  @ORM\JoinColumn(nullable=false)
-     * @ORM\ManyToOne(targetEntity="Salarie", inversedBy="FicheDePaie") 
-     */
-    private $salarie;
-    
-    
-    
+    public function __construct() {
+        $this->date = new \DateTime() ;
+    }
 
-    public function getId()
+            public function getId()
     {
         return $this->id;
     }
+
+    public function getDate() {
+        return $this->date;
+    }
+
+    public function setDate($date) {
+        $this->date = $date;
+        return $this;
+    }
+
+        public function getFicheDePaie() {
+        return $this->ficheDePaie;
+    }
+
+
+
+    public function getSalarie() {
+        return $this->salarie;
+    }
+
+    public function setFicheDePaie($ficheDePaie) {
+        $this->ficheDePaie = $ficheDePaie;
+        return $this;
+    }
+
+
+    public function setSalarie($salarie) {
+        $this->salarie = $salarie;
+        return $this;
+    }
+
+
 }

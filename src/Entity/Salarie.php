@@ -2,14 +2,14 @@
 
 namespace App\Entity;
 
-
-use Doctrine\ORM\Mapping as ORM;
-use Serializable;
-use Symfony\Component\Security\Core\User\UserInterface;
-use Symfony\Component\Validator\Constraints as Assert;
 use App\Entity\Entreprise;
 use App\Entity\Service;
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\ORM\Mapping as ORM;
+use Serializable;
 use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
+use Symfony\Component\Security\Core\User\UserInterface;
+use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * @UniqueEntity(fields="email", message="Il existe deja un compte salarié avec cet email")
@@ -165,7 +165,7 @@ class Salarie implements UserInterface, Serializable
      *
      * @ORM\OneToMany(targetEntity="FicheDePaie", mappedBy="salarie")
      */
-    private $FicheDePaie;
+    private $FicheDePaies;
     
     
     
@@ -294,8 +294,8 @@ class Salarie implements UserInterface, Serializable
         return $this->service;
     }
 
-    public function getFicheDePaie() {
-        return $this->FicheDePaie;
+    public function getFicheDePaies() {
+        return $this->FicheDePaies;
     }
 
     public function getActualite() {
@@ -420,8 +420,8 @@ class Salarie implements UserInterface, Serializable
         return $this;
     }
 
-    public function setFicheDePaie($FicheDePaie) {
-        $this->FicheDePaie = $FicheDePaie;
+    public function setFicheDePaies($FicheDePaies) {
+        $this->FicheDePaies = $FicheDePaies;
         return $this;
     }
 
@@ -485,6 +485,9 @@ class Salarie implements UserInterface, Serializable
     public function __toString() {
         return $this->getFullName();
         
+    }
+    public function __construct() {
+        $this->FicheDePaies = new ArrayCollection();
     }
 
 
