@@ -6,9 +6,13 @@
   <section>
         <div class="container mesfichesdepaie  ">
             <h1 class="text-center">Mes fiches de paie</h1>
+             <div class="text-center">
+                <a href="{{path('app_salarie_profiledit' )}}"><button type="button" class="btn btn-outline-success ">Modifier mon profil</button></a>
+            </div>
+            
             <h2>Votre dernière fiche de paie est disponible</h2>
             <div class="icone-telechargement">
-               <a onclick="{{ asset('')}}"> <i class="fas fa-download"></i> </a>
+               <a href=""> <i class="fas fa-download"></i> </a>
             </div>
             <p class="text-center"><i class="fas fa-lock"></i> Aucun autre collaborateur n'a accès à vos fiches de paie</p>
 
@@ -17,23 +21,22 @@
                 <div class="row">
                     <div class="col-12 col-md-12 ">
                         <h3>Archives</h3>
-
                     </div>
-                </div>
-
-                <div class="row">
-
-                    <div class="col-6 col-md-3">
-                        <p>2017</p>
+                     </div>
+                    <div class="row">
+                    {% for year in 2018..2015 %}   
+                       <div class="col-6 col-md-3">
+                        <p>{{ year }}</p>
                         <hr>
-                        {% for fdp in app.user.ficheDePaies %}
                         <ul>
-                            <li> <a target="_blank" class="btn btn-outline-dark" href="{{ asset('images/fdp/')~fdp.ficheDePaie }}"></i> Décembre</a></li>
+                           
+                            {% for fdp in app.user.getFicheDePaieByYear(year) %}
+                                
+                                <li> <a target="_blank" class="btn btn-outline-dark" href="{{ asset('images/fdp/'~ fdp.ficheDePaie) }}"></i> {{ fdp.mois }}</a></li>
+                            {% endfor %}
                         </ul>
-                        {% endfor %}
-                    </div>
-             
-
+                        </div>
+                    {% endfor %}   
 
 
                 </div>

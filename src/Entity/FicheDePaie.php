@@ -35,11 +35,29 @@ class FicheDePaie
      */
     private $date;
     
+    
+    /**
+     *
+     * @ORM\Column(type="string")
+     */
+    private $mois;
+    
+    
+    /**
+     *
+     * @ORM\Column(type="string")
+     */
+    private $annee;
+
+
     public function __construct() {
         $this->date = new \DateTime() ;
     }
 
+
+
     public function getId()
+
     {
         return $this->id;
     }
@@ -73,6 +91,27 @@ class FicheDePaie
         $this->salarie = $salarie;
         return $this;
     }
+
+    public function getMois() {
+        return $this->mois;
+    }
+
+    public function getAnnee() {
+        return $this->annee;
+    }
+
+    public function setMois($mois) {
+        $this->mois = $mois;
+        return $this;
+    }
+
+    public function setAnnee($annee) {
+        $this->annee = $annee;
+        return $this;
+    }
+
+
+
 
 
 }
