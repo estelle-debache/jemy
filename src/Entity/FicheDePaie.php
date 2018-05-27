@@ -54,10 +54,7 @@ class FicheDePaie
         $this->date = new \DateTime() ;
     }
 
-
-
-    public function getId()
-
+            public function getId()
     {
         return $this->id;
     }
@@ -91,7 +88,6 @@ class FicheDePaie
         $this->salarie = $salarie;
         return $this;
     }
-
     public function getMois() {
         return $this->mois;
     }
@@ -109,7 +105,6 @@ class FicheDePaie
         $this->annee = $annee;
         return $this;
     }
-
 
 
 

@@ -4,20 +4,28 @@
 {% block content %}
     
  <section>
-        <div class="container ajout-fdp ">
+        <div class="container insert-fdp ">
+            
+                
+            <h1 class="text-center">Les fiches de paie</h1>
+            {{form_start(form)}}
             <div class="row">
-                <div class="col-12 col-md-12">
-                    <h1 class="text-center">Ajouter une fiche de paie</h1>
-                </div>
-                <div class="col-12 col-md-12">
-                    {{form_start(form)}}
-                    {{ form_row(form.fiche_de_paie) }}
-                    <div class="form-btn-group">
-                        <button type="submit" class="btn btn-primary">Enregistrer</button>
-                    </div>
-                    {{ form_end(form) }}
-                </div>
+                <div class="col-md-4">
+             {{ form_row(form.mois) }}
+             </div>
+              <div class="col-md-4">
+              {{ form_row(form.annee) }}
+              </div>
+               <div class="col-md-4">
+              {{ form_row(form.fiche_de_paie) }}
+               </div>
+            
+            <div class="form-btn-group text-right col-12">
+                <button type="submit" class="btn btn-primary first">Ajouter</button>
             </div>
+               </div>
+         {{ form_end(form) }}
+        
             <div class="row">
                 <div class="col-12 col-md-12">
                     <table class="table table-hover text-center">
@@ -27,26 +35,28 @@
                                 <th scope="col">Mois</th>
                                 <th scope="col">Année</th>
                                 
-                                <th scope="col"></th>
+                                <th scope="col" class="boutons-colonne"></th>
                                 
                             </tr>
                         </thead>
                         <tbody >
-                             
+                             {% for fiche in fichede %}
                             <tr>
-                                <th scope="row"></th>
-                                <td></td>
-                                <td></td>
-                                
+                                <td>{{fiche.id}}</td>
+                                <td>{{fiche.mois}}</td>
+                                <td>{{fiche.annee}}</td>
                                 <td>
-                                    <a href='{{path('app_admin_editfdp' , {id:fdp.id})}}'>
-                                        <button type="button" class="btn btn-primary">Modifier</button>
-                                    </a> 
-                                    <a href=''>
+                                   
+                                    <a href="{{path('app_admin_editfdp', {id: fiche.id})}}"><button type="button" class="btn btn-primary">Modifier</button></a>
+                                    <a target="_blank" class="btn btn-outline-dark" href="{{ asset('images/fdp/'~ fiche.ficheDePaie) }}"> Voir </a>
+                                    <a href='{{path('app_admin_deletefdp', {id:fiche.id})}}'>
                                         <button type="button" class="btn btn-danger">Supprimer</button>
                                     </a>
+                                    
                                 </td>
+                                
                             </tr>
+                            {% endfor %}
                            
                         
                         </tbody>

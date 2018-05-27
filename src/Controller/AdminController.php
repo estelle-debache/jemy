@@ -710,6 +710,16 @@ class AdminController extends Controller
        
        $em =$this->getDoctrine()->getManager();
        
+       
+       
+       
+
+       $repository = $this->getDoctrine()->getRepository(FicheDePaie::class);
+       
+        $query = $repository->createQueryBuilder('f')->where('f.salarie='.$salarie->getId())->getQuery();
+        $fichede= $query->getResult();
+
+       
        $fdp = new FicheDePaie();
        
        
@@ -735,7 +745,12 @@ class AdminController extends Controller
                
             $em->persist($fdp);
             $em->flush();
-                         return $this->redirectToRoute('app_admin_listesalaries');     
+            $this->addFlash(
+                    'success',
+                    'La fiche de paie a bien été enregistrée'
+                );
+           return $this->redirectToRoute('app_admin_insertfdp', array('id'=>$salarie->getId()));
+ 
                
            }
        }
@@ -744,7 +759,7 @@ class AdminController extends Controller
        return $this->render('admin/insertfdp.html.twig',
                [
                    'form'=>$form->createView(),
-                   'fdp' =>$fdp
+                   'fichede'=>$fichede
                ]
                
                );
@@ -752,12 +767,14 @@ class AdminController extends Controller
        
    }     
    
-   /**
+   
+  /**
      * 
      * @Route("/edition-fdp/{id}", defaults={"id":null} )
      * @param Request $request
      */
-    public function editfdp(Request $request, $id)
+   
+    public function editfdp(Request $request, FicheDePaie $fdp)
     {
          //Faire le rendu du formulaire et son traitement
         // Validation : tous les champs obligatoires
@@ -769,7 +786,7 @@ class AdminController extends Controller
         $originalfdp = null;
         
        
-            $fdp = $em->find(FicheDePaie::class, $id);
+            
             
             // 404 si l'id reçu dans l'URL n'existe pas en bdd
             if (is_null($fdp)) {
@@ -801,6 +818,7 @@ class AdminController extends Controller
                  /**
                   * @var uploadedFile 
                   */
+   
                  $newfdp = $fdp->getFicheDePaie();
                  //s'il y a eu une image uploadée
                  if(!is_null($newfdp)){
@@ -839,7 +857,7 @@ class AdminController extends Controller
                     'La fiche de paie à bien été modifiée'
                 );
                 // redirection vers la page de liste
-                return $this->redirectToRoute('app_admin_insertfdp');
+                return $this->redirectToRoute('app_admin_insertfdp', array('id'=>$fdp->getSalarie()->getId()));
             } else {
                 // message d'erreur en haut de la page
                 $this->addFlash(
@@ -862,6 +880,23 @@ class AdminController extends Controller
         
     }
     
+    /**
+     * 
+     * @Route("/deletefdp/{id}")
+     */
+    public function deletefdp(FicheDePaie $fdp)
+    {
+        $em =$this->getDoctrine()->getManager();
+        $em->remove($fdp);
+        $em->flush();
         
+        $this->addFlash(
+            'success',
+            'La fiche de paie a été supprimée'
+        );
+        
+        return $this->redirectToRoute('app_admin_insertfdp', array('id'=> $fdp->getSalarie()->getId()));
+    }
+          
 
 }
