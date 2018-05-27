@@ -4,14 +4,55 @@
 {% block content %}
     
  <section>
-        <div class="container ajout-salaries ">
-            <h1 class="text-center">Ajouter une fiche de paie</h1>
-            {{form_start(form)}}
-            {{ form_row(form.fiche_de_paie) }}
-            <div class="form-btn-group">
-            <button type="submit" class="btn btn-primary">Enregistrer</button>
+        <div class="container ajout-fdp ">
+            <div class="row">
+                <div class="col-12 col-md-12">
+                    <h1 class="text-center">Ajouter une fiche de paie</h1>
+                </div>
+                <div class="col-12 col-md-12">
+                    {{form_start(form)}}
+                    {{ form_row(form.fiche_de_paie) }}
+                    <div class="form-btn-group">
+                        <button type="submit" class="btn btn-primary">Enregistrer</button>
+                    </div>
+                    {{ form_end(form) }}
+                </div>
             </div>
-         {{ form_end(form) }}
+            <div class="row">
+                <div class="col-12 col-md-12">
+                    <table class="table table-hover text-center">
+                        <thead>
+                            <tr>
+                                <th scope="col">#</th>
+                                <th scope="col">Mois</th>
+                                <th scope="col">Année</th>
+                                
+                                <th scope="col"></th>
+                                
+                            </tr>
+                        </thead>
+                        <tbody >
+                             
+                            <tr>
+                                <th scope="row"></th>
+                                <td></td>
+                                <td></td>
+                                
+                                <td>
+                                    <a href='{{path('app_admin_editfdp' , {id:fdp.id})}}'>
+                                        <button type="button" class="btn btn-primary">Modifier</button>
+                                    </a> 
+                                    <a href=''>
+                                        <button type="button" class="btn btn-danger">Supprimer</button>
+                                    </a>
+                                </td>
+                            </tr>
+                           
+                        
+                        </tbody>
+                    </table>
+                </div>
+            </div>
         </div>
     </section>
 

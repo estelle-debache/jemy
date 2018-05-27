@@ -38,7 +38,7 @@ header .navbar {
 /** HOME PAGE **************************************************************************************************************************/
 section{
   /*margin-top: 5rem;*/
-  margin: 2rem 0;
+  margin: 5rem 0;
 }
 
 .home-page {
@@ -60,6 +60,7 @@ section{
     font-size: 2rem;
     margin-bottom: 5rem;
     text-align: center;
+    color: #083b66;
 }
 
 .home-gauche button{
@@ -106,6 +107,7 @@ section{
 .inscription h1{
     color: #083b66;
     margin-top: 6rem;
+    margin-bottom: 3rem;
 
 }
 .inscription{
@@ -124,6 +126,7 @@ section{
     padding-left : 3rem;
     padding-right:3rem;
     float:right;
+    margin-top: 1rem;
 }
 
 .inscription .btn-primary:hover{
@@ -372,6 +375,23 @@ section{
 
 }
 
+.validationConges .btn-outline-success{
+    margin-top: 4rem;
+    background-color: #74d14c;
+    border-color:#74d14c;
+    padding-left : 3rem;
+    padding-right:3rem;
+    color:white;
+   
+
+}
+
+.validationConges .btn-outline-success:hover{
+    background-color:white;
+    color:#74d14c;
+
+}
+
 
 
 /** MES FICHES DE PAIE **************************************************************************************************************************/
@@ -412,7 +432,7 @@ section{
     transform: scale(1.05 , 1.1);
 }
 
-.mesfichesdepaie .btn{
+.mesfichesdepaie .btn-outline-dark{
     width:6rem;
 }
 
@@ -430,6 +450,22 @@ section{
     transform: scale(1.05 , 1.1);
 }
 
+.mesfichesdepaie .btn-outline-success{
+    margin-top: 2rem;
+    background-color: #74d14c;
+    border-color:#74d14c;
+    padding-left : 3rem;
+    padding-right:3rem;
+    color:white;
+    margin:auto;
+
+}
+
+.mesfichesdepaie .btn-outline-success:hover{
+    background-color:white;
+    color:#74d14c;
+
+}
 /** TROMBINOSCOPE **************************************************************************************************************************/
 
 .trombinoscope h1{
@@ -475,7 +511,25 @@ section{
 }
 
 .trombinoscope .card-body{
-    height:10rem;
+    height:13rem;
+}
+
+.trombinoscope .btn-outline-success{
+    margin-top: 4rem;
+    background-color: #74d14c;
+    border-color:#74d14c;
+    padding-left : 3rem;
+    padding-right:3rem;
+    color:white;
+    
+    
+
+}
+
+.trombinoscope .btn-outline-success:hover{
+    background-color:white;
+    color:#74d14c;
+
 }
 /** ADMIN LISTE SALARIES **************************************************************************************************************************/
 
@@ -507,13 +561,22 @@ section{
 .liste-salaries a{
     color:#083b66;
 }
+
+.liste-salaries .colonne-boutons{
+    width:16rem;
+}
 /** ADMIN AJOUT SALARIES **************************************************************************************************************************/
+.ajout-salaries h1{
+    color: #083b66;
+   margin-bottom: 4rem;
+}
 
 .ajout-salaries .btn-primary{
     background-color: #74d14c;
     border-color:#74d14c;
     float:right;
     margin-bottom: 3rem;
+    margin-top:2rem;
 }
 
 .ajout-salaries .btn-primary:hover{
@@ -698,6 +761,7 @@ section{
     border-color:#74d14c;
     float:right;
     margin-bottom: 3rem;
+    margin-top: 3rem;
 }
 
 .ajout-news .btn-primary:hover{
@@ -745,6 +809,10 @@ section{
 
 .liste-news a{
     color:#083b66;
+}
+
+.liste-news .colonne-boutons{
+    width:15rem;
 }
 
 /** ADMIN LISTE OFFRES EMPLOI **************************************************************************************************************************/
@@ -800,6 +868,10 @@ section{
     color:#083b66;
 }
 
+.liste-emploi .colonne-boutons{
+    width:15rem;
+}
+
 /** ADMIN MODIF ENTREPRISE **************************************************************************************************************************/
 
 .modif-entreprise h1{
@@ -812,6 +884,7 @@ section{
     border-color:#74d14c;
     float:right;
     margin-bottom: 3rem;
+    margin-top:3rem;
 }
 
 .modif-entreprise .btn-primary:hover{
@@ -834,6 +907,24 @@ section{
     background-position: center;
     background-size: 100%;
    height:30rem;
+}
+
+.news .btn-outline-success{
+    margin-top: 3rem;
+    background-color: #74d14c;
+    border-color:#74d14c;
+    padding-left : 3rem;
+    padding-right:3rem;
+    color:white;
+    
+    
+
+}
+
+.news .btn-outline-success:hover{
+    background-color:white;
+    color:#74d14c;
+
 }
 /**LISTE EMPLOI SALARIE **************************************************************************************************************************/
 .liste-emploi h1{
@@ -871,6 +962,24 @@ section{
 .liste-emploi p span{
     font-size:0.7rem;
     color:#f2af58;
+}
+
+.liste-emploi .btn-outline-success{
+    margin-top: 3rem;
+    background-color: #74d14c;
+    border-color:#74d14c;
+    padding-left : 3rem;
+    padding-right:3rem;
+    color:white;
+    
+    
+
+}
+
+.liste-emploi .btn-outline-success:hover{
+    background-color:white;
+    color:#74d14c;
+
 }
 
 /**DETAIL EMPLOI SALARIE **************************************************************************************************************************/

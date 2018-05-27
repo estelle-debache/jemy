@@ -39,7 +39,7 @@ class FicheDePaie
         $this->date = new \DateTime() ;
     }
 
-            public function getId()
+    public function getId()
     {
         return $this->id;
     }
