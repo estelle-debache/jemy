@@ -90,7 +90,7 @@ class AjoutsalarieType extends AbstractType
             ->add('numSs', TextType::class,['label'=>"Numero Securite Social (15 chiffres)"])
             
             ->add('iban', TextType::class,['label'=>"IBAN (27 chiffres)"])
-            ->add('carteIdentite', FileType::class,['label'=>"Carte d'identite (jpg)"])
+            ->add('carteIdentite', FileType::class,['label'=>"Carte d'identite "])
             ->add('contratTravail', FileType::class,['label'=>"Contrat de travail (pdf)"])
             ->add('photo', FileType::class,['label'=>"Photo (portrait jpg)"])
             ->add('telephone', TextType::class,['label'=>"Téléphone"])
