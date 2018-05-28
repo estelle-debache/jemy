@@ -135,7 +135,7 @@ class Salarie implements UserInterface, Serializable
     
     /**
      *
-     * @ORM\Column(type="integer", length=2, nullable=true) 
+     * @ORM\Column(type="float", nullable=true) 
      */
     private $soldeConge;
     
@@ -157,7 +157,7 @@ class Salarie implements UserInterface, Serializable
     /**
      *
      * @ORM\JoinColumn(nullable=false)
-     * @ORM\ManyToOne(targetEntity="Service", inversedBy="salarie")
+     * @ORM\ManyToOne(targetEntity="Service", inversedBy="salaries")
      */
     private $service;
 
@@ -197,7 +197,32 @@ class Salarie implements UserInterface, Serializable
      *@ORM\OneToMany(targetEntity="Candidature", mappedBy="salarie") 
      */
     private $candidature;
-    public function getTelephone() {
+    
+    /**
+     *
+     *  @ORM\Column(type="float", nullable=true)
+     */
+    private $soldeRtt;
+    
+    public function getCandidature() {
+        return $this->candidature;
+    }
+
+    public function getSoldeRtt() {
+        return $this->soldeRtt;
+    }
+
+    public function setCandidature($candidature) {
+        $this->candidature = $candidature;
+        return $this;
+    }
+
+    public function setSoldeRtt($soldeRtt) {
+        $this->soldeRtt = $soldeRtt;
+        return $this;
+    }
+
+        public function getTelephone() {
         return $this->telephone;
     }
 
@@ -503,7 +528,5 @@ class Salarie implements UserInterface, Serializable
         return $result;
     }
 
-
-
-
+        
 }

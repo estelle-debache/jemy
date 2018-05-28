@@ -223,6 +223,11 @@ class Entreprise
         $this->OffreEmploi = $OffreEmploi;
         return $this;
     }
+    
+    public function countBySalarie() {
+        return count($this->salaries);
+        
+    }
 
 
     
