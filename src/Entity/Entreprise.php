@@ -25,26 +25,39 @@ class Entreprise
     private $id;
     
     /**
-     *@Assert\NotBlank(message="LE NOM EST OBLIGATOIRE")
-     *@ORM\Column(type="string", length=30)
+     * @Assert\NotBlank(message="LE NOM EST OBLIGATOIRE")
+     * @Assert\Length(max="30", maxMessage="Le nom ne doit pas dépasser {{ limit }} caractères")
+     * @ORM\Column(type="string", length=30)
      */
     private $nom;
     
     /**
-     *@Assert\NotBlank(message="LE SIREN EST OBLIGATOIRE")
+     * @Assert\NotBlank(message="LE SIREN EST OBLIGATOIRE")
+     * @Assert\Length(
+     *      min = 9,
+     *      max = 9,
+     *      minMessage = "Le Siren doit contenir {{ limit }} chiffres minimum",
+     *      maxMessage = "Le Siren ne doit pas contenir plus de {{ limit }} chiffres "
+     * )
      * @ORM\Column(type="string", length=9)
      */
     private $siren;
     
     /**
-     *@Assert\NotBlank(message="LE SIRET EST OBLIGATOIRE")
-     *@ORM\Column(type="string", length=14)
+     * @Assert\NotBlank(message="LE SIRET EST OBLIGATOIRE")
+     * @Assert\Length(
+     *      min = 14,
+     *      max = 14,
+     *      minMessage = "Le Siret doit contenir {{ limit }} chiffres minimum",
+     *      maxMessage = "Le Siret ne doit pas contenir plus de {{ limit }} chiffres "
+     * )
+     * @ORM\Column(type="string", length=14)
      */
     private $siret;
     
     /**
-     *
-     *@ORM\Column(type="string", columnDefinition="enum('SARL', 'SAS', 'SA' )", nullable=false)
+     * @Assert\NotBlank(message="LA FORME JURIDIQUE EST OBLIGATOIRE")
+     * @ORM\Column(type="string", columnDefinition="enum('SARL', 'SAS', 'SA' )", nullable=false)
      */
     private $formeJuridique;
     public function getFormeJuridique() {
@@ -57,25 +70,27 @@ class Entreprise
     }
 
      /**
-     *@Assert\NotBlank(message="L'ADRESSE EST OBLIGATOIRE")
-     *@ORM\Column(type="string", length=250)
+     * @Assert\NotBlank(message="L'ADRESSE EST OBLIGATOIRE")
+     * @ORM\Column(type="string", length=250)
      */
     private $adresse;
     
     /**
-     *@Assert\NotBlank(message="LE CODE POSTAL EST OBLIGATOIRE")
-     *@ORM\Column(type="string", length=5)
+     * @Assert\NotBlank(message="LE CODE POSTAL EST OBLIGATOIRE")
+     * @Assert\Length(max="5", maxMessage="Le code postal ne doit pas dépasser {{ limit }} chiffres")
+     * @ORM\Column(type="string", length=5)
+     * 
      */
     private $codePostal;
     
     /**
-     *@Assert\NotBlank(message="LA VILLE EST OBLIGATOIRE")
-     *@ORM\Column(type="string", length=20)
+     * @Assert\NotBlank(message="LA VILLE EST OBLIGATOIRE")
+     * @ORM\Column(type="string", length=20)
      */
     private $ville;
 
     /**
-     *@Assert\NotBlank(message="LE NUMERO TELEPHONE EST OBLIGATOIRE")
+     * @Assert\NotBlank(message="LE NUMERO TELEPHONE EST OBLIGATOIRE")
      * @ORM\Column(type="string", length=10)
      */
     private $telephone;
@@ -88,7 +103,7 @@ class Entreprise
     
     /**
      *
-     *@ORM\OneToMany(targetEntity="Service", mappedBy="entreprise", cascade={"persist"})
+     * @ORM\OneToMany(targetEntity="Service", mappedBy="entreprise", cascade={"persist"})
      */
     private $services;
 

@@ -735,6 +735,11 @@ class AdminController extends Controller
                
             $em->persist($fdp);
             $em->flush();
+            
+            $this->addFlash(
+                    'success',
+                    'La fiche de paie à bien été enregistrée'
+                );
                          return $this->redirectToRoute('app_admin_listesalaries');     
                
            }

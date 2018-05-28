@@ -79,6 +79,7 @@ class SalarieType extends AbstractType
     {
         $resolver->setDefaults([
             'data_class' => Salarie::class,
+            'validation_groups' => array('inscription-admin'),
         ]);
     }
 }
