@@ -8,20 +8,33 @@
                     <h1 class="text-center">Offre d'emploi </h1>
                 </div>
             </div>
+            <div class="row">
+                <div class="col-12">
+                    {{ form_start(form) }}
+                </div>
+                <div class="col-12">
+                    {{form_row(form.poste)}}
+                </div>
+                <div class="col-12">
+                    {{form_row(form.description)}}
+                </div>
+                <div class="col-4">
+                    {{form_row(form.contrat) }}
+                </div>
+                <div class="col-4">
+                    {{form_row(form.salaire)}}
+                </div>
+                <div class="col-4">
+                    {{form_row(form.service)}}
+                </div>
 
-            {{ form_start(form) }}
-            {{form_row(form.poste)}}
-            {{form_row(form.description)}}
-            {{form_row(form.contrat) }}
-            {{form_row(form.salaire)}}
-            {{form_row(form.service)}}
 
 
-
-
-
-             <button type="submit" class="btn btn-primary">Enregistrer votre offre d'emploi</button>
-            {{ form_end(form) }}
+                <div class="col-12">
+                    <button type="submit" class="btn btn-primary">Enregistrer votre offre d'emploi</button>
+                   {{ form_end(form) }}
+                </div>
+            </div>
         </div>
     </section>
     {% endblock %}

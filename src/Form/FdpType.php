@@ -16,13 +16,13 @@ class FdpType extends AbstractType
     {
         $annees = [];
         
-        for($i=1999; $i<=2050; $i++){
+        for($i=2015; $i<=2018; $i++){
             $annes[$i] = $i;
         }
         
         $builder
 
-            ->add('fiche_de_paie', FileType::class,['label'=>"Importez la fiche de paie"])
+            ->add('fiche_de_paie', FileType::class,['label'=>"Importer la fiche de paie"])
             
             ->add('mois',ChoiceType::class,array(
                     'expanded'=>false,
@@ -46,7 +46,8 @@ class FdpType extends AbstractType
             ->add('annee', ChoiceType::class,array(
                     'expanded'=>false,
                     'multiple'=>false,
-                    'choices' => $annes
+                    'choices' => $annes,
+                    'label' => "Année"
                        ))
         ;
     }

@@ -721,6 +721,17 @@ class AdminController extends Controller
        $soldertt= $salarie->getSoldeRtt();
        $soldeconge = $salarie->getSoldeConge();
         
+       
+       
+       
+       
+
+       $repository = $this->getDoctrine()->getRepository(FicheDePaie::class);
+       
+        $query = $repository->createQueryBuilder('f')->where('f.salarie='.$salarie->getId())->getQuery();
+        $fichede= $query->getResult();
+
+       
        $fdp = new FicheDePaie();
        
        
@@ -753,7 +764,12 @@ class AdminController extends Controller
                
             $em->persist($fdp);
             $em->flush();
-                         return $this->redirectToRoute('app_admin_listesalaries');     
+            $this->addFlash(
+                    'success',
+                    'La fiche de paie a bien été enregistrée'
+                );
+           return $this->redirectToRoute('app_admin_insertfdp', array('id'=>$salarie->getId()));
+ 
                
            }
        }
@@ -761,13 +777,145 @@ class AdminController extends Controller
        
        return $this->render('admin/insertfdp.html.twig',
                [
-                   'form'=>$form->createView()
+                   'form'=>$form->createView(),
+                   'fichede'=>$fichede
                ]
                
                );
        
        
    }     
+   
+   
+  /**
+     * 
+     * @Route("/edition-fdp/{id}", defaults={"id":null} )
+     * @param Request $request
+     */
+   
+    public function editfdp(Request $request, FicheDePaie $fdp)
+    {
+         //Faire le rendu du formulaire et son traitement
+        // Validation : tous les champs obligatoires
+        // En creation setter l'auteur avec l'utilisateur connecté
+        // $this->getUser()
+        // Si enregistrement ok, rediriger vers la liste avec un message de confirmation
         
+        $em = $this->getDoctrine()->getManager();
+        $originalfdp = null;
+        
+       
+            
+            
+            // 404 si l'id reçu dans l'URL n'existe pas en bdd
+            if (is_null($fdp)) {
+                throw new NotFoundHttpException();
+            }
+            
+            if(!is_null($fdp->getFicheDePaie())){
+            //nom du fichier en bdd
+                $originalfdp = $fdp->getFicheDePaie();
+                $fdp->setFicheDePaie(
+                        new File($this->getParameter('fdp_dir') . $originalfdp)
+                 );
+            }
+      
+        // création d'un formulaire relié à la catégorie
+        $form = $this->createForm(FdpType::class, $fdp);
+        // le formulaire analyse la requête HTTP
+        $form->handleRequest($request);
+        
+        // si le formulaire a été envoyé
+        if ($form->isSubmitted()) {
+            // les attributs de l'objet Catégory ont été
+            // settés à partir des champs de formulaires
+            //dump($category);
+            
+            // Valide la saisie du formulaire à partir
+            // des annotations dans la classe Category
+            if ($form->isValid()) {
+                 /**
+                  * @var uploadedFile 
+                  */
+   
+                 $newfdp = $fdp->getFicheDePaie();
+                 //s'il y a eu une image uploadée
+                 if(!is_null($newfdp)){
+                     // nom du fichier que l'on va enregistrer
+                    $filename = uniqid() . '.' . $newfdp->guessExtension();
+                    
+                    $newfdp->move(
+                            // répertoire de destination
+                            // cf config/services.yaml
+                            $this->getParameter('fdp_dir'),
+                            $filename
+                            
+                    );
+                    // on sette l'image avec le nom qu'on lui a donné
+                    $fdp->setFicheDePaie($filename);
+                    
+                    
+                    // suppression de l'ancienne image de l'article
+                    // s'il on est en modification d'un article qui en avait
+                    // déjà une 
+                    if(!is_null($originalfdp)){
+                        unlink($this->getParameter('fdp_dir') . $originalfdp);
+                    }
+                     
+                 }else{
+                        // sans upload, on garde l'ancienne image
+                        $fdp->setFicheDePaie($originalfdp);
+                    }
+                // enregistrement en bdd
+                $em->persist($fdp);
+                $em->flush();
+                
+                // message de confirmation
+                $this->addFlash(
+                    'success',
+                    'La fiche de paie à bien été modifiée'
+                );
+                // redirection vers la page de liste
+                return $this->redirectToRoute('app_admin_insertfdp', array('id'=>$fdp->getSalarie()->getId()));
+            } else {
+                // message d'erreur en haut de la page
+                $this->addFlash(
+                    'error',
+                    'Le formulaire contient des erreurs'
+                );
+            }
+        }
+        
+        return $this->render(
+            'admin/edition-fdp.html.twig',
+            [
+                // passage du formulaire à la vue
+                'form' => $form->createView(),
+                'original_fdp' => $originalfdp,
+                
+              
+            ]
+        );
+        
+    }
+    
+    /**
+     * 
+     * @Route("/deletefdp/{id}")
+     */
+    public function deletefdp(FicheDePaie $fdp)
+    {
+        $em =$this->getDoctrine()->getManager();
+        $em->remove($fdp);
+        $em->flush();
+        
+        $this->addFlash(
+            'success',
+            'La fiche de paie a été supprimée'
+        );
+        
+        return $this->redirectToRoute('app_admin_insertfdp', array('id'=> $fdp->getSalarie()->getId()));
+    }
+          
 
 }

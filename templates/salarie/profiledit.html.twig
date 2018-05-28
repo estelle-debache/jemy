@@ -7,20 +7,36 @@
             <h1 class="text-center">Modification de mon profil</h1>
            {{form_start(form)}}{# ouvre la balise form #}
 
-                
-                {{ form_row(form.adresse) }}
-                {{ form_row(form.codePostal) }}
-                {{ form_row(form.ville) }}
-                {{ form_row(form.iban) }}
-                {{ form_row(form.telephone) }}
-                {{ form_row(form.photo) }}
-
-
-                <div class="form-btn-group">
-                   <button type="submit" class="btn btn-primary">Valider</button>
+            <div class="row">
+                <div class="col-6">
+                    {{ form_row(form.adresse) }}
                 </div>
-         {{ form_end(form) }}{# ferme la balise form #}
+                <div class="col-6">
+                {{ form_row(form.codePostal) }}
+                </div>
+                <div class="col-6">
+                {{ form_row(form.ville) }}
+                </div>
+                <div class="col-6">
+                {{ form_row(form.iban) }}
+                </div>
+                <div class="col-6">
+                {{ form_row(form.telephone) }}
+                </div>
+                <div class="col-6">
+                {{ form_row(form.photo) }}
+                </div>
 
+                <div class="col-12">
+                    <div class="form-btn-group ">
+                       <button type="submit" class="btn btn-primary">Valider</button>
+                    </div>
+                </div>
+            </div>
+         {{ form_end(form) }}{# ferme la balise form #}
+                <div class="text-left">
+                <a href="{{path('app_salarie_monprofil')}}"><button type="button" class="btn btn-outline-success"><i class="fas fa-arrow-left"></i> Retour</button></a>
+            </div>
     </section>
 
   
