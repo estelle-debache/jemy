@@ -21,7 +21,7 @@
                     <table class="table table-hover">
                         <thead>
                             <tr>
-                                <th scope="col">#</th>
+                               
                                 <th scope="col">Nom</th>
                                 <th scope="col">Prénom</th>
                                 <th scope="col">Service</th>
@@ -35,7 +35,7 @@
                         <tbody>
                             {% for salarie in app.user.entreprise.salaries %}
                             <tr>
-                                <th scope="row">{{ salarie.id }}</th>
+                                
                                 <td>{{ salarie.nom }}</td>
                                 <td>{{ salarie.prenom }}</td>
                                 <td>{{ salarie.service.nom }}</td>
