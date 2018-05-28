@@ -1,8 +1,10 @@
 {% extends 'layout.html.twig' %}
 
 {% block content %}
+<section>
+        <div class="container mesconges ">
+           <h1 class="text-center">Modification des congés</h1>
 
- <div class="row">
                 {{form_start(form)}}
                     {{ form_row(form.datedebut ) }} 
                     {{ form_row(form.datefin ) }} 
@@ -19,6 +21,7 @@
 
                 
             </div>
+</section>
                 
 {% endblock %}
            

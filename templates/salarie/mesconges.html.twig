@@ -7,7 +7,7 @@
         <div class="container mesconges ">
            <h1 class="text-center">Mes Congés</h1>
             
-            <div class="row">
+            
               <table class="table">
                 <thead>
                   <tr>
@@ -36,8 +36,9 @@
                   </tr>
                 </tbody>
               </table>
-                  
-                  <h2 class="text-center">Mes demandes de Congés</h2>
+                  <div class="text-center">
+                  <h2 >Mes demandes de Congés</h2>
+                  </div>
                   <table class="table">
                         <thead>
                             <tr>
@@ -56,7 +57,7 @@
                         </thead>
                         <tbody >
                              
-                            <tr>
+                            <tr class="text-center">
                                 {% for conge in conges %}
                                  {% if conge.typeconge == 'Congé payé' %}  
                                      
@@ -118,7 +119,7 @@
 
               <button type="button" class="btn btn-primary btndemandeConge">Emettre une demande d'absence</button>
 
-            </div>
+          
 
             <div class="row demandeConge">
                 {{form_start(form)}}

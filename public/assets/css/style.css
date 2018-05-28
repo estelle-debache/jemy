@@ -376,10 +376,15 @@ section{
 
 /** CONGE PAYE **************************************************************************************************************************/
 
-.mesconges h1{
+.mesconges h1, .mesconges h2{
    color: #083b66;
+  
 }
 
+.mesconges h2{
+    margin-top: 3rem;
+    text-align: center;
+}
 .mesconges table{
     margin-top: 4rem;
     margin-bottom: 3rem;
@@ -397,6 +402,17 @@ section{
 .mesconges .btn-primary:hover{
     background-color:white;
     color:#74d14c;
+}
+.mesconges .btn-danger:hover{
+    color:#f2af58;
+    
+    background-color: white;
+}
+
+.mesconges .btn-danger{
+    background-color:#f2af58;
+    color:white;
+    border-color:#f2af58;
 }
 
 /** DEMANDE CONGE PAYE **************************************************************************************************************************/
