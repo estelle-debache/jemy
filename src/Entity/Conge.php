@@ -22,7 +22,7 @@ class Conge
     
       /**
      *@Assert\NotBlank(message="LE STATUS EST OBLIGATOIRE") 
-     *@ORM\Column(type="string", columnDefinition="enum('en cours', 'validé', 'refusé')", nullable=false)
+     *@ORM\Column(type="string", columnDefinition="enum('En cours', 'validé', 'refusé')", nullable=true)
      *
      */
     private $statut;
@@ -31,18 +31,18 @@ class Conge
      *@Assert\NotBlank(message="LA DATE DE DEBUT EST OBLIGATOIRE")
      * @ORM\Column(type="date")
      */
-    private $date_debut;
+    private $datedebut;
     
     /**
      *@Assert\NotBlank(message="LA DATE DE FIN EST OBLIGATOIRE")
      * @ORM\Column(type="date")
      */
-    private $date_fin;
+    private $datefin;
     /**
      *@Assert\NotBlank(message="LE NOMBRE DE JOUR EST OBLIGATOIRE")
      * @ORM\Column(type="integer", length=2)
      */
-    private $nb_de_jour;
+    private $nbdejour;
     
   /**
    *
@@ -52,8 +52,18 @@ class Conge
     
     private $salarie;
 
+   /**
+    *
+    * @ORM\Column(type="text", nullable=true)
+    */
+    private $comment;
     
-    
+      /**
+     *@Assert\NotBlank(message="LE type de congé est obligatoire") 
+     *@ORM\Column(type="string", columnDefinition="enum('RTT', 'Congé payé')")
+     *
+     */
+    private $typeconge;
     
     public function getId()
     {
@@ -64,20 +74,28 @@ class Conge
         return $this->statut;
     }
 
-    public function getDate_debut() {
-        return $this->date_debut;
+    public function getDatedebut() {
+        return $this->datedebut;
     }
 
-    public function getDate_fin() {
-        return $this->date_fin;
+    public function getDatefin() {
+        return $this->datefin;
     }
 
-    public function getNb_de_jour() {
-        return $this->nb_de_jour;
+    public function getNbdejour() {
+        return $this->nbdejour;
     }
 
     public function getSalarie() {
         return $this->salarie;
+    }
+
+    public function getComment() {
+        return $this->comment;
+    }
+
+    public function getTypeconge() {
+        return $this->typeconge;
     }
 
     public function setStatut($statut) {
@@ -85,18 +103,18 @@ class Conge
         return $this;
     }
 
-    public function setDate_debut($date_debut) {
-        $this->date_debut = $date_debut;
+    public function setDatedebut($datedebut) {
+        $this->datedebut = $datedebut;
         return $this;
     }
 
-    public function setDate_fin($date_fin) {
-        $this->date_fin = $date_fin;
+    public function setDatefin($datefin) {
+        $this->datefin = $datefin;
         return $this;
     }
 
-    public function setNb_de_jour($nb_de_jour) {
-        $this->nb_de_jour = $nb_de_jour;
+    public function setNbdejour($nbdejour) {
+        $this->nbdejour = $nbdejour;
         return $this;
     }
 
@@ -104,6 +122,17 @@ class Conge
         $this->salarie = $salarie;
         return $this;
     }
+
+    public function setComment($comment) {
+        $this->comment = $comment;
+        return $this;
+    }
+
+    public function setTypeconge($typeconge) {
+        $this->typeconge = $typeconge;
+        return $this;
+    }
+
 
 
 }

@@ -4,10 +4,11 @@ namespace App\Controller;
 
 use App\Entity\Actualite;
 use App\Entity\Candidature;
-use App\Entity\FicheDePaie;
+use App\Entity\Conge;
 use App\Entity\OffreEmploi;
 use App\Entity\Salarie;
 use App\Form\CandidatureType;
+use App\Form\CongeType;
 use App\Form\SalarieeditType;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\File\File;
@@ -114,23 +115,136 @@ class SalarieController extends Controller
 
 
     }
+    
 
-
-
+   
 
 
     /**
      *
-     * @Route("/mes-conges/{id}")
+     * @Route("/mes-conges")
      */
-    public function mesConges(Salarie $salarie)
+    public function mesconges(Request $request)
     {
-        return $this->render('salarie/mes-conges.html.twig',
+        $em = $this->getDoctrine()->getManager();
+        $repository = $this->getDoctrine()->getRepository(Conge::class);
+       
+        $query = $repository->createQueryBuilder('c')->where('c.salarie='.$this->getUser()->getId())->getQuery();
+        $conges= $query->getResult();
+        dump($conges);
+        
+        $salarie = $this->getUser();
+        
+        
+        $conge = new Conge();
+        $conge
+            ->setSalarie($salarie)
+            ->setStatut('En cours')
+        ;
+        $countcongepayeencours= $repository->countByStatusAndSalarie($salarie);
+        $countrttencours= $repository->countByStatusAndSalarie($salarie, 'En cours', 'RTT');
+        
+        
+        $countcongepayeaccepte= $repository->countByStatusAndSalarie($salarie, 'validé');
+        
+        
+        $countrttaccepte= $repository->countByStatusAndSalarie($salarie, 'validé', 'RTT');
+        $form= $this->createForm(CongeType::class, $conge);
+        $form->handleRequest($request);
+
+        if($form->isSubmitted())
+        {
+            if($form->isValid())
+            {
+          
+
+                $em->persist($conge);
+                $em->flush();
+                $this->addFlash('success', 'Bonne vacances, revenez en forme');
+                
+                return $this->redirectToRoute('app_salarie_mesconges');
+            }
+        }
+        return $this->render('salarie/mesconges.html.twig',
                 [
-                    "salarie"=> $salarie
+                    'form'=>$form->createView(),
+                    'ccpec'=> $countcongepayeencours,
+                    'ccpa'=>$countcongepayeaccepte,
+                    'crec'=>$countrttencours,
+                    'cra'=>$countrttaccepte,
+                    'conges'=>$conges
                 ]
                 );
     }
+    
+    /**
+     * @Route("/modifconge/{id}")
+     */
+    public function modifconge(Request $request, Conge $conge) {
+        
+        $em=$this->getDoctrine()->getManager();
+        
+        $form= $this->createForm(CongeType::class, $conge);
+        $form->handleRequest($request);
+        
+        if ($form->isSubmitted())
+        {
+            if($form->isValid())
+            {
+                $em->persist($conge);
+                $em->flush();
+                 $this->addFlash(
+                    'success',
+                    'Votre demande a bien été modifié'
+                );
+                 return $this->redirectToRoute('app_salarie_mesconges');
+            }else{
+                 $this->addFlash(
+                    'error',
+                    'Oups, le formulaire contient des erreurs'
+                         
+                );
+                 return $this->redirectToRoute('app_salarie_mesconges');
+            }
+        }
+        return $this->render('salarie/modifconge.html.twig',
+                [
+                    'form'=>$form->createView()
+                    
+                ]
+                );
+        
+    }
+    
+    /**
+     * 
+     * @Route("/deleteconge/{id}")
+     * 
+     */
+    public function deleteconge(Conge $conge) {
+        $em = $this->getDoctrine()->getManager();
+        $em->remove($conge);
+        $em->flush();
+        
+         
+        $this->addFlash(
+            'success',
+            'Votre demande de congé est supprimée'
+        );
+        
+        
+        return  $this->redirectToRoute('app_salarie_mesconges');
+        
+    }
+    
+    
+    
+    
+    
+    
+    
+    
+    
 
     /**
      *
