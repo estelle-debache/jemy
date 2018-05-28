@@ -488,7 +488,7 @@ section{
 }
 
 .card-img-top{
-    height: 10rem;
+    height: 12rem;
     overflow: hidden;
 
 }
@@ -504,7 +504,7 @@ section{
 
 .trombinoscope .card{
      margin-bottom: 1rem;
-     margin-right: 1rem;
+    
 }
 
 .trombinoscope .card-text span{
@@ -513,7 +513,8 @@ section{
 }
 
 .trombinoscope .card-title{
-    margin-bottom: 0rem;
+    margin-bottom: 0.8rem;
+    
 }
 
 .trombinoscope p{
@@ -521,7 +522,8 @@ section{
 }
 
 .trombinoscope .card-body{
-    height:13rem;
+    height:11rem;
+    padding:0.5rem;
 }
 
 .trombinoscope .btn-outline-success{
