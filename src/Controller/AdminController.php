@@ -302,7 +302,7 @@ class AdminController extends Controller
             //nom du fichier en bdd
                 $originalImage = $actualite->getImage();
                 $actualite->setImage(
-                        new File($this->getParameter('upload_dir') . $originalImage)
+                        new File($this->getParameter('upload_dir'). "/" . $originalImage)
                  );
             }
         }
@@ -345,7 +345,7 @@ class AdminController extends Controller
                     // s'il on est en modification d'un article qui en avait
                     // déjà une 
                     if(!is_null($originalImage)){
-                        unlink($this->getParameter('upload_dir') . $originalImage);
+                        unlink($this->getParameter('upload_dir'). "/" . $originalImage);
                     }
                      
                  }else{
