@@ -196,7 +196,7 @@ class AdminController extends Controller
                         $cni->move(
                                 // répertoire de destination
                                 // cf config/services.yaml
-                                $this->getParameter('cni_dir'),$cdtname);
+                                $this->getParameter('cni_dir'),$cniname);
                         $salarie->setCarteIdentite($cniname);
                         
                         if(!is_null($originalcni) && is_file($this->getParameter('cni_dir') . '/' . $originalcni)){
@@ -209,13 +209,6 @@ class AdminController extends Controller
                         
                         
 
-
-                        // suppression de l'ancienne image de l'article
-                        // s'il on est en modification d'un article qui en avait
-                        // déjà une
-                        
-                        
-                        
 
             }
 
