@@ -142,7 +142,7 @@ class Salarie implements UserInterface, Serializable
     private $role;
     
     /**
-     * @Assert\NotBlank(groups={"registration", "edition-admin", "edition"}, message = "Merci de renseigner l'IBAN sociale")
+     * @Assert\NotBlank(groups={"registration", "edition-admin", "edition"}, message = "Merci de renseigner l'IBAN ")
      * @Assert\Length(groups={"registration", "edition-admin", "edition"},
      *      min = 27,
      *      max = 27,
@@ -168,8 +168,8 @@ class Salarie implements UserInterface, Serializable
      */
     private $contratTravail;
     /**
-     * @Assert\NotBlank(groups={"registration", "edition-admin", "edition"}, message = "Merci de joindre le document")
-     * @Assert\Image(groups={"registration", "edition-admin", "edition"}, )
+     * @Assert\NotBlank(groups={"registration", "edition-admin"}, message = "Merci de joindre le document")
+     * @Assert\Image(groups={"registration","edition-admin"} )
      * @ORM\Column(type="string", length=255)
      */
     private $photo;
@@ -221,7 +221,7 @@ class Salarie implements UserInterface, Serializable
     /**
      *Mot de passe en clair pourinteragir avec le formulaire 
      * va recuperer le mot de passe en clair dans l'interaction avec le formulaire
-     * @Assert\NotBlank(groups={"registration", "edition-admin", "edition"}, message="vous devez imperativement remplir le champs mot de passe")
+     * @Assert\NotBlank(groups={"registration", "edition-admin"}, message="vous devez imperativement remplir le champs mot de passe")
     */
     private $plainPassword;
     
