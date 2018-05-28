@@ -716,8 +716,7 @@ class AdminController extends Controller
    public function insertfdp(Request $request, Salarie $salarie, $id) {
        
        $em =$this->getDoctrine()->getManager();
-       $repository = $em->getRepository(Salarie::class, $salarie);
-       $salarie= $repository->find($id);
+       
        $soldertt= $salarie->getSoldeRtt();
        $soldeconge = $salarie->getSoldeConge();
         
@@ -743,7 +742,7 @@ class AdminController extends Controller
            {
                 $soldeconge+=2.5;
                 $soldertt+= 2;
-                $salarie->setConge($soldeconge)
+                $salarie->setSoldeConge($soldeconge)
                         ->setSoldeRtt($soldertt);
                
                 
@@ -756,7 +755,7 @@ class AdminController extends Controller
                 $blo->move($this->getParameter('fdp_dir'),$bloname);
                 
                 $fdp->setFicheDePaie($bloname)
-                    ->setSalarie($id)
+                    ->setSalarie($salarie)
                         ;
 
 

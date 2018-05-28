@@ -121,11 +121,15 @@ class SalarieController extends Controller
 
     /**
      *
-     * @Route("/mes-conges")
+     * @Route("/mes-conges/{id}")
      */
-    public function mesConges()
+    public function mesConges(Salarie $salarie)
     {
-        return $this->render('salarie/mes-conges.html.twig');
+        return $this->render('salarie/mes-conges.html.twig',
+                [
+                    "salarie"=> $salarie
+                ]
+                );
     }
 
     /**
