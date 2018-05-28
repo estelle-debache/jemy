@@ -109,6 +109,7 @@ class AccueilController extends Controller
 
         // recupere un objet service ayant l'id enregistre en session lors de la creation de l'objet entreprise
         $service = $em->find(Service::class, $session->get('idservice'));
+        dump($form->getErrors());
         if( $form->isSubmitted())
         {
             if($form->isValid())

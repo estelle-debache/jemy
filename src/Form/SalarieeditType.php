@@ -18,7 +18,7 @@ class SalarieeditType extends AbstractType
             ->add('adresse', TextType::class,['label'=>"Adresse"])
             ->add('codePostal', TextType::class,['label'=>"Code Postal"])
             ->add('ville', TextType::class,['label'=>"Ville"])
-            ->add('iban', TextType::class,['label'=>"IBAN"])
+            ->add('iban', TextType::class,['label'=>"IBAN (27 chiffres)"])
             ->add('telephone', TextType::class,['label'=>"Téléphone"])
             ->add('photo', FileType::class,['label'=>"Photo (portrait jpg)", 'required' => false])
         ;

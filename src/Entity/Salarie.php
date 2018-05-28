@@ -34,25 +34,37 @@ class Salarie implements UserInterface, Serializable
     private $entreprise;
     
     /**
-     * @Assert\NotBlank(groups={"inscription-admin", "edition-admin"}, message = "LE NOM EST OBLIGATOIRE")
+     * @Assert\NotBlank(groups={"registration", "edition-admin", "edition"}, message = "Merci de renseigner un nom")
+     * @Assert\Length(groups={"registration"},
+     *      min = 2,
+     *      max = 20,
+     *      minMessage = "Le nom doit contenir {{ limit }} caractères minimum",
+     *      maxMessage = "Le nom ne doit pas dépasser {{ limit }} caractères"
+     * )
      * @ORM\Column(type="string", length=20)
      */
     private $nom;
     
     /**
-     * @Assert\NotBlank(groups={"inscription-admin", "edition-admin"}, message = "LE PRENOM EST OBLIGATOIRE")
+     * @Assert\NotBlank(groups={"registration", "edition-admin", "edition"}, message = "Merci de renseigner un prénom")
+     * @Assert\Length(groups={"registration"},
+     *      min = 2,
+     *      max = 20,
+     *      minMessage = "Le prénom doit contenir {{ limit }} caractères minimum",
+     *      maxMessage = "Le prénom ne doit pas dépasser {{ limit }} caractères"
+     * )
      * @ORM\Column(type="string", length=20)
      */
     private $prenom;
     
     /**
-     * @Assert\NotBlank(groups={"inscription-admin", "edition-admin"}, message = "L'EMAIL EST OBLIGATOIRE")
+     * @Assert\NotBlank(groups={"registration", "edition-admin", "edition"}, message = "Merci de renseigner un email")
      * @ORM\Column(type="string", length=255, unique=true) 
      */
     private $email;
     
     /**
-     *
+     * @Assert\NotBlank(groups={"registration", "edition-admin", "edition"},message= "Merci de renseigner la civilité")
      * @ORM\Column(type="string", columnDefinition="enum('Mr', 'Mme')", nullable=false)
      */
     private $civilite;
@@ -64,57 +76,85 @@ class Salarie implements UserInterface, Serializable
     private $password;
 
  
-
-
     /**
-     * @Assert\NotBlank(groups={"inscription-admin", "edition-admin"}, message = "LA DATE DE NAISSANCE EST OBLIGATOIRE")
+     * @Assert\NotBlank(groups={"registration", "edition-admin", "edition"}, message = "Merci de renseigner la date de naissance")
      * @ORM\Column(type="date")
      */
     private $dateDeNaissance;
     
     /**
-     * @Assert\NotBlank(groups={"inscription-admin", "edition-admin", "edition"}, message = "L'ADRESSE EST OBLIGATOIRE")
+     * @Assert\NotBlank(groups={"registration", "edition-admin", "edition"}, message = "Merci de renseigner l'adresse")
+     * @Assert\Length(groups={"registration", "edition-admin", "edition"},
+     *      min = 5,
+     *      max = 255,
+     *      minMessage ="L'adresse doit contenir {{ limit }} caractères minimum",
+     *      maxMessage ="L'adresse ne doit pas dépasser {{ limit }} caractères"
+     * )
      * @ORM\Column(type="string", length=255)
      */
     private $adresse;
     /**
-     * @Assert\NotBlank(groups={"inscription-admin", "edition-admin", "edition"}, message = "LE CODE POSTAL EST OBLIGATOIRE")
+     * @Assert\NotBlank(groups={"registration", "edition-admin", "edition"}, message = "Merci de renseigner le code postal")
+     * @Assert\Length(groups={"registration", "edition-admin", "edition"},
+     *      min = 5,
+     *      max = 5,
+     *      minMessage ="Le code postal doit contenir {{ limit }} chiffres minimum",
+     *      maxMessage ="Le code postal ne doit pas dépasser {{ limit }} chiffres"
+     * )
      * @ORM\Column(type="integer", length=5)
      */
     private $codePostal;
     /**
-     * @Assert\NotBlank(groups={"inscription-admin", "edition-admin", "edition"}, message = "LA VILLE EST OBLIGATOIRE")
+     * @Assert\NotBlank(groups={"registration", "edition-admin", "edition"}, message = "Merci de renseigner la ville")
+     * @Assert\Length(groups={"registration", "edition-admin", "edition"},
+     *      min = 3,
+     *      max = 20,
+     *      minMessage ="La ville doit contenir {{ limit }} caractères minimum",
+     *      maxMessage ="La ville ne doit pas dépasser {{ limit }} caractères"
+     * )
      * @ORM\Column(type="string", length=255)
      */
     private $ville;
     
     /**
-     *@Assert\NotBlank(groups={"inscription-admin", "edition-admin"}, message = "LA DATE d'EMBAUCHE EST OBLIGATOIRE")
+     * @Assert\NotBlank(groups={"registration", "edition-admin", "edition"}, message = "Merci de renseigner la date d'embauche")
      * @ORM\Column(type="date")
      */
     private $dateEmbauche;
     
     
     /**
-     * @Assert\NotBlank(groups={"inscription-admin", "edition-admin"}, message = "LE NUMERO DE SECURITE SOCIALE EST OBLIGATOIRE")
-     * @ORM\Column(type="string", length=15)
+     * @Assert\NotBlank(groups={"registration", "edition-admin", "edition"}, message = "Merci de renseigner le numéro de sécurité sociale")
+     * @Assert\Length(groups={"registration"},
+     *      min = 15,
+     *      max = 15,
+     *      minMessage = "Le numéro de sécurité sociale doit contenir {{ limit }} caractères minimum",
+     *      maxMessage = "Le numéro de sécurité sociale ne doit pas dépasser {{ limit }} caractères"
+     * )
+     * @ORM\Column(type="integer", length=15)
      */
     private $numSs;
     
     /**
-     *
+     * @Assert\NotBlank(groups={"edition-admin", "edition"}, message = "Merci de renseigner le rôle")
      * @ORM\Column(type="string", columnDefinition="enum('ROLE_USER', 'ROLE_ADMIN')", nullable=false)
      */
     private $role;
     
     /**
-     * @Assert\NotBlank(groups={"inscription-admin", "edition-admin", "edition"}, message = "LE RIB EST OBLIGATOIRE")
+     * @Assert\NotBlank(groups={"registration", "edition-admin", "edition"}, message = "Merci de renseigner l'IBAN sociale")
+     * @Assert\Length(groups={"registration", "edition-admin", "edition"},
+     *      min = 27,
+     *      max = 27,
+     *      minMessage = "L'IBAN doit contenir {{ limit }} chiffres minimum",
+     *      maxMessage = "L'IBAN ne doit pas contenir plus de {{ limit }} chiffres "
+     * )
      * @ORM\Column(type="string", length=27)
      */
     private $iban;
     
     /**
-     * @Assert\NotBlank(groups={"inscription-admin"}, message = "LA PIECE D'IDENTITE EST OBLIGATOIRE")
+     * @Assert\NotBlank(groups={"registration", "edition-admin", "edition"}, message = "Merci de joindre le document")
      * @Assert\File(groups={"inscription-admin", "edition-admin"}, mimeTypes={"application/pdf", "image/*"})
      * @ORM\Column(type="string", length=255)
      * 
@@ -122,13 +162,14 @@ class Salarie implements UserInterface, Serializable
     private $carteIdentite;
     
     /**
-     * @Assert\NotBlank(groups={"inscription-admin"}, message = "LE CONTRAT DU TRAVAIL EST OBLIGATOIRE")
+     * @Assert\NotBlank(groups={"registration", "edition-admin", "edition"}, message = "Merci de joindre le document")
      * @Assert\File(groups={"inscription-admin", "edition-admin"}, mimeTypes={"application/pdf"})
      * @ORM\Column(type="string", length=255)
      */
     private $contratTravail;
     /**
-     * @Assert\Image(groups={"inscription-admin", "edition-admin", "edition"}, )
+     * @Assert\NotBlank(groups={"registration", "edition-admin", "edition"}, message = "Merci de joindre le document")
+     * @Assert\Image(groups={"registration", "edition-admin", "edition"}, )
      * @ORM\Column(type="string", length=255)
      */
     private $photo;
@@ -140,7 +181,7 @@ class Salarie implements UserInterface, Serializable
     private $soldeConge;
     
     /**
-     *
+     * @Assert\NotBlank(message = "Merci de renseigner le statut")
      * @ORM\Column(type="string", columnDefinition="enum('en activite', 'fin de contrat')", nullable=true)
      */
     private $statut;
@@ -150,19 +191,16 @@ class Salarie implements UserInterface, Serializable
      */
     private $dateFinContrat; 
     
-       
-
-    
-    
     /**
-     *
+     *  
+     * @Assert\NotBlank(groups={"registration", "edition-admin", "edition"},message = "Merci de renseigner le service")
      * @ORM\JoinColumn(nullable=false)
      * @ORM\ManyToOne(targetEntity="Service", inversedBy="salarie")
      */
     private $service;
 
     /**
-     *
+     * 
      * @ORM\OneToMany(targetEntity="FicheDePaie", mappedBy="salarie")
      */
     private $FicheDePaies;
@@ -183,12 +221,12 @@ class Salarie implements UserInterface, Serializable
     /**
      *Mot de passe en clair pourinteragir avec le formulaire 
      * va recuperer le mot de passe en clair dans l'interaction avec le formulaire
-     * @Assert\NotBlank(groups={"inscription-admin"}, message="vous devez imperativement remplir le champs mot de passe")
+     * @Assert\NotBlank(groups={"registration", "edition-admin", "edition"}, message="vous devez imperativement remplir le champs mot de passe")
     */
     private $plainPassword;
     
     /**
-     *
+     * @Assert\NotBlank(groups={"registration", "edition-admin", "edition"},message="Merci de renseigner le numéro de téléphone")
      * @ORM\Column(type="string", nullable=false)
      */
     private $telephone;  

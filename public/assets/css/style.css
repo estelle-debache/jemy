@@ -240,8 +240,76 @@ section{
 .mon-profil .information{
     margin-top: 4rem;
 }
-/***********************PROFIL EDIT***************************************************************/
-.mon-profil .btn-primary{
+
+/** EDIT MON PROFIL **************************************************************************************************************************/
+.edit-mon-profil h1{
+    color: #083b66;
+    margin-bottom: 2rem;
+
+}
+
+.edit-mon-profil .infos{
+    margin-top:4rem;
+    border: 2px solid #083b66;
+    padding: 3rem;
+    background-color: #F8F9FA;
+    margin-bottom: 5rem;
+}
+
+.edit-mon-profil h2{
+    font-size:3rem;
+    color : #f2af58 ;
+    text-align: center;
+    margin-bottom:2rem;
+}
+
+
+
+.edit-mon-profil p {
+    color:#083b66 ;
+}
+
+
+.edit-mon-profil .btn-outline-success{
+    margin-top: 2rem;
+    background-color: #74d14c;
+    border-color:#74d14c;
+    padding-left : 3rem;
+    padding-right:3rem;
+    color:white;
+    margin:auto;
+
+}
+
+.edit-mon-profil .btn-outline-success:hover{
+    background-color:white;
+    color:#74d14c;
+
+}
+
+
+.edit-mon-profil .btn-outline-dark{
+    margin-top: 2rem;
+   background-color:white;
+    color:#74d14c;
+    width:13rem;
+
+
+}
+
+.edit-mon-profil .btn-outline-dark:hover{
+    background-color: #74d14c;
+    border-color:#74d14c;
+    color:white;
+
+}
+
+
+.edit-mon-profil .information{
+    margin-top: 4rem;
+}
+
+.edit-mon-profil .btn-primary{
     background-color: #74d14c;
     border-color:#74d14c;
     padding-left : 3rem;
@@ -250,7 +318,7 @@ section{
     float: right;
     margin-bottom: 5rem;
 }
-.mon-profil .btn-primary:hover{
+.edit-mon-profil .btn-primary:hover{
     background-color:white;
     color:#74d14c;
 }
