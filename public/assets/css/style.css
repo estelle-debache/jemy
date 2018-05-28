@@ -893,6 +893,11 @@ section{
 
 .liste-news .colonne-boutons{
     width:15rem;
+    
+}
+.liste-news .table td {
+  padding: .75rem 0rem;
+    
 }
 
 /** ADMIN LISTE OFFRES EMPLOI **************************************************************************************************************************/

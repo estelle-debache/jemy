@@ -154,22 +154,22 @@ class Salarie implements UserInterface, Serializable
     private $iban;
     
     /**
-     * @Assert\NotBlank(groups={"registration", "edition-admin", "edition"}, message = "Merci de joindre le document")
-     * @Assert\File(groups={"inscription-admin", "edition-admin"}, mimeTypes={"application/pdf", "image/*"})
+     * @Assert\NotBlank(groups={"registration"}, message = "Merci de joindre le document")
+     * @Assert\File(groups={"registration", "edition-admin"}, mimeTypes={"application/pdf", "image/*"})
      * @ORM\Column(type="string", length=255)
      * 
      */
     private $carteIdentite;
     
     /**
-     * @Assert\NotBlank(groups={"registration", "edition-admin", "edition"}, message = "Merci de joindre le document")
-     * @Assert\File(groups={"inscription-admin", "edition-admin"}, mimeTypes={"application/pdf"})
+     * @Assert\NotBlank(groups={"registration"}, message = "Merci de joindre le document")
+     * @Assert\File(groups={"registration", "edition-admin"}, mimeTypes={"application/pdf"})
      * @ORM\Column(type="string", length=255)
      */
     private $contratTravail;
     /**
-     * @Assert\NotBlank(groups={"registration", "edition-admin"}, message = "Merci de joindre le document")
-     * @Assert\Image(groups={"registration","edition-admin"} )
+     * @Assert\NotBlank(groups={"registration"}, message = "Merci de joindre le document")
+     * @Assert\Image(groups={"registration", "edition-admin", "edition"})
      * @ORM\Column(type="string", length=255)
      */
     private $photo;
@@ -221,7 +221,7 @@ class Salarie implements UserInterface, Serializable
     /**
      *Mot de passe en clair pourinteragir avec le formulaire 
      * va recuperer le mot de passe en clair dans l'interaction avec le formulaire
-     * @Assert\NotBlank(groups={"registration", "edition-admin"}, message="vous devez imperativement remplir le champs mot de passe")
+     * @Assert\NotBlank(groups={"registration"}, message="vous devez imperativement remplir le champs mot de passe")
     */
     private $plainPassword;
     
