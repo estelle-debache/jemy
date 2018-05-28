@@ -53,6 +53,7 @@ section{
 
 .home-droite img{
    margin:3rem auto;
+   width:66%;
 
 }
 
@@ -1054,11 +1055,17 @@ section{
 }
 
 .liste-candidature .btn-primary{
-    background-color: white;
-    color:#74d14c;
+    background-color: #74d14c;
+    color:white;
     border-color:#74d14c;
     margin-top: 1rem;
     margin-bottom:2rem;
+}
+
+.liste-candidature .btn-primary:hover{
+    background-color:white;
+    color:#74d14c;
+
 }
 
 .liste-candidature p span{
