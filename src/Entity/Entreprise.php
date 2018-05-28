@@ -251,13 +251,9 @@ class Entreprise
         return $this;
     }
     
-    public function getCandidatures() {
-        return $this->candidatures;
-    }
-
-    public function setCandidatures($candidatures) {
-        $this->candidatures = $candidatures;
-        return $this;
+    public function countBySalarie() {
+        return count($this->salaries);
+        
     }
 
 

@@ -53,6 +53,7 @@ section{
 
 .home-droite img{
    margin:3rem auto;
+   width:66%;
 
 }
 
@@ -555,7 +556,7 @@ section{
 }
 
 .card-img-top{
-    height: 10rem;
+    height: 12rem;
     overflow: hidden;
 
 }
@@ -571,7 +572,7 @@ section{
 
 .trombinoscope .card{
      margin-bottom: 1rem;
-     margin-right: 1rem;
+    
 }
 
 .trombinoscope .card-text span{
@@ -580,7 +581,8 @@ section{
 }
 
 .trombinoscope .card-title{
-    margin-bottom: 0rem;
+    margin-bottom: 0.8rem;
+    
 }
 
 .trombinoscope p{
@@ -588,7 +590,8 @@ section{
 }
 
 .trombinoscope .card-body{
-    height:13rem;
+    height:11rem;
+    padding:0.5rem;
 }
 
 .trombinoscope .btn-outline-success{
@@ -1122,11 +1125,17 @@ section{
 }
 
 .liste-candidature .btn-primary{
-    background-color: white;
-    color:#74d14c;
+    background-color: #74d14c;
+    color:white;
     border-color:#74d14c;
     margin-top: 1rem;
     margin-bottom:2rem;
+}
+
+.liste-candidature .btn-primary:hover{
+    background-color:white;
+    color:#74d14c;
+
 }
 
 .liste-candidature p span{

@@ -58,4 +58,11 @@ class SalarieRepository extends ServiceEntityRepository implements UserLoaderInt
         ;
     }
     */
+    
+
+
+    
+    
+    
+    
 }
