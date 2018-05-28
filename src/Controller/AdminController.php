@@ -210,13 +210,6 @@ class AdminController extends Controller
                         
 
 
-                        // suppression de l'ancienne image de l'article
-                        // s'il on est en modification d'un article qui en avait
-                        // déjà une
-                        
-                        
-                        
-
             }
 
                     $salarie->setEntreprise($this->getUser()->getEntreprise());
