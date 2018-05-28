@@ -72,7 +72,9 @@
                                 <td>
                                    {{ conge.statut }}
                                 </td>
-                                
+                                {% if conge.statut == 'En cours' %}
+                                    
+                                    
                                 <td>
                                     <a href="{{ path('app_salarie_modifconge',{id: conge.id}) }}">
                                         <button type="button" class="btn btn-primary">Modifier</button>
@@ -83,7 +85,12 @@
                                         <button type="button" class="btn btn-danger">Supprimer</button>
                                     </a>
                                 </td>
-                                
+                                {% endif %}
+                                {% if conge.statut != 'en cours' %}
+                                    
+                                    <td>{{ conge.comment }}  </td> 
+                                    
+                                {% endif %}
                             </tr>
                             {% endif %}
                             {% endfor %}
@@ -97,6 +104,9 @@
                                 <td>
                                     {{ conge.statut }}
                                 </td>
+                                {% if conge.statut == 'en cours' %}
+                                    
+                                    
                                 <td>
                                     <a href="{{ path('app_salarie_modifconge',{id: conge.id}) }}">
                                         <button type="button" class="btn btn-primary">Modifier</button>
@@ -107,6 +117,15 @@
                                         <button type="button" class="btn btn-danger">Supprimer</button>
                                     </a>
                                 </td>
+                                {% endif %}
+                                {% if conge.statut != 'en cours' %}
+                                    
+                                    <td>{{ conge.comment }}  </td> 
+                                    
+                                {% endif %}
+                                
+                                
+                                
                             </tr>
                             {% endif %}
                              {% endfor %}

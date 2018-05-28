@@ -32,6 +32,7 @@
                                         <th scope="col">Date de début</th>
                                         <th scope="col">Date de fin</th>
                                         <th scope="col">Nombre de jour</th>
+                                        <th scope="col">Type</th>
                                         <th scope="col"></th>
                                       </tr>
                                     </thead>
@@ -45,6 +46,7 @@
                                           <td>{{ demande.datedebut|date('d/m/Y') }} </td>
                                           <td>{{ demande.datefin|date('d/m/Y') }} </td>
                                           <td>{{ demande.nbdejour }} </td>
+                                          <td>{{ demande.typeconge }} </td>
                                            <td><a href="{{path('app_admin_reponseconge', {id: demande.id})}}"><i class="fas fa-plane"></i></a></td>
                                         </tr>
                                         {% endfor %}
@@ -74,7 +76,8 @@
                                         <th scope="col">Date de début</th>
                                         <th scope="col">Date de fin</th>
                                         <th scope="col">Nombre de jour</th>
-                                        <th scope="col"></th>
+                                        <th scope="col">type</th>
+                                        
                                       </tr>
                                     </thead>
                                     <tbody>
@@ -87,7 +90,7 @@
                                           <td>{{ demandevalide.datedebut|date('d/m/Y') }} </td>
                                           <td>{{ demandevalide.datefin|date('d/m/Y') }} </td>
                                           <td>{{ demandevalide.nbdejour }} </td>
-                                          
+                                          <td>{{ demandevalide.typeconge }} </td>
                                         </tr>
                                         {% endfor %}
                                     </tbody>
@@ -116,6 +119,7 @@
                                         <th scope="col">Date de début</th>
                                         <th scope="col">Date de fin</th>
                                         <th scope="col">Nombre de jour</th>
+                                        <th scope="col">type</th>
                                       </tr>
                                     </thead>
                                     <tbody>
@@ -128,7 +132,7 @@
                                           <td>{{ demanderefuse.datedebut|date('d/m/Y') }} </td>
                                           <td>{{ demanderefuse.datefin|date('d/m/Y') }} </td>
                                           <td>{{ demanderefuse.nbdejour }} </td>
-                                          
+                                          <td>{{ demanderefuse.typeconge }} </td>
                                         </tr>
                                         {% endfor %}
                                     </tbody>

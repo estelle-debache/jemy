@@ -571,12 +571,39 @@ class AdminController extends Controller
         
         $em=$this->getDoctrine()->getManager();
         
+        
+        
+        
         $form= $this->createForm(CongeadminType::class, $conge);
         $form->handleRequest($request);
         if($form->isSubmitted())
         {
             if($form->isValid())
             {
+                $typeconge= $conge->getTypeconge();
+                $statut = $conge->getStatut();
+                $soldeconge= $conge->getSalarie()->getSoldeConge();
+                $soldertt = $conge->getSalarie()->getSoldeRtt(); 
+                $diminution = $conge->getNbdejour();
+                
+                if($typeconge == 'Congé payé')
+                {
+                    if($statut=='validé')
+                    {
+                        $conge->getSalarie()->setSoldeConge($soldeconge-$diminution);
+
+                    }
+                }
+                if($typeconge == 'RTT')
+                {
+                    if($statut=='validé')
+                    {
+                        $conge->getSalarie()->setSoldeRtt($soldertt-$diminution);
+
+                    }
+                }
+                
+                
                 
                 
                $em->persist($conge);
