@@ -3,6 +3,7 @@
 namespace App\Controller;
 
 use App\Entity\Actualite;
+use App\Entity\Conge;
 use App\Entity\Entreprise;
 use App\Entity\FicheDePaie;
 use App\Entity\OffreEmploi;
@@ -10,6 +11,7 @@ use App\Entity\Salarie;
 use App\Entity\Service;
 use App\Form\ActualiteType;
 use App\Form\AjoutsalarieType;
+use App\Form\CongeadminType;
 use App\Form\EntrepriseType;
 use App\Form\FdpType;
 use App\Form\ModifsalarieType;
@@ -21,6 +23,7 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\Security\Core\Encoder\UserPasswordEncoderInterface;
+use function dump;
 
 
 
@@ -537,10 +540,62 @@ class AdminController extends Controller
      * @Route("/lesconges")
      */
     public function lesconges() {
+        $em = $this->getDoctrine()->getManager();
+        $repository = $em->getRepository(Conge::class);
         
-        return $this->render('admin/lesconges.html.twig');
+        $entreprise = $this->getUser()->getEntreprise();
+        
+        $demandesencours = $repository->findAllcongesByEntreprise($entreprise, 'en cours');
+        $demandesvalidees = $repository->findAllcongesByEntreprise($entreprise, 'validé');
+        $demandesrefusees = $repository->findAllcongesByEntreprise($entreprise, 'refusé');
+        $nbdemandes =$repository->countAllcongesByEntreprise($entreprise, 'en cours');
+
+        //dump($demandes, $nbdemandes);
+        
+        return $this->render('admin/lesconges.html.twig',
+                [
+                    'demandes'=>$demandesencours,
+                    'demandesvalides'=>$demandesvalidees,
+                    'demandesrefusees'=>$demandesrefusees,
+                    'nbdemandes'=>$nbdemandes
+                ]
+                
+                );
         
     }
+    /**
+     * 
+     * @Route("/reponseconge/{id}")
+     */
+    public function reponseconge(Request $request, Conge $conge) {
+        
+        $em=$this->getDoctrine()->getManager();
+        
+        $form= $this->createForm(CongeadminType::class, $conge);
+        $form->handleRequest($request);
+        if($form->isSubmitted())
+        {
+            if($form->isValid())
+            {
+                
+                
+               $em->persist($conge);
+               $em->flush();
+               return $this->redirectToRoute('app_admin_lesconges');
+            }
+        }
+        
+        
+        return $this->render('admin/reponseconge.html.twig',
+                       [
+                           'form'=> $form->createView()
+                           
+                       ]
+                );
+        
+    }
+    
+    
     
     /**
      * @Route("/ajoutservice")
@@ -919,6 +974,8 @@ class AdminController extends Controller
         
         return $this->redirectToRoute('app_admin_insertfdp', array('id'=> $fdp->getSalarie()->getId()));
     }
+    
+    
           
 
 }

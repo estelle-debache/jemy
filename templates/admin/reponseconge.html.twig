@@ -1,0 +1,16 @@
+{% extends 'layout.html.twig' %}
+
+
+{% block content %}
+        {{ form_start(form) }}
+            {{ form_row(form.statut ) }}
+            {{ form_row(form.comment ) }}
+            <div class="col-12">
+                  <a href="{{path('app_admin_lesconges')}}"><button type="button" class="btn btn-primary">Retour</button></a>
+                  <a href="{{path('app_admin_lesconges')}}"><button type="submit" class="btn btn-primary">Envoyer</button></a>
+                </div>
+        
+        {{ form_end(form) }}
+    
+    
+{% endblock %}
