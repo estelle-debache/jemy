@@ -7,28 +7,60 @@
             <h1 class="text-center">Modification du profil </h1>
             
      {{ form_start(salarie) }}
+     <div class="row">
+        <div class="col-4">
         {{ form_row(salarie.civilite) }}
+        </div>
+        <div class="col-4">
         {{ form_row(salarie.nom) }}
+        </div>
+        <div class="col-4">
         {{ form_row(salarie.prenom) }}
+        </div>
+        <div class="col-4">
         {{ form_row(salarie.service) }}
+        </div>
+        <div class="col-4">
         {{ form_row(salarie.role) }}
+        </div>
+        <div class="col-4">
         {{ form_row(salarie.dateDeNaissance) }}
+        </div>
+        <div class="col-4">
         {{form_row(salarie.email) }}
+        </div>
+        <div class="col-4">
         {{ form_row(salarie.telephone) }}
-        {{ form_row(salarie.adresse) }}
-        {{ form_row(salarie.codePostal) }}
-        {{ form_row(salarie.ville) }}
+        </div>
+        <div class="col-4">
+        
         {{ form_row(salarie.iban) }}
+        </div>
+        <div class="col-6">
+        {{ form_row(salarie.adresse) }}
+        
+        </div>
+        <div class="col-4">
+        {{ form_row(salarie.ville) }}
+        </div>
+        <div class="col-2">
+        {{ form_row(salarie.codePostal) }}
+        </div>
+        <div class="col-6">
         {{ form_row(salarie.statut) }}
+        </div>
+        <div class="col-6">
         {{ form_row(salarie.dateFinContrat) }}
+        </div>
         {{ form_row(salarie.carteIdentite) }}
         {{ form_row(salarie.contratTravail) }}
         {{ form_row(salarie.photo) }}
         
- 
+        <div class="col-12">
                 <div class="form-btn-group">
                 <button type="submit" class="btn btn-primary">Valider</button>
                 </div>
+        </div>
     {{ form_end(salarie) }}{# ferme la balise form #}
         </div>
     </section>  
