@@ -136,7 +136,7 @@ class AdminController extends Controller
       $salarie->setContratTravail(new File($this->getParameter('cdt_dir') . '/' . $salarie->getContratTravail()));
       $salarie->setCarteIdentite(new File($this->getParameter('cni_dir') . '/' . $salarie->getCarteIdentite())) ;
      
-      $form = $this->createForm(ModifsalarieType::class, $salarie);
+      $form = $this->createForm(ModifsalarieType::class, $salarie, ['validation_groups'=>'edition-admin']);
       $form->handleRequest($request);
      
         if($form->isSubmitted())
@@ -162,7 +162,14 @@ class AdminController extends Controller
                                 $this->getParameter('photo_dir'),$photoname);
                         
                         $salarie->setPhoto($photoname);
-                     }    
+                        
+                        if(!is_null($originalphoto) && is_file($this->getParameter('photo_dir') . '/' . $originalphoto)){
+                            unlink($this->getParameter('photo_dir') . '/' . $originalphoto);
+                        }
+                     } else{
+                        // sans upload, on garde l'ancienne image
+                        $salarie->setPhoto($originalphoto);
+                    }
                         
                     if(!is_null($cdt)){
                         $cdtname = uniqid() . '.' . $cdt->guessExtension();
@@ -172,7 +179,15 @@ class AdminController extends Controller
                                 // cf config/services.yaml
                                 $this->getParameter('cdt_dir'),$cdtname);
                         $salarie->setContratTravail($cdtname);
+                        
+                        if(!is_null($originalcdt) && is_file($this->getParameter('cdt_dir') . '/' . $originalcdt)){
+                            unlink($this->getParameter('cdt_dir') . '/' . $originalcdt);
                         }
+                        }else{
+                        // sans upload, on garde l'ancienne image
+                        $salarie->setContratTravail($originalcdt);
+                        
+                    }
                         
                         
                     if(!is_null($cni)){
@@ -183,7 +198,14 @@ class AdminController extends Controller
                                 // cf config/services.yaml
                                 $this->getParameter('cni_dir'),$cdtname);
                         $salarie->setCarteIdentite($cniname);
+                        
+                        if(!is_null($originalcni) && is_file($this->getParameter('cni_dir') . '/' . $originalcni)){
+                            unlink($this->getParameter('cni_dir') . '/' . $originalcni);
                         }
+                        }else{
+                        // sans upload, on garde l'ancienne image
+                        $salarie->setCarteIdentite($originalcni);
+                    }
                         
                         
 
@@ -191,22 +213,11 @@ class AdminController extends Controller
                         // suppression de l'ancienne image de l'article
                         // s'il on est en modification d'un article qui en avait
                         // déjà une
-                        if(!is_null($originalphoto) && is_file($this->getParameter('photo_dir') . '/' . $originalphoto)){
-                            unlink($this->getParameter('photo_dir') . '/' . $originalphoto);
-                        }
-                        if(!is_null($originalcdt) && is_file($this->getParameter('cdt_dir') . '/' . $originalcdt)){
-                            unlink($this->getParameter('cdt_dir') . '/' . $originalcdt);
-                        }
-                        if(!is_null($originalcni) && is_file($this->getParameter('cni_dir') . '/' . $originalcni)){
-                            unlink($this->getParameter('cni_dir') . '/' . $originalcni);
-                        }
+                        
+                        
+                        
 
-                     }else{
-                        // sans upload, on garde l'ancienne image
-                        $salarie->setPhoto($originalphoto);
-                        $salarie->setContratTravail($originalcdt);
-                        $salarie->setCarteIdentite($originalcni);
-                    }
+            }
 
                     $salarie->setEntreprise($this->getUser()->getEntreprise());
 
@@ -302,7 +313,7 @@ class AdminController extends Controller
             //nom du fichier en bdd
                 $originalImage = $actualite->getImage();
                 $actualite->setImage(
-                        new File($this->getParameter('upload_dir') . $originalImage)
+                        new File($this->getParameter('upload_dir'). "/" . $originalImage)
                  );
             }
         }
@@ -345,7 +356,7 @@ class AdminController extends Controller
                     // s'il on est en modification d'un article qui en avait
                     // déjà une 
                     if(!is_null($originalImage)){
-                        unlink($this->getParameter('upload_dir') . $originalImage);
+                        unlink($this->getParameter('upload_dir'). "/" . $originalImage);
                     }
                      
                  }else{
@@ -701,10 +712,10 @@ class AdminController extends Controller
      * @Route("/liste-candidatures/{id}")
      */
     public function listecandidatures(OffreEmploi $emploi) {
-
+        
         return $this->render('admin/liste-candidatures.html.twig', [
             
-            'emploi' => $emploi
+            'emploi' => $emploi,
             
         ]);
     

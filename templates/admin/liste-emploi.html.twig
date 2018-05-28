@@ -19,8 +19,8 @@
                     <table class="table table-hover text-center">
                         <thead>
                             <tr>
-                                <th scope="col">#</th>
-                                <th scope="col">Poste</th>
+                                
+                                <th scope="col" class="">Poste</th>
                                 <th scope="col">Contrat</th>
                                 <th scope="col">Service</th>
                                 <th scope="col">Date</th>
@@ -33,7 +33,7 @@
                         <tbody >
                              {% for emploi in emploi %}
                             <tr>
-                                <th scope="row">{{ emploi.id }}</th>
+                                
                                 <td>{{ emploi.poste }}</td>
                                 <td>{{ emploi.contrat }}</td>
                                 <td>{{ emploi.service.nom }}</td>

@@ -54,7 +54,7 @@ class SalarieController extends Controller
             new File($this->getParameter('photo_dir') . '/' . $salarie->getPhoto())
         );
 
-       $form = $this->createForm(SalarieeditType::class, $salarie);
+       $form = $this->createForm(SalarieeditType::class, $salarie, ['validation_groups'=>'edition']);
        $form->handleRequest($request);
 
 

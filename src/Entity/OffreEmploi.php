@@ -35,7 +35,7 @@ class OffreEmploi
      * @Assert\NotBlank(message="LA DESCRIPTION EST OBLIGATOIRE")
      * @ORM\Column(type="text")
      */
-        private $description;
+    private $description;
 
     /**
      *

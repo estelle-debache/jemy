@@ -5,7 +5,7 @@
         <div class="container ajout-news">
              <div class="row">
                 <div class="col-12 col-md-12">
-                    
+                    <h1 class="text-center">Les News</h1>
                 </div>
             </div>
 
@@ -13,12 +13,10 @@
             {{form_row(form.titre)}}
             {{form_row(form.contenu)}}
             {{form_row(form.image) }}
-            {{form_errors(form.titre)}}
-            {{form_errors(form.contenu)}}
-            {{form_errors(form.image) }}
+            
             
    
-             <button type="submit" class="btn btn-primary">Modifier votre actualité</button>
+             <button type="submit" class="btn btn-primary">Enregistrer</button>
             {{ form_end(form) }}
         </div>
     </section>

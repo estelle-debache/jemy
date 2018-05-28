@@ -16,19 +16,19 @@ class EntrepriseType extends AbstractType
         $builder
                
                 ->add('nom', TextType::class,['label'=> 'Nom'])
-                ->add('siren', TextType::class,['label'=> 'Siren'])
-                ->add('siret', TextType::class,['label'=> 'Siret'])
+                ->add('siren', TextType::class,['label'=> 'Siren (9 chiffres)'])
+                ->add('siret', TextType::class,['label'=> 'Siret (14 chiffres)'])
                 
                 ->add('adresse', TextType::class,['label'=> 'Adresse'])
-                ->add('code_postal', TextType::class,['label'=> 'Code Postal'])
+                ->add('codePostal', TextType::class,['label'=> 'Code Postal'])
                 ->add('ville', TextType::class,['label'=> 'Ville'])
                 ->add('telephone', TextType::class,['label'=> 'Téléphone'])
                 
-                ->add('forme_juridique', ChoiceType::class,array(
+                ->add('formeJuridique', ChoiceType::class,array(
                     'expanded'=>false,
                     'multiple'=>false,
                     'choices' => array(
-                        ''=>'',
+                        '' => '',
                         'SARL' => 'SARL',
                         'SAS' => 'SAS',
                         'SA'=>'SA',
@@ -41,7 +41,7 @@ class EntrepriseType extends AbstractType
     public function configureOptions(OptionsResolver $resolver)
     {
         $resolver->setDefaults([
-            'data_class' => Entreprise::class,
+            'data_class' => Entreprise::class,          
         ]);
     }
 }
