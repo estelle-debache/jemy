@@ -13,7 +13,7 @@
                     <div class="card-img-top" style="background-image:url('{{ asset('images/news/'~actualite.image )}}')"> </div>
                     <div class="card-body">
                         <h5 class="card-title">{{ actualite.titre}}</h5>
-                        <p class="card-text"> {{ actualite.contenu }}</p>
+                        <p class="card-text"> {{ actualite.contenu|nl2br  }}</p>
                         <p class="card-text"><small class="text-muted">{{ actualite.date|date('d/m/Y') }} - {{ actualite.salarie }}</small></p>
                     </div>
                 </div>

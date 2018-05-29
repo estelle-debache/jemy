@@ -10,7 +10,7 @@
             
               <table class="table">
                 <thead>
-                  <tr>
+                  <tr class="text-center">
                     <th scope="col">Type de congés</th>
                     <th scope="col">Vos Droits</th>
                     <th scope="col">Acceptées</th>
@@ -19,7 +19,7 @@
                   </tr>
                 </thead>
                 <tbody>
-                  <tr>
+                  <tr class="text-center">
                     <th scope="row">Congés Payés</th>
                     <td>25/an</td>
                     <td>{{ccpa}}</td>
@@ -27,7 +27,7 @@
                     <td>{{ app.user.soldeconge }}</td>
                   </tr>
 
-                  <tr>
+                  <tr class="text-center">
                     <th scope="row">RTT</th>
                     <td>12/an</td>
                     <td>{{cra}}</td>
@@ -41,24 +41,24 @@
                   </div>
                   <table class="table">
                         <thead>
-                            <tr>
+                            <tr class="text-center">
                                 
                                 <th scope="col">Type de congé</th>
                                 <th scope="col">Date de début</th>
                                 <th scope="col">Date de fin</th>
                                 <th scope="col">Nombre de jour</th>
                                 <th scope="col" >Statut</th>
-                                <th scope="col" ></th>
-                                <th scope="col" ></th>
+                                
+                                
                                 
                                
                                 
                             </tr>
                         </thead>
                         <tbody >
-                             
+                             {% for conge in conges %}
                             <tr class="text-center">
-                                {% for conge in conges %}
+                                
                                  {% if conge.typeconge == 'Congé payé' %}  
                                      
                                      
@@ -86,11 +86,7 @@
                                     </a>
                                 </td>
                                 {% endif %}
-                                {% if conge.statut != 'en cours' %}
-                                    
-                                    <td>{{ conge.comment }}  </td> 
-                                    
-                                {% endif %}
+                                
                             </tr>
                             {% endif %}
                             {% endfor %}
@@ -118,11 +114,7 @@
                                     </a>
                                 </td>
                                 {% endif %}
-                                {% if conge.statut != 'en cours' %}
-                                    
-                                    <td>{{ conge.comment }}  </td> 
-                                    
-                                {% endif %}
+                                
                                 
                                 
                                 
@@ -140,7 +132,7 @@
 
           
 
-            <div class="row demandeConge">
+            <div class="row demandeConge" class="text-center">
                 {{form_start(form)}}
                     {{ form_row(form.datedebut ) }} 
                     {{ form_row(form.datefin ) }} 
@@ -148,8 +140,9 @@
                     {{ form_row(form.typeconge ) }} 
                                     
                 <div class="col-12">
+                    <a href="{{path('app_salarie_mesconges')}}"><button type="submit" class="btn btn-primary">Envoyer</button></a>
                   <a href="{{path('app_salarie_index')}}"><button type="button" class="btn btn-primary">Retour</button></a>
-                  <a href="{{path('app_salarie_mesconges')}}"><button type="submit" class="btn btn-primary">Envoyer</button></a>
+                  
                 </div>
                 {{form_end(form)}} 
                 
