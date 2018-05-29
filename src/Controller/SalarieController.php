@@ -131,7 +131,7 @@ class SalarieController extends Controller
        
         $query = $repository->createQueryBuilder('c')->where('c.salarie='.$this->getUser()->getId())->getQuery();
         $conges= $query->getResult();
-        dump($conges);
+       
         
         $salarie = $this->getUser();
         
@@ -316,7 +316,7 @@ class SalarieController extends Controller
     public function offreemploidetail(OffreEmploi $emploi, $id) {
 
 
-        dump($emploi);
+       
         return $this->render('salarie/offre-emploi-detail.html.twig',
                [
                    "emploi" => $emploi

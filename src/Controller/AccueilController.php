@@ -38,7 +38,7 @@ class AccueilController extends Controller
         $service = new Service();
         $service->setNom('Ressource Humaines');
         $entreprise->addService($service);// ca cree l'id dans entreprise_id de la table service grace a la methode add service dans entreprise
-        dump($service);
+       
 
         //creation d'un formulaire relié a la categorie
         $form = $this->createForm(EntrepriseType::class, $entreprise);
@@ -61,7 +61,7 @@ class AccueilController extends Controller
             $em->persist($service);
             $em->flush();
 
-            dump($entreprise->getId());
+            
 
 
 
@@ -109,16 +109,16 @@ class AccueilController extends Controller
 
         // recupere un objet service ayant l'id enregistre en session lors de la creation de l'objet entreprise
         $service = $em->find(Service::class, $session->get('idservice'));
-        dump($service);
-        dump($form->getErrors());
+        
+       
         if( $form->isSubmitted())
         {
-            dump($form->getErrors());
+           
             if($form->isValid())
             {
                 
                 $form->getErrors();
-                dump($form->getErrors());
+                
                 // recuperer le nom du fichier en bdd
                 $photo = $salarie->getPhoto();
                 $cni = $salarie->getCarteIdentite();
@@ -182,7 +182,7 @@ class AccueilController extends Controller
         if(!empty($error))
         {
             $this->addFlash('error', 'Identifiants incorrects');
-            dump($error);
+           
 
         }
        // on  est redirige automatiquement vers app_index_index grace au fichier security.yaml

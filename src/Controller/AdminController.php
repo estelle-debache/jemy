@@ -323,7 +323,7 @@ class AdminController extends Controller
         if ($form->isSubmitted()) {
             // les attributs de l'objet Catégory ont été
             // settés à partir des champs de formulaires
-            //dump($category);
+            
             
             // Valide la saisie du formulaire à partir
             // des annotations dans la classe Category
@@ -459,7 +459,7 @@ class AdminController extends Controller
         if ($form->isSubmitted()) {
             // les attributs de l'objet Catégory ont été
             // settés à partir des champs de formulaires
-            //dump($category);
+            
             
             // Valide la saisie du formulaire à partir
             // des annotations dans la classe Category
@@ -550,7 +550,7 @@ class AdminController extends Controller
         $demandesrefusees = $repository->findAllcongesByEntreprise($entreprise, 'refusé');
         $nbdemandes =$repository->countAllcongesByEntreprise($entreprise, 'en cours');
 
-        //dump($demandes, $nbdemandes);
+        
         
         return $this->render('admin/lesconges.html.twig',
                 [
