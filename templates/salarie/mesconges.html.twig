@@ -48,6 +48,8 @@
                                 <th scope="col">Date de fin</th>
                                 <th scope="col">Nombre de jour</th>
                                 <th scope="col" >Statut</th>
+                                <th scope="col" ></th>
+                                <th scope="col" ></th>
                                 
                                 
                                 
@@ -56,10 +58,16 @@
                             </tr>
                         </thead>
                         <tbody >
-                             {% for conge in conges %}
+                            
+                            
+                            
+                            
+                            
+                            {% for conge in conges %}
                             <tr class="text-center">
                                 
-                                 {% if conge.typeconge == 'Congé payé' %}  
+                                 {% if conge.typeconge == 'Congé payé' %} 
+                                     {% if conge.statut == 'en cours' %}  
                                      
                                      
                                      <th scope="row">{{ conge.typeconge }}</th>
@@ -72,9 +80,13 @@
                                 <td>
                                    {{ conge.statut }}
                                 </td>
-                                {% if conge.statut == 'En cours' %}
+                                {% if conge.statut != 'en cours' %}
+                                    <td></td>
+                                     <td></td>
+                                {% endif %}
+                                {% if conge.statut == 'en cours' %}
                                     
-                                    
+                                
                                 <td>
                                     <a href="{{ path('app_salarie_modifconge',{id: conge.id}) }}">
                                         <button type="button" class="btn btn-primary">Modifier</button>
@@ -89,10 +101,53 @@
                                 
                             </tr>
                             {% endif %}
+                            {% endif %}
+                            {% endfor %}
+                            
+                             {% for conge in conges %}
+                            <tr class="text-center">
+                                
+                                 {% if conge.typeconge == 'Congé payé' %}  
+                                     {% if conge.statut != 'en cours' %}  
+                                     
+                                     
+                                     <th scope="row">{{ conge.typeconge }}</th>
+                                
+                                
+                                
+                                     <td>{{ conge.datedebut|date('d/m/Y') }}</td>
+                                <td>{{ conge.datefin|date('d/m/Y') }}</td>
+                                <td>{{ conge.nbdejour }}</td>
+                                <td>
+                                   {{ conge.statut }}
+                                </td>
+                                {% if conge.statut != 'en cours' %}
+                                    <td></td>
+                                     <td></td>
+                                {% endif %}
+                                {% if conge.statut == 'en cours' %}
+                                    
+                                
+                                <td>
+                                    <a href="{{ path('app_salarie_modifconge',{id: conge.id}) }}">
+                                        <button type="button" class="btn btn-primary">Modifier</button>
+                                    </a> 
+                                </td>
+                                <td>
+                                    <a href="{{ path('app_salarie_deleteconge',{id: conge.id}) }}">
+                                        <button type="button" class="btn btn-danger">Supprimer</button>
+                                    </a>
+                                </td>
+                                {% endif %}
+                                
+                            </tr>
+                            {% endif %}
+                            {% endif %}
                             {% endfor %}
                              <tr class="text-center">
                                  {% for conge in conges %}
-                                 {% if conge.typeconge == 'RTT' %}   
+                                 {% if conge.typeconge == 'RTT' %}  
+                                     {% if conge.statut != 'en cours' %}  
                                 <th scope="row">{{ conge.typeconge }}</th>
                                 <td>{{ conge.datedebut|date('d/m/Y') }}</td>
                                 <td>{{ conge.datefin|date('d/m/Y') }}</td>
@@ -100,6 +155,10 @@
                                 <td>
                                     {{ conge.statut }}
                                 </td>
+                                {% if conge.statut != 'en cours' %}
+                                    <td></td>
+                                     <td></td>
+                                {% endif %}
                                 {% if conge.statut == 'en cours' %}
                                     
                                     
@@ -120,6 +179,7 @@
                                 
                             </tr>
                             {% endif %}
+                            {% endif %}
                              {% endfor %}
                         
                         </tbody>
@@ -129,6 +189,10 @@
                   
 
               <button type="button" class="btn btn-primary btndemandeConge">Emettre une demande d'absence</button>
+              <div class='text-right'>
+              <a href="{{path('app_salarie_index')}}"><button type="button" class="btn btn-primary">Retour</button></a>
+              </div>
+           
 
           
 
