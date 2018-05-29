@@ -551,6 +551,7 @@ class Salarie implements UserInterface, Serializable
     }
     public function __construct() {
         $this->FicheDePaies = new ArrayCollection();
+        $this->service= new ArrayCollection();
     }
 
     public function getFicheDePaieByYear($year)

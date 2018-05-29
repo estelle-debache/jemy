@@ -109,11 +109,16 @@ class AccueilController extends Controller
 
         // recupere un objet service ayant l'id enregistre en session lors de la creation de l'objet entreprise
         $service = $em->find(Service::class, $session->get('idservice'));
+        dump($service);
         dump($form->getErrors());
         if( $form->isSubmitted())
         {
+            dump($form->getErrors());
             if($form->isValid())
             {
+                
+                $form->getErrors();
+                dump($form->getErrors());
                 // recuperer le nom du fichier en bdd
                 $photo = $salarie->getPhoto();
                 $cni = $salarie->getCarteIdentite();
