@@ -166,7 +166,7 @@ class AdminController extends Controller
                         
                         $salarie->setPhoto($photoname);
                         
-                        if(!is_null($originalphoto) && is_file($this->getParameter('photo_dir') . '/' . $originalphoto)){
+                        if(!is_null($originalphoto)){
                             unlink($this->getParameter('photo_dir') . '/' . $originalphoto);
                         }
                      } else{
@@ -183,7 +183,7 @@ class AdminController extends Controller
                                 $this->getParameter('cdt_dir'),$cdtname);
                         $salarie->setContratTravail($cdtname);
                         
-                        if(!is_null($originalcdt) && is_file($this->getParameter('cdt_dir') . '/' . $originalcdt)){
+                        if(!is_null($originalcdt)){
                             unlink($this->getParameter('cdt_dir') . '/' . $originalcdt);
                         }
                         }else{
@@ -202,7 +202,7 @@ class AdminController extends Controller
                                 $this->getParameter('cni_dir'),$cniname);
                         $salarie->setCarteIdentite($cniname);
                         
-                        if(!is_null($originalcni) && is_file($this->getParameter('cni_dir') . '/' . $originalcni)){
+                        if(!is_null($originalcni)){
                             unlink($this->getParameter('cni_dir') . '/' . $originalcni);
                         }
                         }else{
