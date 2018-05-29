@@ -135,9 +135,9 @@ class AdminController extends Controller
       $originalphoto = $salarie->getPhoto();
       $originalcdt = $salarie->getContratTravail();
       $originalcni = $salarie->getCarteIdentite();
-      $salarie->setPhoto(new File($this->getParameter('photo_dir') . '/' . $salarie->getPhoto()));
-      $salarie->setContratTravail(new File($this->getParameter('cdt_dir') . '/' . $salarie->getContratTravail()));
-      $salarie->setCarteIdentite(new File($this->getParameter('cni_dir') . '/' . $salarie->getCarteIdentite())) ;
+      $salarie->setPhoto(new File($this->getParameter('photo_dir') . '/' .$originalphoto));
+      $salarie->setContratTravail(new File($this->getParameter('cdt_dir') . '/' . $originalcdt));
+      $salarie->setCarteIdentite(new File($this->getParameter('cni_dir') . '/' . $originalcni)) ;
      
       $form = $this->createForm(ModifsalarieType::class, $salarie, ['validation_groups'=>'edition-admin']);
       $form->handleRequest($request);
