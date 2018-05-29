@@ -827,7 +827,7 @@ class AdminController extends Controller
            if($form->isValid())
            {
                 $soldeconge+=2.5;
-                $soldertt+= 2;
+                $soldertt+= 1;
                 $salarie->setSoldeConge($soldeconge)
                         ->setSoldeRtt($soldertt);
                
