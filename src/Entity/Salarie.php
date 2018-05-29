@@ -131,7 +131,7 @@ class Salarie implements UserInterface, Serializable
      *      minMessage = "Le numéro de sécurité sociale doit contenir {{ limit }} caractères minimum",
      *      maxMessage = "Le numéro de sécurité sociale ne doit pas dépasser {{ limit }} caractères"
      * )
-     * @ORM\Column(type="integer", length=15)
+     * @ORM\Column(type="string", length=15)
      */
     private $numSs;
     
