@@ -195,7 +195,7 @@ class SalarieController extends Controller
                 $em->flush();
                  $this->addFlash(
                     'success',
-                    'Votre demande a bien été modifié'
+                    'Votre demande a bien été modifiée'
                 );
                  return $this->redirectToRoute('app_salarie_mesconges');
             }else{

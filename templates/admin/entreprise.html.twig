@@ -16,7 +16,7 @@
                 <div class="col-12 col-md-6 information">
                     <p><span>Forme juridique : </span>{{ entreprise.formejuridique }}</p>
                     <p><span>Siren : </span>{{ entreprise.siren }} <span>Siret : </span> {{ entreprise.siret }}</p>
-                    <p><span>Nombre de salariés dans l'entreprise : </span>{{ app.user.entreprise.countBySalarie }}</p>
+                    <p><span>Nombre de salarié(s) dans l'entreprise : </span>{{ app.user.entreprise.countBySalarie }}</p>
                 </div>
                 
                 <div class="col-12 col-md-6 information">
@@ -36,7 +36,7 @@
                                 <div class="card " style="width: 18rem;">
                                     <div class="card-body text-center">
                                       <h5 class="card-title">{{service.nom}}</h5>
-                                      <p class="card-text">{{ service.countByService }} salariés dans ce service </p>
+                                      <p class="card-text">{{ service.countByService }} salarié(s) dans ce service </p>
                                       <a href='{{path('app_admin_editservice', {id: service.id})}}'>
                                       <button type="button" class="btn btn-outline-success ">Modifier</button>
                                       </a>
