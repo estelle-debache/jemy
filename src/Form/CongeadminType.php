@@ -29,11 +29,7 @@ class CongeadminType extends AbstractType
 
 
 
-            ->add('comment', TextareaType::class,
-                    [
-                       'label'=> 'Votre commentaire'
-                    ]
-                )
+            
 
         ;
     }

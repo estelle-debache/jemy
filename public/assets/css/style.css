@@ -477,6 +477,17 @@ section{
 
 }
 
+.validationConges .avion{
+    color: #f2af58;
+    width:2rem;
+}
+
+.validationConges .avion:hover{
+    color:#74d14c;
+    width:2rem;
+}
+
+
 
 
 /** MES FICHES DE PAIE **************************************************************************************************************************/

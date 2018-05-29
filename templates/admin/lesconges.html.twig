@@ -25,7 +25,7 @@
                             <div class="card-body">
                                 <table class="table">
                                     <thead>
-                                      <tr>
+                                      <tr class="text-center">
                                         <th scope="col">Nom</th>
                                         <th scope="col">Prénom</th>
                                         <th scope="col">Service</th>
@@ -38,7 +38,7 @@
                                     </thead>
                                     <tbody>
                                         {% for demande in demandes %}
-                                        <tr>
+                                        <tr class="text-center">
                                             
                                           <td>{{ demande.salarie.nom }}</td>
                                           <td>{{ demande.salarie.prenom }}</td>
@@ -47,7 +47,7 @@
                                           <td>{{ demande.datefin|date('d/m/Y') }} </td>
                                           <td>{{ demande.nbdejour }} </td>
                                           <td>{{ demande.typeconge }} </td>
-                                           <td><a href="{{path('app_admin_reponseconge', {id: demande.id})}}"><i class="fas fa-plane"></i></a></td>
+                                           <td><a class="avion" href="{{path('app_admin_reponseconge', {id: demande.id})}}"><i class="fas fa-plane"></i></a></td>
                                         </tr>
                                         {% endfor %}
                                     </tbody>
@@ -69,7 +69,7 @@
                             <div class="card-body">
                                 <table class="table">
                                     <thead>
-                                      <tr>
+                                      <tr class="text-center">
                                         <th scope="col">Nom</th>
                                         <th scope="col">Prénom</th>
                                         <th scope="col">Service</th>
@@ -82,7 +82,7 @@
                                     </thead>
                                     <tbody>
                                          {% for demandevalide in demandesvalides %}
-                                        <tr>
+                                        <tr class="text-center">
                                             
                                           <td>{{ demandevalide.salarie.nom }}</td>
                                           <td>{{ demandevalide.salarie.prenom }}</td>
@@ -112,7 +112,7 @@
                             <div class="card-body">
                                 <table class="table">
                                     <thead>
-                                      <tr>
+                                      <tr class="text-center">
                                         <th scope="col">Nom</th>
                                         <th scope="col">Prénom</th>
                                         <th scope="col">Service</th>
@@ -124,7 +124,7 @@
                                     </thead>
                                     <tbody>
                                          {% for demanderefuse in demandesrefusees %}
-                                        <tr>
+                                        <tr class="text-center">
                                             
                                           <td>{{ demanderefuse.salarie.nom }}</td>
                                           <td>{{ demanderefuse.salarie.prenom }}</td>
@@ -145,7 +145,7 @@
                     
                 </div>
                 <div class="text-right">
-                    <a href="{{path('app_admin_index')}}"><button type="button" class="btn btn-outline-success"><i class="fas fa-arrow-left"></i> Retour</button></a>
+                    <a  href="{{path('app_admin_index')}}"><button type="button" class="btn btn-outline-success"><i class="fas fa-arrow-left"></i> Retour</button></a>
                 </div>
             </div>
                 </section>
