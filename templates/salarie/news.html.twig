@@ -10,16 +10,19 @@
             <div class="row">
                 
                 <div class="card w-100">
-                    <div class="card-img-top" style="background-image:url('{{ asset('images/'~actualite.image )}}')"> </div>
+                    <div class="card-img-top" style="background-image:url('{{ asset('images/news/'~actualite.image )}}')"> </div>
                     <div class="card-body">
                         <h5 class="card-title">{{ actualite.titre}}</h5>
-                        <p class="card-text"> {{ actualite.contenu }}</p>
+                        <p class="card-text"> {{ actualite.contenu|nl2br  }}</p>
                         <p class="card-text"><small class="text-muted">{{ actualite.date|date('d/m/Y') }} - {{ actualite.salarie }}</small></p>
                     </div>
                 </div>
                     
             </div>
                 {% endfor %}
+                <div class="text-right">
+                     <a href="{{path('app_salarie_index')}}"><button type="button" class="btn btn-outline-success"><i class="fas fa-arrow-left"></i> Retour</button></a>
+                </div>
         </div>
             
     </section>

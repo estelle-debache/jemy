@@ -87,10 +87,10 @@ class AjoutsalarieType extends AbstractType
                     // this is actually the default format for single_text
                     'format' => 'yyyy-MM-dd',
                 ))
-            ->add('numSs', TextType::class,['label'=>"Numero Securite Social"])
+            ->add('numSs', TextType::class,['label'=>"Numero Securite Social (15 chiffres)"])
             
-            ->add('iban', TextType::class,['label'=>"IBAN"])
-            ->add('carteIdentite', FileType::class,['label'=>"Carte d'identite (pdf)"])
+            ->add('iban', TextType::class,['label'=>"IBAN (27 chiffres)"])
+            ->add('carteIdentite', FileType::class,['label'=>"Carte d'identite "])
             ->add('contratTravail', FileType::class,['label'=>"Contrat de travail (pdf)"])
             ->add('photo', FileType::class,['label'=>"Photo (portrait jpg)"])
             ->add('telephone', TextType::class,['label'=>"Téléphone"])
@@ -104,7 +104,7 @@ class AjoutsalarieType extends AbstractType
     {
         $resolver->setDefaults([
             'data_class' => Salarie::class,
-            'validation_groups' => array('inscription-admin'),
+            'validation_groups' => array('edition'),
         ]);
     }
 }

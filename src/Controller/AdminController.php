@@ -3,6 +3,7 @@
 namespace App\Controller;
 
 use App\Entity\Actualite;
+use App\Entity\Conge;
 use App\Entity\Entreprise;
 use App\Entity\FicheDePaie;
 use App\Entity\OffreEmploi;
@@ -10,6 +11,7 @@ use App\Entity\Salarie;
 use App\Entity\Service;
 use App\Form\ActualiteType;
 use App\Form\AjoutsalarieType;
+use App\Form\CongeadminType;
 use App\Form\EntrepriseType;
 use App\Form\FdpType;
 use App\Form\ModifsalarieType;
@@ -21,6 +23,7 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\Security\Core\Encoder\UserPasswordEncoderInterface;
+use function dump;
 
 
 
@@ -132,16 +135,11 @@ class AdminController extends Controller
       $originalphoto = $salarie->getPhoto();
       $originalcdt = $salarie->getContratTravail();
       $originalcni = $salarie->getCarteIdentite();
-      $salarie->setPhoto(
-           new File($this->getParameter('photo_dir') . '/' . $salarie->getPhoto()))
-              ->setContratTravail(
-           new File($this->getParameter('cdt_dir') . '/' . $salarie->getContratTravail()))
-              ->setCarteIdentite(
-           new File($this->getParameter('cni_dir') . '/' . $salarie->getCarteIdentite())) 
-              
-              ;
+      $salarie->setPhoto(new File($this->getParameter('photo_dir') . '/' .$originalphoto));
+      $salarie->setContratTravail(new File($this->getParameter('cdt_dir') . '/' . $originalcdt));
+      $salarie->setCarteIdentite(new File($this->getParameter('cni_dir') . '/' . $originalcni)) ;
      
-      $form = $this->createForm(ModifsalarieType::class, $salarie);
+      $form = $this->createForm(ModifsalarieType::class, $salarie, ['validation_groups'=>'edition-admin']);
       $form->handleRequest($request);
      
         if($form->isSubmitted())
@@ -156,52 +154,66 @@ class AdminController extends Controller
 
 
                      //s'il y a eu une image uploadée
-                     if(!is_null($photo)&& !is_null($cni)&& !is_null($cdt)){
+                     if(!is_null($photo)){
                          // nom du fichoer que l'on va enregistrer
                         $photoname = uniqid() . '.' . $photo->guessExtension();
-                        $cdtname = uniqid() . '.' . $cdt->guessExtension();
-                        $cniname = uniqid() . '.' . $cni->guessExtension();
+                        
                         
                         $photo->move(
                                 // répertoire de destination
                                 // cf config/services.yaml
                                 $this->getParameter('photo_dir'),$photoname);
+                        
+                        $salarie->setPhoto($photoname);
+                        
+                        if(!is_null($originalphoto)){
+                            unlink($this->getParameter('photo_dir') . '/' . $originalphoto);
+                        }
+                     } else{
+                        // sans upload, on garde l'ancienne image
+                        $salarie->setPhoto($originalphoto);
+                    }
+                        
+                    if(!is_null($cdt)){
+                        $cdtname = uniqid() . '.' . $cdt->guessExtension();
+                        
                         $cdt->move(
                                 // répertoire de destination
                                 // cf config/services.yaml
                                 $this->getParameter('cdt_dir'),$cdtname);
+                        $salarie->setContratTravail($cdtname);
+                        
+                        if(!is_null($originalcdt)){
+                            unlink($this->getParameter('cdt_dir') . '/' . $originalcdt);
+                        }
+                        }else{
+                        // sans upload, on garde l'ancienne image
+                        $salarie->setContratTravail($originalcdt);
+                        
+                    }
+                        
+                        
+                    if(!is_null($cni)){
+                        $cniname = uniqid() . '.' . $cni->guessExtension();
+                        
                         $cni->move(
                                 // répertoire de destination
                                 // cf config/services.yaml
                                 $this->getParameter('cni_dir'),$cniname);
-
-
-                        // on sette l'image avec le nom qu'on lui a donné
-                        $salarie->setPhoto($photoname)
-                                ->setCarteIdentite($cniname)
-                                ->setContratTravail($cdtname)
-
-                                ;
-
-                        // suppression de l'ancienne image de l'article
-                        // s'il on est en modification d'un article qui en avait
-                        // déjà une
-                        if(!is_null($originalphoto) && is_file($this->getParameter('photo_dir') . '/' . $originalphoto)){
-                            unlink($this->getParameter('photo_dir') . '/' . $originalphoto);
-                        }
-                        if(!is_null($originalcdt) && is_file($this->getParameter('cdt_dir') . '/' . $originalcdt)){
-                            unlink($this->getParameter('cdt_dir') . '/' . $originalcdt);
-                        }
-                        if(!is_null($originalcni) && is_file($this->getParameter('cni_dir') . '/' . $originalcni)){
+                        $salarie->setCarteIdentite($cniname);
+                        
+                        if(!is_null($originalcni)){
                             unlink($this->getParameter('cni_dir') . '/' . $originalcni);
                         }
-
-                     }else{
+                        }else{
                         // sans upload, on garde l'ancienne image
-                        $salarie->setPhoto($originalphoto);
-                        $salarie->setContratTravail($originalcdt);
                         $salarie->setCarteIdentite($originalcni);
                     }
+                        
+                        
+
+
+            }
 
                     $salarie->setEntreprise($this->getUser()->getEntreprise());
 
@@ -217,7 +229,7 @@ class AdminController extends Controller
                     // redirection vers la page de liste
                     return $this->redirectToRoute('app_admin_listesalaries');
             }
-        }
+        
        return $this->render('admin/modifsalarie.html.twig',
                 [
                    
@@ -297,7 +309,7 @@ class AdminController extends Controller
             //nom du fichier en bdd
                 $originalImage = $actualite->getImage();
                 $actualite->setImage(
-                        new File($this->getParameter('upload_dir') . $originalImage)
+                        new File($this->getParameter('upload_dir'). "/" . $originalImage)
                  );
             }
         }
@@ -311,7 +323,7 @@ class AdminController extends Controller
         if ($form->isSubmitted()) {
             // les attributs de l'objet Catégory ont été
             // settés à partir des champs de formulaires
-            //dump($category);
+            
             
             // Valide la saisie du formulaire à partir
             // des annotations dans la classe Category
@@ -340,7 +352,7 @@ class AdminController extends Controller
                     // s'il on est en modification d'un article qui en avait
                     // déjà une 
                     if(!is_null($originalImage)){
-                        unlink($this->getParameter('upload_dir') . $originalImage);
+                        unlink($this->getParameter('upload_dir'). "/" . $originalImage);
                     }
                      
                  }else{
@@ -447,7 +459,7 @@ class AdminController extends Controller
         if ($form->isSubmitted()) {
             // les attributs de l'objet Catégory ont été
             // settés à partir des champs de formulaires
-            //dump($category);
+            
             
             // Valide la saisie du formulaire à partir
             // des annotations dans la classe Category
@@ -493,6 +505,8 @@ class AdminController extends Controller
      */
     public function deleteEmploi(OffreEmploi $emploi)
     {
+        $nbcandidatures = $emploi->countByCandidatures();
+        if($nbcandidatures == 0 ){
         $em = $this->getDoctrine()->getManager();
         $em->remove($emploi);
         $em->flush();
@@ -501,7 +515,12 @@ class AdminController extends Controller
             'success',
             'L\'offre d\'emploi est supprimée'
         );
-        
+        } else{
+            $this->addFlash(
+            'error',
+            'L\'offre d\'emploi ne peut être supprimée, il y a des candidatures en cours'
+        );
+        }
         return $this->redirectToRoute('app_admin_listeemploi');
     }
     /**
@@ -528,10 +547,89 @@ class AdminController extends Controller
      * @Route("/lesconges")
      */
     public function lesconges() {
+        $em = $this->getDoctrine()->getManager();
+        $repository = $em->getRepository(Conge::class);
         
-        return $this->render('admin/lesconges.html.twig');
+        $entreprise = $this->getUser()->getEntreprise();
+        
+        $demandesencours = $repository->findAllcongesByEntreprise($entreprise, 'en cours');
+        $demandesvalidees = $repository->findAllcongesByEntreprise($entreprise, 'validé');
+        $demandesrefusees = $repository->findAllcongesByEntreprise($entreprise, 'refusé');
+        $nbdemandes =$repository->countAllcongesByEntreprise($entreprise, 'en cours');
+
+        
+        
+        return $this->render('admin/lesconges.html.twig',
+                [
+                    'demandes'=>$demandesencours,
+                    'demandesvalides'=>$demandesvalidees,
+                    'demandesrefusees'=>$demandesrefusees,
+                    'nbdemandes'=>$nbdemandes
+                ]
+                
+                );
         
     }
+    /**
+     * 
+     * @Route("/reponseconge/{id}")
+     */
+    public function reponseconge(Request $request, Conge $conge) {
+        
+        $em=$this->getDoctrine()->getManager();
+        
+        
+        
+        
+        $form= $this->createForm(CongeadminType::class, $conge);
+        $form->handleRequest($request);
+        if($form->isSubmitted())
+        {
+            if($form->isValid())
+            {
+                $typeconge= $conge->getTypeconge();
+                $statut = $conge->getStatut();
+                $soldeconge= $conge->getSalarie()->getSoldeConge();
+                $soldertt = $conge->getSalarie()->getSoldeRtt(); 
+                $diminution = $conge->getNbdejour();
+                
+                if($typeconge == 'Congé payé')
+                {
+                    if($statut=='validé')
+                    {
+                        $conge->getSalarie()->setSoldeConge($soldeconge-$diminution);
+
+                    }
+                }
+                if($typeconge == 'RTT')
+                {
+                    if($statut=='validé')
+                    {
+                        $conge->getSalarie()->setSoldeRtt($soldertt-$diminution);
+
+                    }
+                }
+                
+                
+                
+                
+               $em->persist($conge);
+               $em->flush();
+               return $this->redirectToRoute('app_admin_lesconges');
+            }
+        }
+        
+        
+        return $this->render('admin/reponseconge.html.twig',
+                       [
+                           'form'=> $form->createView()
+                           
+                       ]
+                );
+        
+    }
+    
+    
     
     /**
      * @Route("/ajoutservice")
@@ -621,6 +719,9 @@ class AdminController extends Controller
      */
     public function deleteservice(Service $service)
     {
+        $nbsalaries = $service->countByService();
+        if($nbsalaries == 0 ){
+                
         $em = $this->getDoctrine()->getManager();
         
         $service->
@@ -633,7 +734,13 @@ class AdminController extends Controller
             'success',
             'Le service est bien supprimé'
         );
-        
+        } else{
+            $this->addFlash(
+            'error',
+            'Impossible de supprimer le service, Vous devez d\'abord supprimer les salariés ou les changer de service'
+            );
+            
+        }
         return $this->redirectToRoute('app_admin_entrepriseconnectee');
     }
       
@@ -690,6 +797,8 @@ class AdminController extends Controller
      */
     public function entrepriseconnectee()
     {
+        
+        
        return $this->render('admin/entrepriseconnectee.html.twig'); 
     }
     
@@ -698,10 +807,10 @@ class AdminController extends Controller
      * @Route("/liste-candidatures/{id}")
      */
     public function listecandidatures(OffreEmploi $emploi) {
-
+        
         return $this->render('admin/liste-candidatures.html.twig', [
             
-            'emploi' => $emploi
+            'emploi' => $emploi,
             
         ]);
     
@@ -710,9 +819,23 @@ class AdminController extends Controller
    /**
     * @Route("/insertfdp/{id}")
     */
-   public function insertfdp(Request $request, Salarie $salarie) {
+   public function insertfdp(Request $request, Salarie $salarie, $id) {
        
        $em =$this->getDoctrine()->getManager();
+       
+       $soldertt= $salarie->getSoldeRtt();
+       $soldeconge = $salarie->getSoldeConge();
+        
+       
+       
+       
+       
+
+       $repository = $this->getDoctrine()->getRepository(FicheDePaie::class);
+       
+        $query = $repository->createQueryBuilder('f')->where('f.salarie='.$salarie->getId())->getQuery();
+        $fichede= $query->getResult();
+
        
        $fdp = new FicheDePaie();
        
@@ -723,6 +846,13 @@ class AdminController extends Controller
        if($form->isSubmitted()){
            if($form->isValid())
            {
+                $soldeconge+=2.5;
+                $soldertt+= 1;
+                $salarie->setSoldeConge($soldeconge)
+                        ->setSoldeRtt($soldertt);
+               
+                
+               
                 // recuperer le nom du fichier en bdd
                 $blo = $fdp->getFicheDePaie();
                  // modifier le nom obtenue lors de la precedente action
@@ -739,7 +869,12 @@ class AdminController extends Controller
                
             $em->persist($fdp);
             $em->flush();
-                         return $this->redirectToRoute('app_admin_listesalaries');     
+            $this->addFlash(
+                    'success',
+                    'La fiche de paie a bien été enregistrée'
+                );
+           return $this->redirectToRoute('app_admin_insertfdp', array('id'=>$salarie->getId()));
+ 
                
            }
        }
@@ -747,13 +882,147 @@ class AdminController extends Controller
        
        return $this->render('admin/insertfdp.html.twig',
                [
-                   'form'=>$form->createView()
+                   'form'=>$form->createView(),
+                   'fichede'=>$fichede
                ]
                
                );
        
        
    }     
+   
+   
+  /**
+     * 
+     * @Route("/edition-fdp/{id}", defaults={"id":null} )
+     * @param Request $request
+     */
+   
+    public function editfdp(Request $request, FicheDePaie $fdp)
+    {
+         //Faire le rendu du formulaire et son traitement
+        // Validation : tous les champs obligatoires
+        // En creation setter l'auteur avec l'utilisateur connecté
+        // $this->getUser()
+        // Si enregistrement ok, rediriger vers la liste avec un message de confirmation
         
+        $em = $this->getDoctrine()->getManager();
+        $originalfdp = null;
+        
+       
+            
+            
+            // 404 si l'id reçu dans l'URL n'existe pas en bdd
+            if (is_null($fdp)) {
+                throw new NotFoundHttpException();
+            }
+            
+            if(!is_null($fdp->getFicheDePaie())){
+            //nom du fichier en bdd
+                $originalfdp = $fdp->getFicheDePaie();
+                $fdp->setFicheDePaie(
+                        new File($this->getParameter('fdp_dir') . $originalfdp)
+                 );
+            }
+      
+        // création d'un formulaire relié à la catégorie
+        $form = $this->createForm(FdpType::class, $fdp);
+        // le formulaire analyse la requête HTTP
+        $form->handleRequest($request);
+        
+        // si le formulaire a été envoyé
+        if ($form->isSubmitted()) {
+            // les attributs de l'objet Catégory ont été
+            // settés à partir des champs de formulaires
+            //dump($category);
+            
+            // Valide la saisie du formulaire à partir
+            // des annotations dans la classe Category
+            if ($form->isValid()) {
+                 /**
+                  * @var uploadedFile 
+                  */
+   
+                 $newfdp = $fdp->getFicheDePaie();
+                 //s'il y a eu une image uploadée
+                 if(!is_null($newfdp)){
+                     // nom du fichier que l'on va enregistrer
+                    $filename = uniqid() . '.' . $newfdp->guessExtension();
+                    
+                    $newfdp->move(
+                            // répertoire de destination
+                            // cf config/services.yaml
+                            $this->getParameter('fdp_dir'),
+                            $filename
+                            
+                    );
+                    // on sette l'image avec le nom qu'on lui a donné
+                    $fdp->setFicheDePaie($filename);
+                    
+                    
+                    // suppression de l'ancienne image de l'article
+                    // s'il on est en modification d'un article qui en avait
+                    // déjà une 
+                    if(!is_null($originalfdp)){
+                        unlink($this->getParameter('fdp_dir') . $originalfdp);
+                    }
+                     
+                 }else{
+                        // sans upload, on garde l'ancienne image
+                        $fdp->setFicheDePaie($originalfdp);
+                    }
+                // enregistrement en bdd
+                $em->persist($fdp);
+                $em->flush();
+                
+                // message de confirmation
+                $this->addFlash(
+                    'success',
+                    'La fiche de paie à bien été modifiée'
+                );
+                // redirection vers la page de liste
+                return $this->redirectToRoute('app_admin_insertfdp', array('id'=>$fdp->getSalarie()->getId()));
+            } else {
+                // message d'erreur en haut de la page
+                $this->addFlash(
+                    'error',
+                    'Le formulaire contient des erreurs'
+                );
+            }
+        }
+        
+        return $this->render(
+            'admin/edition-fdp.html.twig',
+            [
+                // passage du formulaire à la vue
+                'form' => $form->createView(),
+                'original_fdp' => $originalfdp,
+                
+              
+            ]
+        );
+        
+    }
+    
+    /**
+     * 
+     * @Route("/deletefdp/{id}")
+     */
+    public function deletefdp(FicheDePaie $fdp)
+    {
+        $em =$this->getDoctrine()->getManager();
+        $em->remove($fdp);
+        $em->flush();
+        
+        $this->addFlash(
+            'success',
+            'La fiche de paie a été supprimée'
+        );
+        
+        return $this->redirectToRoute('app_admin_insertfdp', array('id'=> $fdp->getSalarie()->getId()));
+    }
+    
+    
+          
 
 }

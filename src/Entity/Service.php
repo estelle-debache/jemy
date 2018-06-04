@@ -33,9 +33,10 @@ class Service
     private $entreprise;
     
     /**
+     * 
      * @ORM\OneToMany(targetEntity="Salarie", mappedBy="service") 
      */
-    private $salarie;
+    private $salaries;
     
     
     /**
@@ -47,7 +48,7 @@ class Service
     
     public function __construct() {
         $this->OffreEmploi = new \Doctrine\Common\Collections\ArrayCollection();
-        $this->salarie = new \Doctrine\Common\Collections\ArrayCollection();
+        $this->salaries = new \Doctrine\Common\Collections\ArrayCollection();
     }
     public function __toString() {
             return $this->nom;
@@ -65,8 +66,8 @@ class Service
         return $this->entreprise;
     }
 
-    public function getSalarie() {
-        return $this->salarie;
+    public function getSalaries() {
+        return $this->salaries;
     }
 
     public function getOffreEmploi() {
@@ -83,14 +84,18 @@ class Service
         return $this;
     }
 
-    public function setSalarie($salarie) {
-        $this->salarie = $salarie;
+    public function setSalaries($salaries) {
+        $this->salaries = $salaries;
         return $this;
     }
 
     public function setOffreEmploi($OffreEmploi) {
         $this->OffreEmploi = $OffreEmploi;
         return $this;
+    }
+    public function countByService() {
+        return count($this->salaries);
+        
     }
 
 

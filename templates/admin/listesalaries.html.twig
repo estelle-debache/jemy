@@ -21,29 +21,29 @@
                     <table class="table table-hover">
                         <thead>
                             <tr>
-                                <th scope="col">#</th>
+                               
                                 <th scope="col">Nom</th>
                                 <th scope="col">Prénom</th>
                                 <th scope="col">Service</th>
                                 <th scope="col">Rôle</th>
                                 <th scope="col"></th>
                                 <th scope="col"></th>
-                                <th scope="col"></th>
-                                <th scope="col"></th>
+                                <th scope="col" class="colonne-boutons"></th>
+                                
                             </tr>
                         </thead>
                         <tbody>
                             {% for salarie in app.user.entreprise.salaries %}
                             <tr>
-                                <th scope="row">{{ salarie.id }}</th>
+                                
                                 <td>{{ salarie.nom }}</td>
                                 <td>{{ salarie.prenom }}</td>
                                 <td>{{ salarie.service.nom }}</td>
                                 <td>{{ salarie.role }}</td>
                                 <td><a href="{{path('app_admin_salarieprofil', {id: salarie.id})}}"><i class="fas fa-eye"></i></a></td>
                                 <td><a href="{{path('app_admin_modifsalarie', {id: salarie.id})}}"><i class="far fa-edit"></i></a></td>
-                                <td>
-                                    <a href=""><button type="button" class="btn btn-primary">Congés</button></i></a>
+                                <td class="text-center">
+                                   
                                     <a href="{{path('app_admin_insertfdp', {id: salarie.id})}}"><button type="button" class="btn btn-primary">Fiches de paie</button></i></a></td>
                             </tr>
                             {% endfor %}
@@ -51,6 +51,9 @@
                         </tbody>
                     </table>
                 </div>
+            </div>
+            <div class="text-right">
+                <a href="{{path('app_admin_index')}}"><button type="button" class="btn btn-outline-success"><i class="fas fa-arrow-left"></i> Retour</button></a>
             </div>
 
         </div>

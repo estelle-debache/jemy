@@ -1,0 +1,25 @@
+{% extends 'layout.html.twig' %}
+
+
+{% block content %}
+    <section class="validationConges">
+        <div class="container">
+            <div class="row">
+                <div class="col-12 col-md-12">
+                    <h1 class="text-center">Validation des congés</h1>
+                </div>
+            </div>   
+            {{ form_start(form) }}
+            {{ form_row(form.statut ) }}
+            
+            <div class="col-12">
+                  <a href="{{path('app_admin_lesconges')}}"><button type="button" class="btn btn-primary">Retour</button></a>
+                  <a href="{{path('app_admin_lesconges')}}"><button type="submit" class="btn btn-primary">Envoyer</button></a>
+                </div>
+        
+        {{ form_end(form) }}
+        
+        </div>
+    </section>
+    
+{% endblock %}

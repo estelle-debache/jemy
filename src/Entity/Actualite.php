@@ -21,7 +21,11 @@ class Actualite
     
     
     /**
-     * @Assert\NotBlank(message="LE TITRE EST OBLIGATOIRE")
+     * @Assert\NotBlank(message="Merci de mettre un titre")
+     * @Assert\Length (
+     *      min = 2,
+     *      minMessage = "Le titre doit contenir {{ limit }} caractères minimum",
+     * )
      * @ORM\Column(type="string", length=255)
      */
     private $titre;
@@ -29,7 +33,11 @@ class Actualite
 
     
     /**
-     *@Assert\NotBlank(message="LE CONTENU EST OBLIGATOIRE")
+     * @Assert\NotBlank(message="Merci de mettre un contenue")
+     * @Assert\Length (
+     *      min = 5,
+     *      minMessage = "Le titre doit contenir {{ limit }} caractères minimum",
+     * )
      * @ORM\Column(type="text")
      */
     private $contenu;

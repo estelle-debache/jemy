@@ -3,6 +3,8 @@
 namespace App\Repository;
 
 use App\Entity\Conge;
+use App\Entity\Entreprise;
+use App\Entity\Salarie;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Symfony\Bridge\Doctrine\RegistryInterface;
 
@@ -19,6 +21,75 @@ class CongeRepository extends ServiceEntityRepository
         parent::__construct($registry, Conge::class);
     }
 
+    public function countByStatusAndSalarie(Salarie $salarie, $statut = 'En cours', $typeconge = 'Congé payé' )
+    {
+        $qb = $this->createQueryBuilder('c');
+        
+        $qb
+                // select count(*) from conges
+            ->select('count(c)')
+                //where statut = statut enregistree en parametre
+            ->andWhere('c.statut = :statut')
+                // recupere le salarie a parametrer lors de l'appel de la methode
+            ->andWhere('IDENTITY(c.salarie) = :salarie')
+                
+            ->andWhere('c.typeconge = :typeconge')
+                // equivalent au bindvalue
+            ->setParameters([
+                'statut' => $statut,
+                'salarie' => $salarie->getId(),
+                'typeconge' => $typeconge
+            ])
+        ;
+        
+        return $qb->getQuery()->getSingleScalarResult();
+    }
+    
+    public function findAllcongesByEntreprise(Entreprise $entreprise, $statut= 'en cours')
+    {
+        $qb = $this->createQueryBuilder('c');
+        
+        $qb
+            ->join('c.salarie', 's')
+            ->join('s.entreprise', 'e', 'WITH', 'e.id = :id')
+            ->andWhere('c.statut = :statut')
+            ->setParameters(
+                    [
+                        'statut' => $statut,
+                        'id'=>$entreprise->getId()
+                        
+                    ]
+                    )
+        ;
+        
+        return $qb->getQuery()->getResult();
+        
+        
+    }
+    public function countAllcongesByEntreprise(Entreprise $entreprise, $statut= 'en cours')
+    {
+        $qb = $this->createQueryBuilder('c');
+        
+        $qb
+            ->select('count(c)')
+            ->join('c.salarie', 's')
+            ->join('s.entreprise', 'e', 'WITH', 'e.id = :id')
+            ->andWhere('c.statut = :statut')
+            ->setParameters(
+                    [
+                        'statut' => $statut,
+                        'id'=>$entreprise->getId()
+                        
+                    ]
+                    )
+        ;
+        
+        return $qb->getQuery()->getSingleScalarResult();
+        
+        
+    }
+    
+    
 //    /**
 //     * @return Conge[] Returns an array of Conge objects
 //     */

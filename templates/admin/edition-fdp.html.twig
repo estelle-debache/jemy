@@ -1,0 +1,33 @@
+{% extends 'layout.html.twig' %}
+
+
+{% block content %}
+    
+ <section>
+        <div class="container insert-fdp  ">
+            
+                
+            <h1 class="text-center">Modifier une fiche de paie</h1>
+            {{form_start(form)}}
+            <div class="row">
+                <div class="col-md-4">
+                    {{ form_row(form.mois) }}
+                </div>
+                 <div class="col-md-4">
+                    {{ form_row(form.annee) }}
+                 </div>
+                  <div class="col-md-4">
+                    {{ form_row(form.fiche_de_paie) }}
+                  </div>
+
+               <div class="form-btn-group text-right col-12">
+                    <button type="submit" class="btn btn-primary first">Enregistrer</button>
+               </div>
+            </div>
+         {{ form_end(form) }}
+         
+         </div>
+ </section>
+         
+
+{% endblock %}

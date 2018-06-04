@@ -38,7 +38,7 @@ header .navbar {
 /** HOME PAGE **************************************************************************************************************************/
 section{
   /*margin-top: 5rem;*/
-  margin: 2rem 0;
+  margin: 5rem 0;
 }
 
 .home-page {
@@ -53,6 +53,7 @@ section{
 
 .home-droite img{
    margin:3rem auto;
+   width:66%;
 
 }
 
@@ -60,6 +61,7 @@ section{
     font-size: 2rem;
     margin-bottom: 5rem;
     text-align: center;
+    color: #083b66;
 }
 
 .home-gauche button{
@@ -106,6 +108,7 @@ section{
 .inscription h1{
     color: #083b66;
     margin-top: 6rem;
+    margin-bottom: 3rem;
 
 }
 .inscription{
@@ -124,6 +127,7 @@ section{
     padding-left : 3rem;
     padding-right:3rem;
     float:right;
+    margin-top: 1rem;
 }
 
 .inscription .btn-primary:hover{
@@ -237,8 +241,76 @@ section{
 .mon-profil .information{
     margin-top: 4rem;
 }
-/***********************PROFIL EDIT***************************************************************/
-.mon-profil .btn-primary{
+
+/** EDIT MON PROFIL **************************************************************************************************************************/
+.edit-mon-profil h1{
+    color: #083b66;
+    margin-bottom: 2rem;
+
+}
+
+.edit-mon-profil .infos{
+    margin-top:4rem;
+    border: 2px solid #083b66;
+    padding: 3rem;
+    background-color: #F8F9FA;
+    margin-bottom: 5rem;
+}
+
+.edit-mon-profil h2{
+    font-size:3rem;
+    color : #f2af58 ;
+    text-align: center;
+    margin-bottom:2rem;
+}
+
+
+
+.edit-mon-profil p {
+    color:#083b66 ;
+}
+
+
+.edit-mon-profil .btn-outline-success{
+    margin-top: 2rem;
+    background-color: #74d14c;
+    border-color:#74d14c;
+    padding-left : 3rem;
+    padding-right:3rem;
+    color:white;
+    margin:auto;
+
+}
+
+.edit-mon-profil .btn-outline-success:hover{
+    background-color:white;
+    color:#74d14c;
+
+}
+
+
+.edit-mon-profil .btn-outline-dark{
+    margin-top: 2rem;
+   background-color:white;
+    color:#74d14c;
+    width:13rem;
+
+
+}
+
+.edit-mon-profil .btn-outline-dark:hover{
+    background-color: #74d14c;
+    border-color:#74d14c;
+    color:white;
+
+}
+
+
+.edit-mon-profil .information{
+    margin-top: 4rem;
+}
+
+.edit-mon-profil .btn-primary{
     background-color: #74d14c;
     border-color:#74d14c;
     padding-left : 3rem;
@@ -247,7 +319,7 @@ section{
     float: right;
     margin-bottom: 5rem;
 }
-.mon-profil .btn-primary:hover{
+.edit-mon-profil .btn-primary:hover{
     background-color:white;
     color:#74d14c;
 }
@@ -304,10 +376,15 @@ section{
 
 /** CONGE PAYE **************************************************************************************************************************/
 
-.mesconges h1{
+.mesconges h1, .mesconges h2{
    color: #083b66;
+  
 }
 
+.mesconges h2{
+    margin-top: 3rem;
+    text-align: center;
+}
 .mesconges table{
     margin-top: 4rem;
     margin-bottom: 3rem;
@@ -320,11 +397,22 @@ section{
     padding-right:3rem;
     text-align: center;
     margin:auto;
-    margin-bottom: 5rem;
+    
 }
 .mesconges .btn-primary:hover{
     background-color:white;
     color:#74d14c;
+}
+.mesconges .btn-danger:hover{
+    color:#f2af58;
+    
+    background-color: white;
+}
+
+.mesconges .btn-danger{
+    background-color:#f2af58;
+    color:white;
+    border-color:#f2af58;
 }
 
 /** DEMANDE CONGE PAYE **************************************************************************************************************************/
@@ -372,11 +460,58 @@ section{
 
 }
 
+.validationConges .btn-outline-success{
+    margin-top: 4rem;
+    background-color: #74d14c;
+    border-color:#74d14c;
+    padding-left : 3rem;
+    padding-right:3rem;
+    color:white;
+   
 
+}
 
+.validationConges .btn-outline-success:hover{
+    background-color:white;
+    color:#74d14c;
+
+}
+
+.validationConges .avion{
+    color: #f2af58;
+    width:2rem;
+}
+
+.validationConges .avion:hover{
+    color:#74d14c;
+    width:2rem;
+}
+/** POSTULER **************************************************************************************************************************/
+.postuler h1{
+   color: #083b66;
+   margin-bottom: 4rem;
+}
+
+.postuler .btn-primary{
+    margin-top: 2rem;
+    background-color: #74d14c;
+    border-color:#74d14c;
+    padding-left : 3rem;
+    padding-right:3rem;
+    color:white;
+    margin:auto;
+
+}
+
+.postuler .btn-primary:hover{
+    background-color:white;
+    color:#74d14c;
+
+}
 /** MES FICHES DE PAIE **************************************************************************************************************************/
 .mesfichesdepaie h1{
    color: #083b66;
+   margin-bottom: 4rem;
 }
 
 .mesfichesdepaie h2{
@@ -396,8 +531,13 @@ section{
     border:5px solid #083b66;
     padding: 2rem;
     color:#083b66 ;
-    margin-top: 5rem;
-    margin-bottom: 5rem;
+    margin-top: 2rem;
+    margin-bottom: 3rem;
+}
+
+.mesfichesdepaie p{
+    color:#74d14c;
+    text-align: center;
 }
 
 .mesfichesdepaie .btn-outline-dark{
@@ -412,8 +552,8 @@ section{
     transform: scale(1.05 , 1.1);
 }
 
-.mesfichesdepaie .btn{
-    width:6rem;
+.mesfichesdepaie .btn-outline-dark{
+    width:100%;
 }
 
 .mesfichesdepaie h3{
@@ -425,11 +565,30 @@ section{
     margin-top: 1rem;
 
 }
+.mesfichesdepaie ul{
+    padding:0;
+}
 
 .icone-telechargement:hover{
     transform: scale(1.05 , 1.1);
 }
 
+.mesfichesdepaie .btn-outline-success{
+    margin-top: 2rem;
+    background-color: #74d14c;
+    border-color:#74d14c;
+    padding-left : 3rem;
+    padding-right:3rem;
+    color:white;
+    margin:auto;
+
+}
+
+.mesfichesdepaie .btn-outline-success:hover{
+    background-color:white;
+    color:#74d14c;
+
+}
 /** TROMBINOSCOPE **************************************************************************************************************************/
 
 .trombinoscope h1{
@@ -442,7 +601,7 @@ section{
 }
 
 .card-img-top{
-    height: 10rem;
+    height: 12rem;
     overflow: hidden;
 
 }
@@ -458,7 +617,7 @@ section{
 
 .trombinoscope .card{
      margin-bottom: 1rem;
-     margin-right: 1rem;
+    
 }
 
 .trombinoscope .card-text span{
@@ -467,7 +626,8 @@ section{
 }
 
 .trombinoscope .card-title{
-    margin-bottom: 0rem;
+    margin-bottom: 0.8rem;
+    
 }
 
 .trombinoscope p{
@@ -475,7 +635,26 @@ section{
 }
 
 .trombinoscope .card-body{
-    height:10rem;
+    height:11rem;
+    padding:0.5rem;
+}
+
+.trombinoscope .btn-outline-success{
+    margin-top: 4rem;
+    background-color: #74d14c;
+    border-color:#74d14c;
+    padding-left : 3rem;
+    padding-right:3rem;
+    color:white;
+    
+    
+
+}
+
+.trombinoscope .btn-outline-success:hover{
+    background-color:white;
+    color:#74d14c;
+
 }
 /** ADMIN LISTE SALARIES **************************************************************************************************************************/
 
@@ -507,13 +686,22 @@ section{
 .liste-salaries a{
     color:#083b66;
 }
+
+.liste-salaries .colonne-boutons{
+    width:16rem;
+}
 /** ADMIN AJOUT SALARIES **************************************************************************************************************************/
+.ajout-salaries h1{
+    color: #083b66;
+   margin-bottom: 4rem;
+}
 
 .ajout-salaries .btn-primary{
     background-color: #74d14c;
     border-color:#74d14c;
     float:right;
     margin-bottom: 3rem;
+    margin-top:2rem;
 }
 
 .ajout-salaries .btn-primary:hover{
@@ -698,6 +886,7 @@ section{
     border-color:#74d14c;
     float:right;
     margin-bottom: 3rem;
+    margin-top: 3rem;
 }
 
 .ajout-news .btn-primary:hover{
@@ -745,6 +934,15 @@ section{
 
 .liste-news a{
     color:#083b66;
+}
+
+.liste-news .colonne-boutons{
+    width:15rem;
+    
+}
+.liste-news .table td {
+  padding: .75rem 0rem;
+    
 }
 
 /** ADMIN LISTE OFFRES EMPLOI **************************************************************************************************************************/
@@ -800,6 +998,10 @@ section{
     color:#083b66;
 }
 
+.liste-emploi .colonne-boutons{
+    width:15rem;
+}
+
 /** ADMIN MODIF ENTREPRISE **************************************************************************************************************************/
 
 .modif-entreprise h1{
@@ -812,6 +1014,7 @@ section{
     border-color:#74d14c;
     float:right;
     margin-bottom: 3rem;
+    margin-top:3rem;
 }
 
 .modif-entreprise .btn-primary:hover{
@@ -834,6 +1037,24 @@ section{
     background-position: center;
     background-size: 100%;
    height:30rem;
+}
+
+.news .btn-outline-success{
+    margin-top: 3rem;
+    background-color: #74d14c;
+    border-color:#74d14c;
+    padding-left : 3rem;
+    padding-right:3rem;
+    color:white;
+    
+    
+
+}
+
+.news .btn-outline-success:hover{
+    background-color:white;
+    color:#74d14c;
+
 }
 /**LISTE EMPLOI SALARIE **************************************************************************************************************************/
 .liste-emploi h1{
@@ -871,6 +1092,24 @@ section{
 .liste-emploi p span{
     font-size:0.7rem;
     color:#f2af58;
+}
+
+.liste-emploi .btn-outline-success{
+    margin-top: 3rem;
+    background-color: #74d14c;
+    border-color:#74d14c;
+    padding-left : 3rem;
+    padding-right:3rem;
+    color:white;
+    
+    
+
+}
+
+.liste-emploi .btn-outline-success:hover{
+    background-color:white;
+    color:#74d14c;
+
 }
 
 /**DETAIL EMPLOI SALARIE **************************************************************************************************************************/
@@ -936,11 +1175,17 @@ section{
 }
 
 .liste-candidature .btn-primary{
-    background-color: white;
-    color:#74d14c;
+    background-color: #74d14c;
+    color:white;
     border-color:#74d14c;
     margin-top: 1rem;
     margin-bottom:2rem;
+}
+
+.liste-candidature .btn-primary:hover{
+    background-color:white;
+    color:#74d14c;
+
 }
 
 .liste-candidature p span{
@@ -950,6 +1195,56 @@ section{
 
 .liste-candidature p{
     color: #083b66;
+}
+/** INSERT FDP **************************************************************************************************************************/
+
+.insert-fdp h1{
+    color: #083b66;
+    margin-bottom: 3rem;
+}
+
+.insert-fdp .btn-primary{
+    background-color: #74d14c;
+    border-color:#74d14c;
+    margin-right:0.5rem;
+   
+}
+.insert-fdp .btn-primary:hover{
+    background-color:white;
+    color:#74d14c;
+}
+.insert-fdp .btn-outline-dark{
+    background-color: #083b66;
+    border-color:#083b66;
+    margin-right:0.5rem;
+    color:white;
+    padding: 0.3rem 2rem;
+   
+}
+.insert-fdp .btn-outline-dark:hover{
+    background-color:white;
+    color:#083b66;
+}
+.insert-fdp .first{
+    padding: 0.3rem 2rem ;
+    margin-bottom: 3rem;
+    margin-top:1rem;
+    
+}
+
+.insert-fdp .btn-danger{
+    background-color: #f2af58;
+    border-color:#f2af58;
+    margin-right:0.5rem;
+   
+}
+.insert-fdp .btn-danger:hover{
+    background-color:white;
+    color:#f2af58;
+}
+
+.insert-fdp .boutons-colonne{
+    width:24rem;
 }
 /** FOOTER **************************************************************************************************************************/
 
