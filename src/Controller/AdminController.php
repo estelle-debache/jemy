@@ -505,6 +505,8 @@ class AdminController extends Controller
      */
     public function deleteEmploi(OffreEmploi $emploi)
     {
+        $nbcandidatures = $emploi->countByCandidatures();
+        if($nbcandidatures == 0 ){
         $em = $this->getDoctrine()->getManager();
         $em->remove($emploi);
         $em->flush();
@@ -513,7 +515,12 @@ class AdminController extends Controller
             'success',
             'L\'offre d\'emploi est supprimée'
         );
-        
+        } else{
+            $this->addFlash(
+            'error',
+            'L\'offre d\'emploi ne peut être supprimée, il y a des candidatures en cours'
+        );
+        }
         return $this->redirectToRoute('app_admin_listeemploi');
     }
     /**
@@ -710,8 +717,11 @@ class AdminController extends Controller
      * 
      * @Route("/deleteservice/{id}")
      */
-    public function deleteservice(Service $service, $id)
+    public function deleteservice(Service $service)
     {
+        $nbsalaries = $service->countByService();
+        if($nbsalaries == 0 ){
+                
         $em = $this->getDoctrine()->getManager();
         $em->remove($service);
         $em->flush();
@@ -720,7 +730,13 @@ class AdminController extends Controller
             'success',
             'Le service est bien supprimé'
         );
-        
+        } else{
+            $this->addFlash(
+            'error',
+            'Impossible de supprimer le service, Vous devez d\'abord supprimer les salariés ou les changer de service'
+            );
+            
+        }
         return $this->redirectToRoute('app_admin_entrepriseconnectee');
     }
       

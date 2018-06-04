@@ -194,8 +194,8 @@ class Salarie implements UserInterface, Serializable
     /**
      *  
      * @Assert\NotBlank(groups={"registration", "edition-admin", "edition"},message = "Merci de renseigner le service")
-     * @ORM\JoinColumn(nullable=false)
-     * @ORM\ManyToOne(targetEntity="Service", inversedBy="salaries")
+     * @ORM\JoinColumn(nullable=false, )
+     * @ORM\ManyToOne(targetEntity="Service", inversedBy="salaries", cascade={"remove"})
      */
     private $service;
 

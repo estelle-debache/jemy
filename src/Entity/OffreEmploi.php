@@ -146,7 +146,10 @@ class OffreEmploi
         return $this;
     }
     
+    public function countByCandidatures() {
+        return count($this->candidatures);
         
+    } 
 
 
 
