@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+	<body>
+		<div id="demo"><h2>AJAX GET</h2></div>
+		
+		<button type="button" id="action">Charger un fichier texte</button>
+		
+		<script>
+			// on recupère l'élément avec l'id action getElementById("action") et on lui ajoute un écouteur d'événement addEventListener() sur l'action click (souris) à laquelle on va associer le déclenchement de la fonction loadDoc
+			document.getElementById("action").addEventListener("click", loadDoc);
+			
+			// fonction loadDoc
+			function loadDoc()
+			{
+				// stocke un objet XMLHttpRequest dans une variable (xhr)
+				var xhr = new XMLHttpRequest();
+				xhr.onreadystatechange = function() {
+					// readyState : propriété qui retourne l'état du client contenant l'objet XMLHttpRequest
+					// https://developer.mozilla.org/en-US/docs/Web/API/XMLHttpRequest/readyState
+					// status : code HTTP qui permet de déterminer le résultat d'une requête ou d'indiquer une erreur au client
+					// https://fr.wikipedia.org/wiki/Liste_des_codes_HTTP
+					if (xhr.readyState == 4 && xhr.status == 200) {
+						document.getElementById("demo").innerHTML = xhr.responseText;
+					}
+				}
+				// open() initialise la requête nouvellement créée
+				xhr.open("GET", "ajax_info.txt", true);
+				// send() envoie la requête au serveur
+				xhr.send();
+			}
+		</script>
+	</body>
+</html>
+			
+			
+			
+			
+			

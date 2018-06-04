@@ -619,9 +619,13 @@ class AdminController extends Controller
      * 
      * @Route("/deleteservice/{id}")
      */
-    public function deleteservice(Service $service, $id)
+    public function deleteservice(Service $service)
     {
         $em = $this->getDoctrine()->getManager();
+        
+        $service->
+        
+        
         $em->remove($service);
         $em->flush();
         
