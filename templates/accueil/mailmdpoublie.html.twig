@@ -1,0 +1,22 @@
+{% extends 'layout.html.twig' %}
+
+
+{% block content %}
+    <h1 class="text-center">Ca arrive a tout le monde d'oublier son mot de passe</h1>
+            {{form_start(form)}}
+            <div class="row">
+                <div class="col-md-4">
+             {{ form_row(form.email) }}
+             
+             <p>Vous allez recevoir un mail avec un lien pour reinitialiser votre mot de passe</p> 
+             </div>
+             <div class="form-btn-group text-right col-12">
+                <button type="submit" class="btn btn-primary first">envoyer</button>
+            </div>
+             
+               </div> 
+             {{ form_end(form) }}
+    
+    
+    
+{% endblock %}

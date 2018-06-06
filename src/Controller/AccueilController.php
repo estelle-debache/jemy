@@ -3,16 +3,20 @@
 namespace App\Controller;
 
 use App\Entity\Entreprise;
+use App\Entity\Recuperation;
 use App\Entity\Salarie;
 use App\Entity\Service;
 use App\Form\EntrepriseType;
+use App\Form\MdpoublieType;
+use App\Form\ModifmdpType;
 use App\Form\SalarieType;
+use Swift_Mailer;
+use Swift_Message;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\Security\Core\Encoder\UserPasswordEncoderInterface;
 use Symfony\Component\Security\Http\Authentication\AuthenticationUtils;
-use function dump;
 
 /**
  * @Route("/")
@@ -192,4 +196,106 @@ class AccueilController extends Controller
                 ]
                 );
     }
+    
+    /**
+     * 
+     * @Route("/modifmdp/{uniq}")
+     */
+    public function modifmdp(Recuperation  $recuperation, Request $request, UserPasswordEncoderInterface $passwordEncoder) {
+        
+        $em = $this->getDoctrine()->getManager();
+        
+        $salarie = ($recuperation->getSalarie());
+        
+        $form = $this->createForm(ModifmdpType::class, $salarie);
+        $form->handleRequest($request);
+        
+        if($form->isSubmitted()){
+            if($form->isValid())
+            {
+                $password = $passwordEncoder->encodePassword($salarie, $salarie->getplainPassword());
+                $salarie->setPassword($password);
+                
+                $em->persist($salarie);
+                $em->flush();
+               
+                $this->addFlash('success', 'Votre mot de passe a été modifié avec succes');
+                return $this->redirectToRoute('app_accueil_login');
+            }
+        }     
+        
+        return $this->render('accueil/modifmdp.html.twig',
+                [
+                    'form'=> $form->createView(),
+                ]
+                
+                );
+        
+    }
+    
+    
+    /**
+     * @Route("/mailmdpoublie")
+     */
+    public function mailmdpoublie(Request $request, Swift_Mailer $mailer)
+    {
+        $em=$this->getDoctrine()->getManager();
+        $repository = $em->getRepository(Salarie::class);
+        $recuperation = new Recuperation();
+       
+        
+        $form=$this->createForm(MdpoublieType::class, $recuperation);
+        $form->handleRequest($request);
+        
+        if($form->isSubmitted())
+        {
+            if($form->isValid())
+            {
+                $email = $recuperation->getEmail();
+                
+                $salarie = $repository->findOneBy(['email'=>$email]);
+                
+               $recuperation->setEmail($email)
+                            ->setSalarie($salarie)
+                            ->setUniq(uniqid())
+                       ;
+               
+               
+        $message = (new Swift_Message('JEMY-RH essayer c\'est l\'adopter'))
+        ->setFrom('tendances.im@gmail.com', 'Meir Bloemhof')
+        ->setTo($salarie->getEmail())
+        ->setBody(
+            $this->renderView(
+                // templates/emails/inscription.html.twig
+                'emails/mdpoublie.html.twig',
+                array('name' => $salarie->getFullName(),
+                       'recuperation' => $recuperation
+                    )
+            ),
+            'text/html'
+        );
+         $mailer->send($message);
+               
+            
+               
+                
+            $em->persist($recuperation);
+            $em->flush();
+                
+                
+            }
+        }
+        
+        
+                
+        
+        
+        
+        return $this->render('accueil/mailmdpoublie.html.twig',
+                [
+                    'form'=>$form->createView(),
+                ]);
+    }
+    
+    
 }

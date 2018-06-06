@@ -181,7 +181,7 @@ class Salarie implements UserInterface, Serializable
     private $soldeConge;
     
     /**
-     * @Assert\NotBlank(message = "Merci de renseigner le statut")
+     * 
      * @ORM\Column(type="string", columnDefinition="enum('en activite', 'fin de contrat')", nullable=true)
      */
     private $statut;
@@ -241,6 +241,11 @@ class Salarie implements UserInterface, Serializable
      *  @ORM\Column(type="float", nullable=true)
      */
     private $soldeRtt;
+
+    /**
+     * @ORM\OneToMany(targetEntity="App\Entity\Recuperation", mappedBy="salarie", cascade={"persist", "remove"})
+     */
+    private $recuperation;
     
     public function getCandidature() {
         return $this->candidature;
@@ -565,6 +570,23 @@ class Salarie implements UserInterface, Serializable
         }
         
         return $result;
+    }
+
+    public function getRecuperation()
+    {
+        return $this->recuperation;
+    }
+
+    public function setRecuperation(Recuperation $recuperation)
+    {
+        $this->recuperation = $recuperation;
+
+        // set the owning side of the relation if necessary
+        if ($this !== $recuperation->getSalarie()) {
+            $recuperation->setSalarie($this);
+        }
+
+        return $this;
     }
 
         

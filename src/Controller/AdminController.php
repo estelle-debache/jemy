@@ -7,6 +7,7 @@ use App\Entity\Conge;
 use App\Entity\Entreprise;
 use App\Entity\FicheDePaie;
 use App\Entity\OffreEmploi;
+use App\Entity\Recuperation;
 use App\Entity\Salarie;
 use App\Entity\Service;
 use App\Form\ActualiteType;
@@ -17,13 +18,14 @@ use App\Form\FdpType;
 use App\Form\ModifsalarieType;
 use App\Form\OffresemploiType;
 use App\Form\ServiceType;
+use Swift_Mailer;
+use Swift_Message;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\File\File;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\Security\Core\Encoder\UserPasswordEncoderInterface;
-use function dump;
 
 
 
@@ -56,7 +58,7 @@ class AdminController extends Controller
      * 
      * @Route("/ajoutsalaries")
      */
-    public function ajoutsalaries(Request $request, UserPasswordEncoderInterface $passwordEncoder)
+    public function ajoutsalaries(Request $request, UserPasswordEncoderInterface $passwordEncoder, Swift_Mailer $mailer)
     {
         
         $em = $this->getDoctrine()->getManager();
@@ -108,8 +110,33 @@ class AdminController extends Controller
                     ->setCarteIdentite($cniname)
                     ->setContratTravail($cdtname)
                         ;
-
+        $recuperation = new Recuperation();
+        $recuperation
+                ->setSalarie($salarie)
+                ->setUniq(uniqid())
+                ;
+                
+        
+        $message = (new Swift_Message('JEMY-RH essayer c\'est l\'adopter'))
+        ->setFrom('tendances.im@gmail.com', 'Meir Bloemhof')
+        ->setTo($salarie->getEmail())
+        ->setBody(
+            $this->renderView(
+                // templates/emails/inscription.html.twig
+                'emails/inscription.html.twig',
+                array('name' => $salarie->getFullName(),
+                       'recuperation' => $recuperation
+                    )
+            ),
+            'text/html'
+        );
+         $mailer->send($message);
+                
+                
+                
+                
                 $em->persist($salarie);
+                $em->persist($recuperation);
                 $em->flush();
                 return $this->redirectToRoute('app_admin_listesalaries');
             }
