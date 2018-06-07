@@ -89,11 +89,15 @@ section{
 
 .nometlogo h1{
     font-size: 3rem;
-    margin-bottom: 2rem;
-    margin-top: 2rem;
     text-align: center;
     color: #083b66;
     text-transform: uppercase;
+   padding-top: 2rem;
+}
+
+.nometlogo img{
+    margin: auto;
+    
 }
 
 /** CONNEXION **************************************************************************************************************************/
@@ -342,7 +346,7 @@ section{
 
 /** USER **************************************************************************************************************************/
 .tableauDeBord{
-    margin-top: 6rem;
+    margin-top: 3rem;
 }
 
 .tableauDeBord .button{
