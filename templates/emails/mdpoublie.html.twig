@@ -1,10 +1,18 @@
-<h3>Oubli de mot de passe</h3>
 
-Hi {{ name }}! You're successfully registered.
 
-{# example, assuming you have a route named "login" #}
-pour reinitialiser le mot de passe cliquer: <a href="http://www.jemy-rh.com/modifmdp/{{recuperation.uniq}}">ce lien</a>.
 
-Thanks!
 
+{% block content %}
+<div class=" container">
+    <h3>Vous avez oublié votre mot de passe</h3>
+
+    Hello {{ name }}! 
+
+    <p>
+    Pour reinitialiser votre mot de passe cliquer: <a href="http://www.jemy-rh.com/modifmdp/{{recuperation.uniq}}"> sur ce lien</a>.
+    </p>
+    
+    Merci!
+</div>
+    {% endblock %}
 {# Makes an absolute URL to the /images/logo.png file #}

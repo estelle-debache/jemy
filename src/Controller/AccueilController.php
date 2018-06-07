@@ -219,7 +219,7 @@ class AccueilController extends Controller
                 $em->persist($salarie);
                 $em->flush();
                
-                $this->addFlash('success', 'Votre mot de passe a été modifié avec succes');
+                $this->addFlash('success', 'Votre mot de passe a été modifié avec succès');
                 return $this->redirectToRoute('app_accueil_login');
             }
         }     
@@ -261,8 +261,8 @@ class AccueilController extends Controller
                        ;
                
                
-        $message = (new Swift_Message('JEMY-RH essayer c\'est l\'adopter'))
-        ->setFrom('tendances.im@gmail.com', 'Meir Bloemhof')
+        $message = (new Swift_Message('JEMY l\'essayer c\'est l\'adopter'))
+        ->setFrom('jennifer.check2312@gmail.com', 'Meir Bloemhof')
         ->setTo($salarie->getEmail())
         ->setBody(
             $this->renderView(
@@ -281,7 +281,9 @@ class AccueilController extends Controller
                 
             $em->persist($recuperation);
             $em->flush();
-                
+              
+            $this->addFlash('success', 'Un mail vous a été envoyé pour réiniatiliser votre mot de passe');
+                return $this->redirectToRoute('app_accueil_login');
                 
             }
         }

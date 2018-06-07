@@ -1,11 +1,17 @@
-<h3>You did it! You registered!</h3>
+{% extends 'base.html.twig' %}
+{% block content %}
 
-Hi {{ name }}! You're successfully registered.
+<div class=" container">
+    <h3>Première fois?!</h3>
 
-{# example, assuming you have a route named "login" #}
-To login, go to: <a href="http://www.jemy-rh.com/modifmdp/{{recuperation.uniq}}">ce lien</a>.
+    Hello {{ name }}! 
 
-Thanks!
-
+    <p>
+     Venez changer votre mot de passe ! en cliquant : <a href="http://www.jemy-rh.com/modifmdp/{{recuperation.uniq}}"> sur ce lien</a>.
+    </p>
+    Merci
+</div>
+     
+{% endblock %}
 {# Makes an absolute URL to the /images/logo.png file #}
 

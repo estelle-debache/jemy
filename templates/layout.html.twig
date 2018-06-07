@@ -59,9 +59,15 @@
                 </div>
             </nav>
             </header>
-        
-        {% endblock  %}
-    
+            
+            {% if app.user is not null %}
+            <div class="container nometlogo">
+                <h1>{{app.user.entreprise.nom}}</h1>
+                <img src="{{ asset('images/logo/' ~ app.user.entreprise.logo)}}" width="50px">
+            </div>
+            {% endif %}
+
+     {% endblock  %}
         
         {# affichage des message flash #}
         {% for type, flashes in app.session.flashBag.all  %}

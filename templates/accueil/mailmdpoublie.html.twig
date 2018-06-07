@@ -2,21 +2,25 @@
 
 
 {% block content %}
-    <h1 class="text-center">Ca arrive a tout le monde d'oublier son mot de passe</h1>
+     <div class="container connexion">
+        <h1 class="text-center"> J’ai oublié mon mot de passe </h1>
             {{form_start(form)}}
-            <div class="row">
-                <div class="col-md-4">
-             {{ form_row(form.email) }}
-             
-             <p>Vous allez recevoir un mail avec un lien pour reinitialiser votre mot de passe</p> 
-             </div>
-             <div class="form-btn-group text-right col-12">
-                <button type="submit" class="btn btn-primary first">envoyer</button>
-            </div>
-             
-               </div> 
+            <div class="container">
+                <div class="row">
+                        <div class="col col-md-12">
+                            
+                        {{ form_row(form.email) }}
+
+                     <p>Vous recevrez ensuite par e-mail un lien. Une fois ce lien cliqué, vous pourrez facilement créer votre nouveau mot de passe.</p> 
+                     </div>
+                     <div class="form-btn-group text-right col-12">
+                        <button type="submit" class="btn btn-primary first">envoyer</button>
+                    </div>
+
+                </div>
+            </div>   
              {{ form_end(form) }}
-    
+    </div> 
     
     
 {% endblock %}

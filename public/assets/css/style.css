@@ -85,6 +85,16 @@ section{
     margin-top: 5rem;
 }
 
+/** NOM ET LOGO **************************************************************************************************************************/
+
+.nometlogo h1{
+    font-size: 3rem;
+    margin-bottom: 2rem;
+    margin-top: 2rem;
+    text-align: center;
+    color: #083b66;
+    text-transform: uppercase;
+}
 
 /** CONNEXION **************************************************************************************************************************/
 
@@ -102,8 +112,14 @@ section{
 .connexion .btn-primary:hover{
     background-color:white;
     color:#74d14c;
-
 }
+
+.connexion a{
+  padding-left: 1.5rem;
+  color: #083b66; 
+  font-size: 0.9rem;
+}
+
 /** inscription **************************************************************************************************************************/
 .inscription h1{
     color: #083b66;
