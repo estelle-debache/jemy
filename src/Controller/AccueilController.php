@@ -58,7 +58,7 @@ class AccueilController extends Controller
                 
             $logo = $entreprise->getLogo();
             
-            $logoname = $entreprise->getNom().uniqid().$logo->guessExtension();
+            $logoname = 'logo'.uniqid().'.'.$logo->guessExtension();
 
             $logo->move($this->getParameter('logo_dir'), $logoname);
             

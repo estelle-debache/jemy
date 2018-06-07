@@ -10,7 +10,7 @@ use Symfony\Component\Validator\Constraints as Assert;
 /**
  * 
  * @ORM\Entity(repositoryClass="App\Repository\EntrepriseRepository")
- * @UniqueEntity(fields="siret",
+ * @UniqueEntity(groups="registration", fields="siret",
  *   message="Il existe déja une entreprise avec cet siret ")
  * 
  */

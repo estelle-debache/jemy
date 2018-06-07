@@ -13,8 +13,8 @@ use App\Entity\Service;
 use App\Form\ActualiteType;
 use App\Form\AjoutsalarieType;
 use App\Form\CongeadminType;
-use App\Form\EntrepriseType;
 use App\Form\FdpType;
+use App\Form\ModifentrepriseType;
 use App\Form\ModifsalarieType;
 use App\Form\OffresemploiType;
 use App\Form\ServiceType;
@@ -804,7 +804,7 @@ class AdminController extends Controller
         }
         
         //creation d'un formulaire relié a la categorie
-        $form = $this->createForm(EntrepriseType::class, $entreprise);
+        $form = $this->createForm(ModifentrepriseType::class, $entreprise);
         // le formulaire analyse la requete HTTP
         $form->handleRequest($request);
         
@@ -816,7 +816,7 @@ class AdminController extends Controller
                 $newlogo = $entreprise->getLogo();
                 if(!is_null($newlogo))
                 {
-                    $logoname= $entreprise->getNom().uniqid().$newlogo->guessExtension();
+                    $logoname= $entreprise->getNom().uniqid().'.'.$newlogo->guessExtension();
                     
                     $newlogo->move($this->getParameter('logo_dir'), $logoname);
                     
