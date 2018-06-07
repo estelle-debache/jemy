@@ -54,10 +54,15 @@ class AccueilController extends Controller
         {
             if($form->isValid())
             {
+                
+                
+            $logo = $entreprise->getLogo();
+            
+            $logoname = $entreprise->getNom().uniqid().$logo->guessExtension();
 
-
-
-
+            $logo->move($this->getParameter('logo_dir'), $logoname);
+            
+            $entreprise->setLogo($logoname);
 
 
             // RESTE PLKUS QUA LES METTRE EN BASE DE DONNéES
@@ -253,7 +258,16 @@ class AccueilController extends Controller
             {
                 $email = $recuperation->getEmail();
                 
+                
+                
                 $salarie = $repository->findOneBy(['email'=>$email]);
+                
+                if (empty($salarie)){
+                    
+                    $this->addFlash('error', 'il n\'existe aucun salarie avec cette adresse mail');
+                    
+                }else{
+                
                 
                $recuperation->setEmail($email)
                             ->setSalarie($salarie)
@@ -281,7 +295,12 @@ class AccueilController extends Controller
                 
             $em->persist($recuperation);
             $em->flush();
-                
+            
+            $this->addFlash('success', 'vous allez recevoir un mail pour recuperer le mot de passe');
+            
+            return $this->redirectToRoute('app_accueil_login');
+            
+                }
                 
             }
         }
