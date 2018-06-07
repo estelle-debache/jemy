@@ -29,6 +29,15 @@ class SalarieController extends Controller
         return $this->render('salarie/index.html.twig');
     }
 
+    /**
+     * @Route("/chat")
+     */
+    public function chat()
+    {
+        return $this->render('salarie/chat.html.twig', [
+            'ws_url' => 'localhost:8080'
+        ]);
+    }
 
 
     /**
