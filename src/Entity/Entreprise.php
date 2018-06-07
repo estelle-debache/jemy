@@ -132,7 +132,65 @@ class Entreprise
      */
     private $OffreEmploi;
     
-    public function __construct() {
+    
+    
+    /**
+     *
+     *@ORM\Column(type="float", nullable=true) 
+     */
+    private $nbcpgagne;
+    
+    
+    /**
+     *
+     * @ORM\Column(type="float", nullable= true)
+     */
+    private $nbrttgagne;
+    
+    /**
+     *
+     * @ORM\Column(type="string", length=255, nullable= true)
+     */
+    private $logo;
+    
+    
+    public function getLogo() {
+        return $this->logo;
+    }
+
+    public function setLogo($logo) {
+        $this->logo = $logo;
+        return $this;
+    }
+
+        public function getCandidatures() {
+        return $this->candidatures;
+    }
+
+    public function getNbcpgagne() {
+        return $this->nbcpgagne;
+    }
+
+    public function getNbrttgagne() {
+        return $this->nbrttgagne;
+    }
+
+    public function setCandidatures($candidatures) {
+        $this->candidatures = $candidatures;
+        return $this;
+    }
+
+    public function setNbcpgagne($nbcpgagne) {
+        $this->nbcpgagne = $nbcpgagne;
+        return $this;
+    }
+
+    public function setNbrttgagne($nbrttgagne) {
+        $this->nbrttgagne = $nbrttgagne;
+        return $this;
+    }
+
+        public function __construct() {
         $this->OffreEmploi = new ArrayCollection();
         $this->services = new ArrayCollection();
         $this->salaries = new ArrayCollection();

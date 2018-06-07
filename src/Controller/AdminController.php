@@ -793,11 +793,16 @@ class AdminController extends Controller
     /**
     * @Route("/modifentreprise/{id}")
     */
-    public function modifentreprise(Request $request, Entreprise $entreprise, $id) {
+    public function modifentreprise(Request $request, Entreprise $entreprise) {
         $em= $this->getDoctrine()->getManager();
+        $originallogo = null;
         
-        $entreprise = $em->find(Entreprise::class , $id);
-         
+        if(!is_null($entreprise->getLogo()))
+        {
+            $originallogo= $entreprise->getLogo();
+            $entreprise->setLogo(new File($this->getParameter('logo_dir').$originallogo));
+        }
+        
         //creation d'un formulaire relié a la categorie
         $form = $this->createForm(EntrepriseType::class, $entreprise);
         // le formulaire analyse la requete HTTP
@@ -808,6 +813,30 @@ class AdminController extends Controller
         {
             if($form->isValid())
             {
+                $newlogo = $entreprise->getLogo();
+                if(!is_null($newlogo))
+                {
+                    $logoname= $entreprise->getNom().uniqid().$newlogo->guessExtension();
+                    
+                    $newlogo->move($this->getParameter('logo_dir'), $logoname);
+                    
+                    $entreprise->setLogo($logoname);
+                    
+                    if(!is_null($originallogo))
+                    {
+                        unlink($this->getParameter('logo_dir').$originallogo );
+                    }
+                
+                    
+                    
+                }else{
+                    $entreprise->setLogo($originallogo);
+                }
+                
+                
+                
+                
+                
                 $em->persist($entreprise);
                 $em->flush();
                 return $this->redirectToRoute('app_admin_entrepriseconnectee');
@@ -873,8 +902,8 @@ class AdminController extends Controller
        if($form->isSubmitted()){
            if($form->isValid())
            {
-                $soldeconge+=2.5;
-                $soldertt+= 1;
+                $soldeconge+=$this->getUser()->getEntreprise()->getNbcpgagne();
+                $soldertt+= $this->getUser()->getEntreprise()->getNbrttgagne();
                 $salarie->setSoldeConge($soldeconge)
                         ->setSoldeRtt($soldertt);
                

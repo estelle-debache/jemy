@@ -14,6 +14,7 @@ parameters:
     candidatures_dir: '%kernel.project_dir%/public/images/candidatures'
     #répertoire de ficher de stockage des fiches de paies par salaries 
     fdp_dir: '%kernel.project_dir%/public/images/fdp/'
+    logo_dir: '%kernel.project_dir%/public/images/logo'
 services:
     # default configuration for services in *this* file
     _defaults:

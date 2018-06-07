@@ -36,11 +36,23 @@
             {{form_row(form.codePostal) }}
         </div>
 
-        <div class="col-6">
+        <div class="col-4">
             {{ form_row(form.ville) }}
         </div>
-        <div class="col-6">
+        <div class="col-4">
             {{ form_row(form.telephone) }}
+        </div>
+        <div class="col-4">
+            {{ form_row(form.logo) }}
+        </div>
+        <div class="col-md-12">
+        <p class="text-center">En fonction de votre convention collective veuillez indiquez le nombre de congé acquis par mois :</p>
+        </div>
+        <div class="col-6">
+            {{ form_row(form.nbcpgagne) }}
+        </div>
+        <div class="col-6">
+            {{ form_row(form.nbrttgagne) }}
         </div>
  
     </div>
